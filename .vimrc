@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 " let Vundle manage Vundle, required
-
 Plugin 'VundleVim/Vundle.vim'
 
 " Editor
@@ -15,7 +14,7 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'matchit.zip'
 " Plugin 'sirver/ultisnips'
@@ -28,6 +27,7 @@ Plugin 'editorconfig/editorconfig-vim'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
+Plugin 'vim-airline/vim-airline-themes'
 
 " ??
 " Plugin 'pangloss/vim-javascript'
@@ -101,9 +101,14 @@ let g:instant_markdown_autostart = 0
 let b:javascript_fold = 0
 let g:NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
-" let g:airline#extensions#whitespace#enabled = 1
-" let g:airline_theme='base16'
+
+" Airline configuration
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_theme='base16'
 " let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " YouCompleteMe
 " let g:ycm_filetype_blacklist = {
@@ -128,8 +133,6 @@ let g:delimitMate_expand_cr=1
 syntax enable           " enable syntax processing
 let base16colorspace=256
 set background=dark
-"colorscheme solarized
-"colorscheme Tomorrow-Night
 colorscheme base16-eighties
 set t_ut=
 
@@ -223,4 +226,3 @@ map <leader>nt :NERDTreeToggle<CR>
 " select text that was jsut pasted
 nnoremap <leader>v V`]
 
-let g:airline#extensions#tabline#enabled = 1

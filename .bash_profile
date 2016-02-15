@@ -144,7 +144,10 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 
 # Add support for z
 # https://github.com/rupa/z
-source ~/.dotfiles/z/z.sh
+source ~/.dotfiles/scripts/z/z.sh
+
+# Resty REST client
+source ~/.dotfiles/scripts/resty/resty
 
 # Replace cat with a syntax highlighted one
 alias cat='pygmentize -g $1'

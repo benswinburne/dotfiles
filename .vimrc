@@ -29,9 +29,12 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline-themes'
 
-" ??
+" Language Specific
 " Plugin 'pangloss/vim-javascript'
 Bundle 'vim-php/vim-composer'
+
+" PHP
+Bundle 'stephpy/vim-php-cs-fixer'
 
 " Syntax
 Plugin 'scrooloose/syntastic'
@@ -225,4 +228,15 @@ map <leader>nt :NERDTreeToggle<CR>
 
 " select text that was jsut pasted
 nnoremap <leader>v V`]
+
+" PHP CS Fixer
+
+" If php-cs-fixer is in $PATH, you don't need to define line below
+let g:php_cs_fixer_level = "psr2"              " which level ?
+let g:php_cs_fixer_config = "default"             " configuration
+"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 

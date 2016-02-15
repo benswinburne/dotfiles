@@ -146,4 +146,9 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 # https://github.com/rupa/z
 source ~/.dotfiles/z/z.sh
 
+# Replace cat with a syntax highlighted one
 alias cat='pygmentize -g $1'
+
+# Use Hub
+# https://hub.github.com/
+alias git='hub'

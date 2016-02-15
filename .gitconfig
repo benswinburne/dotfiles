@@ -58,3 +58,7 @@
 	required = true
 [branch]  
 	autosetuprebase = always
+[github]
+	user = benswinburne
+[ghi]
+	token = !security find-internet-password -a benswinburne -s github.com -l 'ghi token' -w

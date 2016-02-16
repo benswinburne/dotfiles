@@ -24,6 +24,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'benmills/vimux'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -97,7 +98,9 @@ let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
 " ctrlp - fuzzy search
 set wildignore+=*/node_modules/**
 set wildignore+=*/.git/**
+set wildignore+=*/vendor/**
 let g:ctrlp_custom_ignore='dist'
+let g:ctrlp_show_hidden = 1
 
 " Disable auto markdown preview. Use :InstantMarkdownPreview instead
 let g:instant_markdown_autostart = 0
@@ -239,4 +242,8 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+
+" Vimux
+map <leader>x :VimuxPromptCommand<CR>
+map <leader>t :call VimuxRunCommand("clear; phpunit --self-update")<CR>
 

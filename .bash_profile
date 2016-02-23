@@ -155,3 +155,9 @@ alias cat='pygmentize -g $1'
 # Use Hub
 # https://hub.github.com/
 alias git='hub'
+
+#tmux attach &> /dev/null
+
+#if [[ ! $TMUX_PANE ]]; then
+#  exec tmux
+#fi

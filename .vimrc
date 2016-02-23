@@ -17,7 +17,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'matchit.zip'
-" Plugin 'sirver/ultisnips'
+Plugin 'sirver/ultisnips'
 " Plugin 'valloric/youcompleteme'
 " Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
@@ -25,6 +25,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
+Bundle 'matze/vim-move'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -36,6 +37,8 @@ Bundle 'vim-php/vim-composer'
 
 " PHP
 Bundle 'stephpy/vim-php-cs-fixer'
+Bundle 'tobyS/pdv'
+Bundle 'tobyS/vmustache'
 
 " Syntax
 Plugin 'scrooloose/syntastic'
@@ -80,59 +83,9 @@ set undodir=~/.vimundo/
 " offset scroll few lines before bottom
 set scrolloff=3
 
-" Plugin Settings
-" ----------------------
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
-
-" ctrlp - fuzzy search
-set wildignore+=*/node_modules/**
-set wildignore+=*/.git/**
-set wildignore+=*/vendor/**
-let g:ctrlp_custom_ignore='dist'
-let g:ctrlp_show_hidden = 1
-
-" Disable auto markdown preview. Use :InstantMarkdownPreview instead
-let g:instant_markdown_autostart = 0
-let b:javascript_fold = 0
-let g:NERDTreeChDirMode=2
-let NERDTreeShowHidden=1
-
-" Airline configuration
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_theme='base16'
-" let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" YouCompleteMe
-" let g:ycm_filetype_blacklist = {
-"   \ 'html' : 1
-"   \}
-" let g:ycm_filetype_specific_completion_to_disable = {
-"   \ 'html': 1
-"   \}
-
-" using supertab to allow YCM and UltiSnips to play nice
-" Set shortcuts for ycm
-" let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-
-" if tab doesn't expand snippet, its passed to supertab which calls YCM
-" shortcut from above
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
-let g:delimitMate_expand_cr=1
+" Prevent me quitting vim all the time!
+" cnoreabbrev wq w<bar>bd
+" cnoreabbrev q bd
 
 " Colors
 " ----------------------
@@ -174,7 +127,7 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase,
-                        "   case-sensitive otherwise
+                        " case-sensitive otherwise
 
 " Folding
 " ----------------------
@@ -186,8 +139,8 @@ set foldmethod=indent   " fold based on indent level
 " Movement
 " ----------------------
 " move vertically by visual line
-" nnoremap j gj
-" nnoremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " highlight last inserted text
 "nnoremap gV `[v`]
@@ -195,13 +148,14 @@ set foldmethod=indent   " fold based on indent level
 " Window Management
 " ----------------------
 " Easy window navigation
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " Open new panes to right and bottom
-" set splitbelow
-" set splitright
+set splitbelow
+set splitright
 
 " Leader Shortcuts
 " ----------------------
@@ -213,37 +167,119 @@ map <leader><leader> <c-^>
 " Markdown preview
 map <leader>md :InstantMarkdownPreview<CR>
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 " turn off search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 
 " toggle scrolloff between 999 and 0. 999 keeps line center screen
-:nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 " toggle paste mode
 set pastetoggle=<leader>p
 
-" Nerdtree toggle
-map <leader>nt :NERDTreeToggle<CR>
-
-" select text that was jsut pasted
+" select text that was just pasted
 nnoremap <leader>v V`]
 
-" PHP CS Fixer
+" Quickly edit/reload the vimrc file
+" ----------------------
+nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" If php-cs-fixer is in $PATH, you don't need to define line below
-let g:php_cs_fixer_level = "psr2"              " which level ?
+" Automatically source files named .vimrc when the buffer is written
+augroup autosourcing
+  autocmd!
+  autocmd BufWritePost .vimrc source %
+augroup END
+
+" PHP CS Fixer
+" ----------------------
+let g:php_cs_fixer_level = "psr2"                 " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
-"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+let g:php_cs_fixer_config_file = '.php_cs'        " configuration file
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
 " Vimux
+" ----------------------
 map <leader>x :VimuxPromptCommand<CR>
-map <leader>t :call VimuxRunCommand("clear; phpunit --self-update")<CR>
+map <leader>t :call VimuxRunCommand("clear; phpunit; echo;")<CR>
 
+" Move line
+" ----------------------
+" let g:move_key_modifier = 'C'
+
+" PHP Documenter
+" ----------------------
+let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
+nnoremap <buffer> <leader>db :call pdv#DocumentWithSnip()<CR>
+
+" Laravel Mappings
+" ----------------------
+nmap <Leader>lr :e app/Http/routes.php<CR>
+nmap <Leader>lm :!php artisan make:
+
+" Syntastic
+" ----------------------
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
+
+nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
+cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<cr>
+
+" Airline
+" ----------------------
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_theme='base16'
+" let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" ctrlp - fuzzy search
+" ----------------------
+set wildignore+=*/node_modules/**
+set wildignore+=*/.git/**
+set wildignore+=*/vendor/**
+let g:ctrlp_custom_ignore='dist'
+let g:ctrlp_show_hidden = 1
+nmap <D-p> :CtrlP<cr>
+nmap <D-r> :CtrlPBufTag<cr>
+nmap <D-e> :CtrlPMRUFiles<cr>
+" nnoremap <silent> <Leader>t :CtrlP<cr>
+" nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
+
+" Statusline
+" ----------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" NERDTree
+" ----------------------
+let g:NERDTreeChDirMode=2
+let NERDTreeShowHidden=1
+map <leader>nt :NERDTreeToggle<CR>
+
+" YouCompleteMe
+" ----------------------
+" let g:ycm_filetype_blacklist = {
+"   \ 'html' : 1
+"   \}
+" let g:ycm_filetype_specific_completion_to_disable = {
+"   \ 'html': 1
+"   \}
+
+" using supertab to allow YCM and UltiSnips to play nice
+" Set shortcuts for ycm
+" let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+
+" if tab doesn't expand snippet, its passed to supertab which calls YCM
+" shortcut from above
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
+let g:delimitMate_expand_cr=1

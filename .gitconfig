@@ -23,7 +23,44 @@
   std = "!f() { git stash drop stash@{$1}; }; f"
   stsh = "!f() { git stash show -p stash@{$1}; }; f"
 
+  # listing
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+
+  # file history
+  filelog = log -u
+  dl = "!git ll -1"                              # Show modified files in last commit
+  dlc = diff --cached HEAD^                      # Show a diff last commit
+  changes = whatchanged --since='2 weeks ago'    # Show log of changes in the last 2 weeks
+  sincedev = git log --no-merges --stat --reverse develop..  # Show all changes since merging from develop
+  vistree = git log --pretty=oneline --graph --decorate --all # Visualise the version tree
+
+  # meta
+  la = "!git config -l | grep alias | cut -c 7-" # List all of my aliases
+
+  # tags
+  lasttag = describe --tags --abbrev=0           # Show the last tag
+  lt = describe --tags --abbrev=0                # Show the last tag
+
+  # merging
+  ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+  theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+
+  # resetting
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  undo-commit = reset --soft HEAD~1
+
+  # housekeeping
   prune = remote prune origin
+  clean-merged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
+
 
 [core]
 	# Use custom `.gitignore`
@@ -56,9 +93,11 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
-[branch]  
+[branch]
 	autosetuprebase = always
 [github]
 	user = benswinburne
 [ghi]
 	token = !security find-internet-password -a benswinburne -s github.com -l 'ghi token' -w
+[fetch]
+	prune = true

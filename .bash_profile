@@ -8,6 +8,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
 export PATH="$(brew --prefix josegonzalez/php/php56)/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
+alias phpunit='vendor/bin/phpunit'
+alias behat='vendor/bin/behat'
+
 # Set up Editor
 export EDITOR=$(which vim)
 

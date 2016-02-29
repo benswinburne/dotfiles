@@ -9,7 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Editor
-" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -19,13 +19,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'matchit.zip'
 Plugin 'sirver/ultisnips'
 " Plugin 'valloric/youcompleteme'
-" Plugin 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 Bundle 'matze/vim-move'
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -63,7 +64,7 @@ let base16colorspace=256
 " disable auto backups and swap files
 set nobackup
 set noswapfile
-
+set hidden
 " markdown formatting for .md files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -117,9 +118,9 @@ set ruler                 " line/character numbers bottom right
 set colorcolumn=81        " show line at 81 chars, stop before the line
 
 " change cursor in different modes
-" let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-" let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-" let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " Searching
 " ----------------------
@@ -217,7 +218,9 @@ nnoremap <buffer> <leader>db :call pdv#DocumentWithSnip()<CR>
 " Laravel Mappings
 " ----------------------
 nmap <Leader>lr :e app/Http/routes.php<CR>
-nmap <Leader>lm :!php artisan make:
+nmap <Leader>la :!php artisan
+nmap <Leader>lmr :!php artisan migrate:refreh --seed
+nmap <Leader>lm :!php artisan migrate
 
 " Syntastic
 " ----------------------
@@ -281,5 +284,14 @@ map <leader>nt :NERDTreeToggle<CR>
 
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" let g:SuperTabDefaultCompletionType = '<C-Tab>'
 let g:delimitMate_expand_cr=1
+
+" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Notes and reminders
+" -------------------
+
+" "*y copy to system clipboard
+" ctrl + ] to go to function definition, ctrl+o to go back

@@ -26,7 +26,7 @@ Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 Bundle 'matze/vim-move'
-Plugin 'vim-ctrlspace/vim-ctrlspace'
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -44,6 +44,7 @@ Bundle 'tobyS/vmustache'
 " Syntax
 Plugin 'scrooloose/syntastic'
 " Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kylef/apiblueprint.vim'
 
 " Git
 Plugin 'airblade/vim-gitgutter'
@@ -67,6 +68,7 @@ set noswapfile
 set hidden
 " markdown formatting for .md files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.apib set filetype=apiblueprint
 
 set laststatus=2
 set encoding=utf-8
@@ -225,7 +227,7 @@ nmap <Leader>lm :!php artisan migrate
 " Syntastic
 " ----------------------
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
@@ -267,6 +269,7 @@ set statusline+=%*
 let g:NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
+map <D-1> :NERDTreeToggle<CR>
 
 " YouCompleteMe
 " ----------------------
@@ -289,6 +292,12 @@ let g:delimitMate_expand_cr=1
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" General development
+augroup autosourcing
+  autocmd!
+  autocmd BufWritePost apiary.apib silent! !aglio -i % -o docs/dist/index.html
+augroup END
 
 " Notes and reminders
 " -------------------

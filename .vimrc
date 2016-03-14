@@ -184,7 +184,7 @@ set pastetoggle=<leader>p
 nnoremap <leader>v V`]
 
 " Close all buffers except NerdTree
-nnoremap <leader>bd bufdo bd
+nnoremap <leader>bd :bufdo bd<CR>
 
 " Quickly edit/reload the vimrc file
 " ----------------------

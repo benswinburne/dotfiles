@@ -18,15 +18,15 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'matchit.zip'
 Plugin 'sirver/ultisnips'
-" Plugin 'valloric/youcompleteme'
 Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
-Bundle 'matze/vim-move'
-"Plugin 'vim-ctrlspace/vim-ctrlspace'
+" Bundle 'matze/vim-move'
+" Plugin 'valloric/youcompleteme'
+" Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -40,6 +40,7 @@ Bundle 'vim-php/vim-composer'
 Bundle 'stephpy/vim-php-cs-fixer'
 Bundle 'tobyS/pdv'
 Bundle 'tobyS/vmustache'
+Bundle 'arnaud-lb/vim-php-namespace'
 
 " Syntax
 Plugin 'scrooloose/syntastic'
@@ -52,7 +53,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Frontend
-" Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,7 +67,8 @@ let base16colorspace=256
 set nobackup
 set noswapfile
 set hidden
-" markdown formatting for .md files
+
+" Set filetypes for unknown extensions
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.apib set filetype=apiblueprint
 
@@ -74,21 +76,20 @@ set laststatus=2
 set encoding=utf-8
 set backspace=2
 
-" trim whitespace
+" Trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-" tell it to use an undo file
+" Tell it to use an undo file
 set undofile
 
-" " set a directory to store the undo history
+" Set a directory to store the undo history
 set undodir=~/.vimundo/
 
-" offset scroll few lines before bottom
+" Offset scroll few lines before bottom
 set scrolloff=3
 
-" Prevent me quitting vim all the time!
-" cnoreabbrev wq w<bar>bd
-" cnoreabbrev q bd
+" Remove the delay exiting insert mode
+set ttimeoutlen=0
 
 " Colors
 " ----------------------
@@ -182,6 +183,9 @@ set pastetoggle=<leader>p
 " select text that was just pasted
 nnoremap <leader>v V`]
 
+" Close all buffers except NerdTree
+nnoremap <leader>bd bufdo bd
+
 " Quickly edit/reload the vimrc file
 " ----------------------
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
@@ -226,14 +230,14 @@ nmap <Leader>lm :!php artisan migrate
 
 " Syntastic
 " ----------------------
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
 
-nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
+" nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<cr>
 
 " Airline
@@ -257,6 +261,26 @@ nmap <D-r> :CtrlPBufTag<cr>
 nmap <D-e> :CtrlPMRUFiles<cr>
 " nnoremap <silent> <Leader>t :CtrlP<cr>
 " nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
+
+" The Silver Searcher
+" ----------------------
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
 
 " Statusline
 " ----------------------
@@ -296,8 +320,14 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " General development
 augroup autosourcing
   autocmd!
-  autocmd BufWritePost apiary.apib silent! !aglio -i % -o docs/dist/index.html
+  autocmd BufWritePost api.apib silent! !aglio -i % -o docs/dist/index.html
 augroup END
+
+"augroup autosourcing
+""  autocmd!
+""    autocmd BufWritePost *.php silent! !ctags -R --exclude=@.gitignore .
+"augroup END
+
 
 " Notes and reminders
 " -------------------

@@ -1,0 +1,9 @@
+# Mouse, keyboard, trackpad etc
+# -----------------------------
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+
+# Faster keyboard repeat rate
+default write -g InitialKeyRepeat -int 10 #normal minimum is 15 (225ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30ms)

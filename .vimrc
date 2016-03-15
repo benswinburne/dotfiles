@@ -18,6 +18,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'matchit.zip'
 Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -269,7 +270,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -305,16 +306,23 @@ map <D-1> :NERDTreeToggle<CR>
 
 " using supertab to allow YCM and UltiSnips to play nice
 " Set shortcuts for ycm
-" let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
 " let g:SuperTabDefaultCompletionType = '<C-Tab>'
 let g:delimitMate_expand_cr=1
 
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<C-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>""
+
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+let g:EditorConfig_core_mode = 'external_command'
 
 " General development
 augroup autosourcing
@@ -333,3 +341,16 @@ augroup END
 
 " "*y copy to system clipboard
 " ctrl + ] to go to function definition, ctrl+o to go back
+
+" Things to do
+" -------------------
+"  Fix vim-move (closed issue about OSX)
+"  macro to write method
+"  macro to write route
+"  macro to write class
+"  macro to assign constructor argument
+"  bump method up shift command up
+"  php code coverage ? https://github.com/joonty/vim-phpqa
+"  xdebug
+"  look into line markers
+"  work out why editorconfig isn't working properly

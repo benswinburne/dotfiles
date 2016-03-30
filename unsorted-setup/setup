@@ -1,0 +1,86 @@
+#!/bin/sh
+
+brew tap homebrew/versions
+brew install gcc48
+
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+
+sudo npm install -g aglio
+sudo npm install -g drafter
+
+git clone git@github.com:rupa/z.git ~/.dotfiles/scripts/z
+git clone git@github.com:micha/resty.git ~/.dotfiles/scripts/resty
+
+brew install python3
+
+sudo pip  install Pygments
+     pip3 install todocli     # Todo list
+
+brew install ghi              # Github issues (when npm gh is better, remove)
+brew install hub              # Hub from github
+sudo npm install gh -g        # More github functionality
+
+brew install ctags            # Exuberant ctags
+brew install the_silver_searcher
+
+mkdir -p ~/.vimundo
+
+brew install mongo
+brew services start mongodb
+
+sudo npm -g install instant-markdown-d
+# -- old init --
+
+# install ruby
+# install rubygems
+
+# install homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# cask for homebrew
+brew install caskroom/cask/brew-cask
+
+# general desktop apps
+brew cask install google-chrome
+brew cask install spotify
+brew cask install spotify-notifications
+brew cask install slack
+brew cask install sequel-pro
+brew cask install iterm2
+brew cask install skype
+brew cask install sublime-text
+brew install transmission
+
+brew tap homebrew/binary
+brew install packer
+
+# import ssh configs
+# download ssh keys
+
+# php things
+# install php
+# install php-mcrypt
+# install composer
+# install homestead
+# install xdebug
+# install xhprof
+# install hhvm
+# install memcached
+# install phpunit
+
+# Blackfire
+brew tap blackfireio/homebrew-blackfire
+brew install blackfire-agent
+sudo blackfire-agent -register
+ln -sfv /usr/local/opt/blackfire-agent/*.plist ~/Library/LaunchAgents
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.blackfire-agent.plist
+blackfire config
+brew install blackfire-php55
+
+brew cask install vagrant
+vagrant plugin install vagrant-hostsupdater
+brew cask install virtualbox
+brew install awscli
+brew install aws-elasticbeanstalk

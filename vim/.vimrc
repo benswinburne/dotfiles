@@ -187,6 +187,9 @@ nnoremap <leader>v V`]
 " Close all buffers except NerdTree
 nnoremap <leader>bd :bufdo bd<CR>
 
+" Redraw the window (force)
+nnoremap <C-L> :redraw!<CR>
+
 " Quickly edit/reload the vimrc file
 " ----------------------
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
@@ -255,7 +258,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 set wildignore+=*/node_modules/**
 set wildignore+=*/.git/**
 set wildignore+=*/vendor/**
-let g:ctrlp_custom_ignore='dist'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
 let g:ctrlp_show_hidden = 1
 nmap <D-p> :CtrlP<cr>
 nmap <D-r> :CtrlPBufTag<cr>
@@ -325,22 +328,34 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:EditorConfig_core_mode = 'external_command'
 
 " General development
-augroup autosourcing
-  autocmd!
-  autocmd BufWritePost api.apib silent! !aglio -i % -o docs/dist/index.html
-augroup END
-
+" -------------------
 "augroup autosourcing
-""  autocmd!
-""    autocmd BufWritePost *.php silent! !ctags -R --exclude=@.gitignore .
+"  autocmd!
+"  autocmd BufWritePost *.php silent! !ctags -R --exclude=@.gitignore .
 "augroup END
 
+" Text wrapping
+" -------------------
+autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
+
+" Hardmode
+" -------------------
+" noremap h <NOP>
+" noremap j <NOP>
+" noremap k <NOP>
+" noremap l <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Notes and reminders
 " -------------------
 
 " "*y copy to system clipboard
 " ctrl + ] to go to function definition, ctrl+o to go back
+" ysiw) wrap word in parentheses
 
 " Things to do
 " -------------------

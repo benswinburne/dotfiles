@@ -3,6 +3,7 @@
 brew tap homebrew/versions
 brew install gcc48
 
+brew install node
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable

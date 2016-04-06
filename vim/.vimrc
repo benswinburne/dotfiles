@@ -345,10 +345,12 @@ autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
 " noremap j <NOP>
 " noremap k <NOP>
 " noremap l <NOP>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" Unbind the cursor keys in insert, normal and visual modes.
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
 
 " Notes and reminders
 " -------------------

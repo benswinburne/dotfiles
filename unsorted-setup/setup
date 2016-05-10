@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p ~/.dotfiles/cache/.vimundo
+mkdir -p ~/.dotfiles/vim/cache/info
 
 # Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

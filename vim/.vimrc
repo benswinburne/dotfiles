@@ -34,7 +34,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline-themes'
 
 " Language Specific
-" Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 Bundle 'vim-php/vim-composer'
 
 " PHP
@@ -84,7 +84,19 @@ autocmd BufWritePre * :%s/\s\+$//e
 set undofile
 
 " Set a directory to store the undo history
-set undodir=~/.vimundo/
+set undodir=~/.dotfiles/vim/cache/undo
+
+" Set a directory to store vim state etc
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/.cache/info
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
 
 " Offset scroll few lines before bottom
 set scrolloff=3
@@ -109,6 +121,8 @@ set shiftwidth=2        " indentation with << and >>
 set shiftround          " use multiple of shitwidth when indenting with < and >
 set autoindent          " autoindent lines
 set copyindent          " copy the indentation on autoindenting
+
+nmap <leader><tab> :retab<cr>
 
 " UI Config
 " ----------------------
@@ -358,6 +372,7 @@ endfor
 " "*y copy to system clipboard
 " ctrl + ] to go to function definition, ctrl+o to go back
 " ysiw) wrap word in parentheses
+" :%y+ next command on all lines, yank, copy to clipboard
 
 " Things to do
 " -------------------

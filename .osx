@@ -7,3 +7,8 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/nul
 # Faster keyboard repeat rate
 default write -g InitialKeyRepeat -int 10 #normal minimum is 15 (225ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30ms)
+
+defaults write com.apple.trackpad.orientation TrackpadOrientationMode 1
+# sudo defaults write com.apple.MultitouchSupport ForceAutoOrientation YES
+#
+# With this hidden pref, the trackpad auto-detects hand orientation from 5 resting fingers and rotates the coordinate system to match.

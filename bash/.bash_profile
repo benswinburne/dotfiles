@@ -118,9 +118,6 @@ man() {
 export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\] $symbol\[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
-# init thefuck
-alias fuck='$(thefuck $(fc -ln -1))'
-
 # init bash completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion

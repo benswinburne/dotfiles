@@ -1,0 +1,7 @@
+alias phpunit='vendor/bin/phpunit'
+alias behat='vendor/bin/behat'
+
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+export PATH=~/.composer/vendor/bin:$PATH
+
+alias homestead='function __homestead() { (cd ~/.homestead && vagrant $*); unset -f __homestead; }; __homestead'

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 mkdir -p ~/.dotfiles/vim/cache/info
+git update-index --assume-unchanged ~/.dotfiles/vim/cache/info
 
 # Install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

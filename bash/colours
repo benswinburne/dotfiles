@@ -1,3 +1,5 @@
+# vi:syntax=sh
+
 BASE16_SHELL="~/.dotfiles/bash/themes/base16-eighties.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 

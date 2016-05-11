@@ -1,3 +1,5 @@
+# vi:syntax=sh
+
 alias phpunit='vendor/bin/phpunit'
 alias behat='vendor/bin/behat'
 

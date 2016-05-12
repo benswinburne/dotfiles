@@ -60,8 +60,6 @@ Plugin 'mattn/emmet-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-let base16colorspace=256
-
 " General
 " ----------------------
 " disable auto backups and swap files

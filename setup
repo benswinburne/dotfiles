@@ -34,6 +34,7 @@ brew cask install transmission
 brew cask install spectacle
 brew cask install vagrant
 brew cask install virtualbox
+brew install Caskroom/cask/dockertoolbox
 brew install awscli
 brew install aws-elasticbeanstalk
 brew install tmux
@@ -56,9 +57,9 @@ brew install httpie
 brew services start mongodb
 
 # NPM
-sudo npm cache clean -f
-sudo npm install -g n
-sudo n 4.*
+npm cache clean -f
+npm install -g n
+n 4.*
 
 npm -g install aglio
 npm -g install drafter
@@ -105,5 +106,6 @@ sudo blackfire-agent -register
 ln -sfv /usr/local/opt/blackfire-agent/*.plist ~/Library/LaunchAgents
 launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.blackfire-agent.plist
 blackfire config
-brew install blackfire-php55
+brew install blackfire-php70
 
+brew services restart php70

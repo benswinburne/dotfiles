@@ -5,9 +5,7 @@ source ~/.dotfiles/bash/colours
 source ~/.dotfiles/bash/php
 source ~/.dotfiles/bash/osx
 
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
-
+alias sudo='sudo '          # Enable aliases to be sudo'ed
 export EDITOR=$(which vim)  # Set up Editor
 shopt -s nocaseglob					# Case-insensitive globbing (used in pathname expansion)
 shopt -s histappend					# Append to the Bash history file, rather than overwriting it
@@ -49,9 +47,9 @@ export PS1="$prompt_user $prompt_cwd\[$WHITE\]$prompt_git$prompt_symbol\[$RESET\
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 # init bash completion
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-  #. `brew --prefix`/etc/bash_completion
-#fi
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
 
 # Lynx configuration
 alias lynx="lynx -cfg=~/.lynx.conf $1"

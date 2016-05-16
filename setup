@@ -32,6 +32,7 @@ brew cask install skype
 brew cask install sublime-text
 brew cask install transmission
 brew cask install spectacle
+brew cask install vlc
 brew cask install vagrant
 brew cask install virtualbox
 brew install Caskroom/cask/dockertoolbox

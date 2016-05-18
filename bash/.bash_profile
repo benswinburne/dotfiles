@@ -1,5 +1,6 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=${HOME}/.npm-packages/bin:$PATH
 
 source ~/.dotfiles/bash/colours
 source ~/.dotfiles/bash/php
@@ -40,7 +41,8 @@ function parse_git_branch() {
 
 prompt_user="\[${BOLD}${MAGENTA}\]\u$host"
 prompt_cwd="\[$WHITE\]in \[$GREEN\]\w"
-prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)"
+#prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" ⎇  \")\[$PURPLE\]\$(parse_git_branch)"
+prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \"  \")\[$PURPLE\]\$(parse_git_branch)"
 prompt_symbol="\[$WHITE\] $symbol"
 
 export PS1="$prompt_user $prompt_cwd\[$WHITE\]$prompt_git$prompt_symbol\[$RESET\]"

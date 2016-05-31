@@ -12,10 +12,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 Plugin 'matchit.zip'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -27,7 +27,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
 " Plugin 'valloric/youcompleteme'
-" Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -36,6 +35,8 @@ Plugin 'vim-airline/vim-airline-themes'
 " Language Specific
 Plugin 'pangloss/vim-javascript'
 Bundle 'vim-php/vim-composer'
+Plugin 'moll/vim-node'
+Plugin 'mxw/vim-jsx'
 
 " PHP
 Bundle 'stephpy/vim-php-cs-fixer'
@@ -45,7 +46,8 @@ Bundle 'arnaud-lb/vim-php-namespace'
 
 " Syntax
 Plugin 'scrooloose/syntastic'
-" Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
 Plugin 'kylef/apiblueprint.vim'
 
 " Git
@@ -85,7 +87,9 @@ set undofile
 set undodir=~/.dotfiles/vim/cache/undo
 
 " Set a directory to store vim state etc
-set viminfo=%,<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
+set viminfo=<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
+
+" set viminfo=%,<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
 "           | |    |   |   |    | |  + viminfo file path
 "           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
 "           | |    |   |   |    + disable 'hlsearch' loading viminfo
@@ -200,7 +204,7 @@ nnoremap <leader>v V`]
 nnoremap <leader>bd :bufdo bd<CR>
 
 " Redraw the window (force)
-nnoremap <C-L> :redraw!<CR>
+nnoremap <leader>rd :redraw!<CR>
 
 " Quickly edit/reload the vimrc file
 " ----------------------
@@ -217,7 +221,7 @@ augroup END
 " ----------------------
 let g:php_cs_fixer_level = "psr2"                 " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
-let g:php_cs_fixer_config_file = '.php_cs'        " configuration file
+let g:php_cs_fixer_config_fire = ".php_cs"        " configuration file
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
@@ -250,6 +254,7 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
 

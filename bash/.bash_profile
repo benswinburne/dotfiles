@@ -75,3 +75,17 @@ alias git='hub'
 #if [[ ! $TMUX_PANE ]]; then
 #  exec tmux
 #fi
+
+__OLD_PATH=$PATH
+function updatePATHForNPM() {
+  export PATH=$(npm bin):$__OLD_PATH
+}
+
+function node-mode() {
+  PROMPT_COMMAND=updatePATHForNPM
+}
+
+function node-mode-off() {
+  unset PROMPT_COMMAND
+  PATH=$__OLD_PATH
+}

@@ -66,6 +66,7 @@ npm -g install aglio
 npm -g install drafter
 npm -g install gh        # More github functionality
 npm -g install instant-markdown-d
+npm -g install mongo-hacker # replacement mongo client with syntax highlighting
 
 # Python things
 sudo pip install Pygments

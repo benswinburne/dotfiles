@@ -18,11 +18,19 @@ alias ls="command ls $1 ${colorflag}"
 alias la="ls -laF ${colorflag}" # all files inc dotfiles, in long format
 alias ll="ls -lhA"
 
+# Dotfiles & Sourcing
+
+function sbp { source ~/.bash_profile ; }
+function ebp { vim ~/.bash_profile ; }
+
 # Navigation
 function ..    { cd .. ; }
 function ...   { cd ../.. ; }
 function ....  { cd ../../.. ; }
 function ..... { cd ../../../.. ; }
+
+function sites { cd ~/Sites ; }
+function dotfiles { cd ~/.dotfiles ; }
 
 # Utilities
 #function g        { git $argv ; }
@@ -89,3 +97,4 @@ function node-mode-off() {
   unset PROMPT_COMMAND
   PATH=$__OLD_PATH
 }
+

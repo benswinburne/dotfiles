@@ -7,3 +7,13 @@ export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
 alias homestead='function __homestead() { (cd ~/.homestead && vagrant $*); unset -f __homestead; }; __homestead'
+
+function laramagic {
+  PROJECTNAME=$1
+  cd ~/Sites
+  composer create-project laravel/laravel $PROJECTNAME --prefer-dist
+  cd $PROJECTNAME
+  git init
+  git add .
+  git commit -m "Initial commit."
+}

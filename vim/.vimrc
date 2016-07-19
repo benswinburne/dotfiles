@@ -26,7 +26,7 @@ Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -34,6 +34,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Language Specific
 Plugin 'pangloss/vim-javascript'
+Plugin 'othree/jspc.vim'
 Bundle 'vim-php/vim-composer'
 Plugin 'moll/vim-node'
 Plugin 'mxw/vim-jsx'
@@ -125,6 +126,7 @@ set autoindent          " autoindent lines
 set copyindent          " copy the indentation on autoindenting
 
 nmap <leader><tab> :retab<cr>
+nmap <leader>ts :%s/\t/    /g
 
 " UI Config
 " ----------------------
@@ -317,12 +319,12 @@ map <D-1> :NERDTreeToggle<CR>
 
 " YouCompleteMe
 " ----------------------
-" let g:ycm_filetype_blacklist = {
-"   \ 'html' : 1
-"   \}
-" let g:ycm_filetype_specific_completion_to_disable = {
-"   \ 'html': 1
-"   \}
+let g:ycm_filetype_blacklist = {
+  \ 'html' : 1
+  \}
+let g:ycm_filetype_specific_completion_to_disable = {
+  \ 'html': 1
+  \}
 
 " using supertab to allow YCM and UltiSnips to play nice
 " Set shortcuts for ycm
@@ -331,14 +333,14 @@ let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
-" let g:SuperTabDefaultCompletionType = '<C-Tab>'
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
 let g:delimitMate_expand_cr=1
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<C-tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>""
+let g:UltiSnipsExpandTrigger="<C-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>""
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']

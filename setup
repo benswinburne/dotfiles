@@ -68,6 +68,7 @@ npm -g install drafter
 npm -g install gh        # More github functionality
 npm -g install instant-markdown-d
 npm -g install mongo-hacker # replacement mongo client with syntax highlighting
+npm -g install sass-lint
 
 # Python things
 sudo pip install Pygments
@@ -112,3 +113,7 @@ blackfire config
 brew install blackfire-php70
 
 brew services restart php70
+
+curl -XGET https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker \
+> `brew --prefix`/etc/bash_completion.d/docker
+

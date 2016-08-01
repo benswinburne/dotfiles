@@ -24,6 +24,7 @@ source ~/.bash_profile
 
 # General desktop apps
 brew cask install google-chrome
+brew cask install postman
 brew cask install spotify
 brew cask install spotify-notifications
 brew cask install slack
@@ -56,19 +57,20 @@ brew install hub              # Hub from github
 brew install httpie
 
 # Start Services
-brew services start mongodb
+# brew services start mongodb
 
 # NPM
 npm cache clean -f
 npm install -g n
 n 4.*
 
-npm -g install aglio
-npm -g install drafter
+# npm -g install aglio
+# npm -g install drafter
 npm -g install gh        # More github functionality
 npm -g install instant-markdown-d
 npm -g install mongo-hacker # replacement mongo client with syntax highlighting
 npm -g install sass-lint
+npm -g install vue-cli
 
 # Python things
 sudo pip install Pygments

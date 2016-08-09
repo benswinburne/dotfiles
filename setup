@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 mkdir -p ~/.dotfiles/vim/cache/info
 git update-index --assume-unchanged ~/.dotfiles/vim/cache/info
 
@@ -55,6 +56,7 @@ brew install elasticsearch
 brew install ghi              # Github issues (when npm gh is better, remove)
 brew install hub              # Hub from github
 brew install httpie
+brew install git-flow
 
 # Start Services
 # brew services start mongodb
@@ -71,6 +73,9 @@ npm -g install instant-markdown-d
 npm -g install mongo-hacker # replacement mongo client with syntax highlighting
 npm -g install sass-lint
 npm -g install vue-cli
+npm -g install git-recent
+npm -g install git-open
+npm -g install diff-so-fancy
 
 # Python things
 sudo pip install Pygments
@@ -119,3 +124,5 @@ brew services restart php70
 curl -XGET https://raw.githubusercontent.com/docker/docker/master/contrib/completion/bash/docker \
 > `brew --prefix`/etc/bash_completion.d/docker
 
+# Disable spotlight
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist

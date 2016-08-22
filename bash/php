@@ -8,7 +8,8 @@ export PATH=~/.composer/vendor/bin:$PATH
 
 alias homestead='function __homestead() { (cd ~/.homestead && vagrant $*); unset -f __homestead; }; __homestead'
 
-function tinker { php artisan tinker; }
+function tinker  { php artisan tinker; }
+function artisan { php artisan "$@"; }
 
 function laramagic {
   PROJECTNAME=$1

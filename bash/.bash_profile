@@ -72,7 +72,7 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 #source ~/.dotfiles/scripts/resty/resty
 
 # Replace cat with a syntax highlighted one
-alias cat='pygmentize -g $1'
+#alias cat='pygmentize -g $1'
 
 # Use Hub
 # https://hub.github.com/

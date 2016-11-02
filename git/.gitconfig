@@ -13,7 +13,9 @@
   b = branch
   bd = branch -D
   ch = checkout
+  co = checkout
   chb = checkout -b
+  cob = checkout -b
 
   # stash
   st = stash
@@ -60,6 +62,7 @@
   # housekeeping
   prune = remote prune origin
   clean-merged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d
+	undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
 
 
 [core]

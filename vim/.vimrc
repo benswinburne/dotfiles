@@ -70,6 +70,10 @@ set nobackup
 set noswapfile
 set hidden
 
+" Mouse
+" ----------------------
+set mouse=a
+
 " Set filetypes for unknown extensions
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.apib set filetype=apiblueprint

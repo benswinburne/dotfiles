@@ -38,6 +38,7 @@ brew cask install spectacle
 brew cask install vlc
 brew cask install vagrant
 brew cask install virtualbox
+brew cask install qlmarkdown
 brew install Caskroom/cask/dockertoolbox
 brew install awscli
 brew install aws-elasticbeanstalk
@@ -57,6 +58,7 @@ brew install ghi              # Github issues (when npm gh is better, remove)
 brew install hub              # Hub from github
 brew install httpie
 brew install git-flow
+brew install coreutils
 
 # Start Services
 # brew services start mongodb
@@ -76,6 +78,7 @@ npm -g install vue-cli
 npm -g install git-recent
 npm -g install git-open
 npm -g install diff-so-fancy
+npm -g install http-server
 
 # Python things
 sudo pip install Pygments
@@ -127,3 +130,7 @@ curl -XGET https://raw.githubusercontent.com/docker/docker/master/contrib/comple
 
 # Disable spotlight
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+# Disable emdash and smart quotes
+defaults write 'Apple Global Domain' NSAutomaticDashSubstitutionEnabled 0
+defaults write 'Apple Global Domain' NSAutomaticQuoteSubstitutionEnabled 0

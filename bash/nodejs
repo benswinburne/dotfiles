@@ -1,8 +1,14 @@
 # vi:syntax=sh
 
-export GOPATH=$HOME/sites/golang
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+export PATH=${HOME}/.npm-packages/bin:$PATH
+export PATH=./nodemodules/.bin/:$PATH
 
+__ORIG_PATH=$PATH
+function cd {
+  NPMBIN=$(realpath "$@")/node_modules/.bin
+  if [ -d "$NPMBIN" ]; then
+   export PATH=$NPMBIN:$__ORIG_PATH
+  fi
 
+  command cd "$@";
+}

@@ -25,12 +25,13 @@ function sbp { source ~/.bash_profile ; }
 function ebp { vim ~/.bash_profile ; }
 
 # Navigation
-function ..    { cd .. ; cd "$@" ; }
-function ...   { cd ../.. ; cd "$@" ; }
-function ....  { cd ../../.. ; cd "$@" ; }
-function ..... { cd ../../../.. ; cd "$@" ; }
+function ..    { cd .. ; }
+function ...   { cd ../.. ; }
+function ....  { cd ../../.. ; }
+function ..... { cd ../../../.. ; }
 
 function sites      { cd ~/Sites ; }
+function seedmedia  { cd ~/Sites/seedmedia ; }
 function playground { cd ~/Sites/playground ; }
 function dotfiles   { cd ~/.dotfiles ; }
 
@@ -62,9 +63,10 @@ export PS1="$prompt_user $prompt_cwd\[$WHITE\]$prompt_git$prompt_symbol\[$RESET\
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 # init bash completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+# if [ -f `brew --prefix`/etc/bash_completion ]; then
+#   . `brew --prefix`/etc/bash_completion
+# fi
 
 # Lynx configuration
 alias lynx="lynx -cfg=~/.lynx.conf $1"
@@ -80,3 +82,4 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 # https://hub.github.com/
 alias git='hub'
 
+set -o vi

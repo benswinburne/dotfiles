@@ -8,6 +8,7 @@
   pu = push -u origin
   d = diff
   dc = diff --cached
+  dat-d = "!echo Filthy"
 
   # branch
   b = branch
@@ -36,8 +37,8 @@
   dl = "!git ll -1"                              # Show modified files in last commit
   dlc = diff --cached HEAD^                      # Show a diff last commit
   changes = whatchanged --since='2 weeks ago'    # Show log of changes in the last 2 weeks
-  sincedev = git log --no-merges --stat --reverse develop..  # Show all changes since merging from develop
-  vistree = git log --pretty=oneline --graph --decorate --all # Visualise the version tree
+  sincedev = !git log --no-merges --stat --reverse develop..  # Show all changes since merging from develop
+  vistree = !git log --pretty=oneline --graph --decorate --all # Visualise the version tree
 
   # meta
   la = "!git config -l | grep alias | cut -c 7-" # List all of my aliases
@@ -105,3 +106,5 @@
 	token = !security find-internet-password -a benswinburne -s github.com -l 'ghi token' -w
 [fetch]
 	prune = true
+[help]
+	autoCorrect = -1

@@ -92,7 +92,7 @@ set undofile
 set undodir=~/.dotfiles/vim/cache/undo
 
 " Set a directory to store vim state etc
-set viminfo=<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
+set viminfo=<800,'10,/50,:100,h,f0,n~/.viminfo
 
 " set viminfo=%,<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
 "           | |    |   |   |    | |  + viminfo file path

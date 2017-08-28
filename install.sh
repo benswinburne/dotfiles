@@ -66,7 +66,7 @@ defaults write com.apple.dock minimize-to-application -bool true # minimise into
 defaults write com.apple.dock wvous-bl-corner -int 10 # Lock hot corner
 defaults write com.apple.finder AppleShowAllFiles true # show hidden files
 defaults write com.apple.TextEdit RichText -int 0 # plain text in textedit
-defaults write com.apple.ImageCapture disableHotPlug -bool true # don't open photos 
+defaults write com.apple.ImageCapture disableHotPlug -bool true # don't open photos
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist # disable itunes buttons
 
 defaults write com.apple.screensaver askForPasswordDelay 0
@@ -86,6 +86,7 @@ killall Dock
 killall Finder
 killall SystemUIServer
 
+brew install ansiweather
 brew cask install caffeine
 brew cask install flux
 brew cask install spotify
@@ -143,7 +144,7 @@ ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
-ln -s ~/.dotfiles/fonts/* ~/Library/Fonts/
+ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 
 source ~/.bash_profile
 

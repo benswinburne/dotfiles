@@ -92,13 +92,18 @@ brew cask install flux
 brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
+brew cask install timing
 
 mas install 1056643111 # Clocker - menu bar clock
+mas install 1225570693 # Ulysses
 
 # Dev stuff
+sudo easy_install pip
+pip install howdoi
 brew cask install sequel-pro
 brew cask install docker
 brew cask install java
+brew cask install gitify # github notifications
 brew install awless
 brew install bash-completion
 brew install the_silver_searcher

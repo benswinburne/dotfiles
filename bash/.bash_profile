@@ -82,4 +82,4 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 # https://hub.github.com/
 alias git='hub'
 
-set -o vi
+# set -o vi

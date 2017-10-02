@@ -87,6 +87,7 @@ killall Finder
 killall SystemUIServer
 
 brew install ansiweather
+brew cask install dropbox
 brew cask install caffeine
 brew cask install flux
 brew cask install spotify
@@ -105,6 +106,7 @@ brew cask install docker
 brew cask install java
 brew cask install gitify # github notifications
 brew install awless
+brew install git
 brew install bash-completion
 brew install the_silver_searcher
 brew install tmux
@@ -160,5 +162,6 @@ brew install vim
 brew unlink vim && brew link vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-
+brew install cmake # for YCM
+(cd cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
 

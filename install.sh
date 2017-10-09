@@ -150,6 +150,7 @@ ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
+ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 
 source ~/.bash_profile

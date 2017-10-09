@@ -98,13 +98,14 @@ mas install 1056643111 # Clocker - menu bar clock
 mas install 1225570693 # Ulysses
 
 # Dev stuff
-sudo easy_install pip
 pip install howdoi
+brew install python
 brew cask install sequel-pro
 brew cask install docker
 brew cask install java
 brew cask install gitify # github notifications
 brew install awless
+brew install git
 brew install bash-completion
 brew install the_silver_searcher
 brew install tmux

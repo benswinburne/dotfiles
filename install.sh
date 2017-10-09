@@ -29,6 +29,9 @@ dockutil --remove 'Launchpad' --allhomes
 dockutil --remove 'Notes' --allhomes
 dockutil --remove 'FaceTime' --allhomes
 dockutil --remove 'Downloads' --allhomes
+dockutil --remove 'Numbers' --allhomes
+dockutil --remove 'Keynote' --allhomes
+dockutil --remove 'Pages' --allhomes
 
 brew cask install google-chrome
 brew cask install iterm2
@@ -93,10 +96,9 @@ brew cask install flux
 brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
-brew cask install timing
+#brew cask install timing
 
 mas install 1056643111 # Clocker - menu bar clock
-mas install 1225570693 # Ulysses
 
 # Dev stuff
 sudo easy_install pip
@@ -165,3 +167,6 @@ vim +PluginInstall +qall
 brew install cmake # for YCM
 (cd cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
 
+# This repo
+
+git remote set-url origin git@github.com:benswinburne/dotfiles.git

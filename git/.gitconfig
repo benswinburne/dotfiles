@@ -93,7 +93,7 @@
 	name = benswinburne
 	email = ben.swinburne@gmail.com
 [push]
-	default = matching
+	default = tracking
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f

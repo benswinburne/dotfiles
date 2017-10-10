@@ -29,6 +29,9 @@ dockutil --remove 'Launchpad' --allhomes
 dockutil --remove 'Notes' --allhomes
 dockutil --remove 'FaceTime' --allhomes
 dockutil --remove 'Downloads' --allhomes
+dockutil --remove 'Numbers' --allhomes
+dockutil --remove 'Keynote' --allhomes
+dockutil --remove 'Pages' --allhomes
 
 brew cask install google-chrome
 brew cask install iterm2
@@ -87,16 +90,15 @@ killall Finder
 killall SystemUIServer
 
 brew install ansiweather
+brew cask install dropbox
 brew cask install caffeine
 brew cask install flux
 brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
-brew cask install timing
 brew cask install dropbox
 
 mas install 1056643111 # Clocker - menu bar clock
-mas install 1225570693 # Ulysses
 
 # Dev stuff
 pip install howdoi
@@ -173,7 +175,12 @@ brew install vim
 brew unlink vim && brew link vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+brew install cmake # for YCM
+(cd cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
 
 # Iterm
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+# This repo
+git remote set-url origin git@github.com:benswinburne/dotfiles.git

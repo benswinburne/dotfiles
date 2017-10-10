@@ -260,7 +260,7 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
 
@@ -348,7 +348,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>""
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-let g:EditorConfig_core_mode = 'external_command'
+" let g:EditorConfig_core_mode = 'external_command'
 
 " General development
 " -------------------

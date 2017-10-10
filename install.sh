@@ -93,6 +93,7 @@ brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
 brew cask install timing
+brew cask install dropbox
 
 mas install 1056643111 # Clocker - menu bar clock
 mas install 1225570693 # Ulysses
@@ -104,6 +105,7 @@ brew cask install sequel-pro
 brew cask install docker
 brew cask install java
 brew cask install gitify # github notifications
+brew cask install alfred
 brew install awless
 brew install git
 brew install bash-completion
@@ -127,9 +129,10 @@ brew install elasticsearch
 brew install hub
 brew install coreutils
 
-npm -g install instant-markdown-d
-npm -g install diff-so-fancy
-npm -g install http-server
+yarn global add instant-markdown-d
+yarn global add diff-so-fancy
+yarn global add http-server
+yarn global add standard
 
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 
@@ -155,12 +158,20 @@ ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 
 source ~/.bash_profile
 
+# Sublime
+mkdir -p ~/Dropbox/Sublime
+pushd .
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+rm -r User
+ln -s ~/Dropbox/Sublime/User
+popd
 
 # Vim
-
 brew install vim
 brew unlink vim && brew link vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-
+# Iterm
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true

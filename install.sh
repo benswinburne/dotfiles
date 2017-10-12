@@ -156,6 +156,7 @@ ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
+ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 sudo chmod 600 ~/.ssh/*

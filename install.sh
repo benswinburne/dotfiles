@@ -157,6 +157,8 @@ ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
+ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
+  ~/Library/Preferences/org.m0k.transmission.plist
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 sudo chmod 600 ~/.ssh/*

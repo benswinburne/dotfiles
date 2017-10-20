@@ -61,7 +61,7 @@ prompt_user="\u"
 prompt_cwd="\w"
 prompt_symbol="$symbol"
 prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && \
-  echo \"/ \")\[$BLUE\]\$(parse_git_branch)"
+  echo \" \")\[$BLUE\]\$(parse_git_branch)"
 
 export PS1="\[${BOLD}${GRAY}\]"
 export PS1="$PS1\[${ORANGE}\]$prompt_prefix"

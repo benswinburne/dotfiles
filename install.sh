@@ -179,7 +179,7 @@ brew unlink vim && brew link vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 brew install cmake # for YCM
-(cd cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
+(cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
 
 # Iterm
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"
@@ -187,3 +187,6 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # This repo
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
+
+
+brew update; brew cleanup; brew cask cleanup; brew prune;

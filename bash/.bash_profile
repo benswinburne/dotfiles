@@ -48,7 +48,7 @@ function fix-brew { brew update; brew cleanup; brew cask cleanup; brew prune; }
 # Git branch details
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null |\
-	  tail -n1) != *"working tree clean"* ]] && echo " •"
+	  tail -n1) != *"working tree clean"* ]] && echo ${RED}" •"
 }
 
 function parse_git_branch() {

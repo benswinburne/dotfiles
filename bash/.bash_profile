@@ -56,7 +56,7 @@ function parse_git_branch() {
 	  sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-prompt_prefix=" λ"
+prompt_prefix="λ"
 prompt_user="\u"
 prompt_cwd="\w"
 prompt_symbol="$symbol"

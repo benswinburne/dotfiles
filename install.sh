@@ -66,24 +66,28 @@ defaults write com.apple.dock autohide-time-modifier -float 0 # Dock hide delay
 defaults write com.apple.dock autohide -bool true # Dock hide automatically
 defaults write com.apple.dock tilesize -int 30 # Dock height
 defaults write com.apple.dock minimize-to-application -bool true # minimise into application icoe
-defaults write com.apple.dock wvous-bl-corner -int 10 # Lock hot corner
 defaults write com.apple.finder AppleShowAllFiles true # show hidden files
 defaults write com.apple.TextEdit RichText -int 0 # plain text in textedit
 defaults write com.apple.ImageCapture disableHotPlug -bool true # don't open photos
 sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist # disable itunes buttons
 
-defaults write com.apple.screensaver askForPasswordDelay 0
-defaults write com.apple.screensaver askForPassword -bool true
-
-
 # unhide user library folder
-
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
 #(cd /System/Library/CoreServices/; sudo mv Search.bundle/ Search2.bundle)
 sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
   "Set AppleSymbolicHotKeys:64:enabled false"
 
+# Screensaver and timeout
+brew cask install aerial
+defaults write com.apple.dock wvous-bl-corner -int 10 # Lock hot corner
+defaults write com.apple.dock wvous-br-corner -int 5 # Bottom right screensaver
+defaults -currentHost write com.apple.screensaver idleTime 300
+defaults -currentHost write com.apple.screensaver CleanExit -bool true
+defaults -currentHost write com.apple.screensaver askForPasswordDelay 0
+defaults -currentHost write com.apple.screensaver askForPassword -bool true
+defaults -currentHost write com.apple.screensaver \
+  moduleDict -dict moduleName Aerial path "~/Library/Screen Savers/Aerial.saver" type 0
 
 killall Dock
 killall Finder
@@ -188,5 +192,8 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 # This repo
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
 
-
-brew update; brew cleanup; brew cask cleanup; brew prune;
+# Clean up
+brew update
+brew cleanup
+brew cask cleanup
+brew prune

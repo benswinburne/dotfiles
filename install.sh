@@ -112,6 +112,8 @@ brew cask install docker
 brew cask install java
 brew cask install gitify # github notifications
 brew cask install alfred
+brew install httpie
+brew install awscli
 brew install awless
 brew install git
 brew install bash-completion
@@ -165,6 +167,7 @@ ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
+rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
 sudo chmod 600 ~/.ssh/*
 
 source ~/.bash_profile

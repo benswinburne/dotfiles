@@ -12,10 +12,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-obsession'
 Plugin 'matchit.zip'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -27,6 +28,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
 Plugin 'valloric/youcompleteme'
+Plugin 'junegunn/fzf'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
@@ -286,6 +288,10 @@ let g:ctrlp_show_hidden = 1
 nmap <D-p> :CtrlP<cr>
 nmap <D-r> :CtrlPBufTag<cr>
 nmap <D-e> :CtrlPMRUFiles<cr>
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 " nnoremap <silent> <Leader>t :CtrlP<cr>
 " nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
 

@@ -13,6 +13,12 @@ shopt -s nocaseglob					# Case-insensitive globbing (used in pathname expansion)
 shopt -s histappend					# Append to the Bash history file, rather than overwriting it
 shopt -s cdspell						# Autocorrect typos in path names when using `cd`
 
+# Prevent duplicates and items beginning with a space in history
+export HISTCONTROL=ignoreboth:erasedups
+
+# Prevent duplicates across sessions
+# PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 # Color LS
 colorflag="-G"
 alias ls="command ls $1 ${colorflag}"
@@ -85,4 +91,5 @@ alias lynx="lynx -cfg=~/.lynx.conf $1"
 # https://hub.github.com/
 alias git='hub'
 
-# set -o vi
+# Enable fuzzy search etc
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

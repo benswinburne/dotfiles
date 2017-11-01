@@ -137,6 +137,15 @@ brew install elasticsearch
 brew install hub
 brew install coreutils
 
+brew install fzf
+
+/usr/local/opt/fzf/install \
+  --no-update-rc \
+  --completion \
+  --key-bindings \
+  --no-fish \
+  --no-zsh
+
 yarn global add instant-markdown-d
 yarn global add diff-so-fancy
 yarn global add http-server

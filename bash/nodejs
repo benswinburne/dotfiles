@@ -2,7 +2,6 @@
 
 export PATH=${HOME}/.npm-packages/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
-export PATH="$PATH:`yarn global bin`"
 
 __ORIG_PATH=$PATH
 function cd {

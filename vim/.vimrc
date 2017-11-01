@@ -29,6 +29,7 @@ Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
 Plugin 'valloric/youcompleteme'
 Plugin 'junegunn/fzf'
+Plugin 'MattesGroeger/vim-bookmarks'
 
 " Themes
 Plugin 'chriskempson/base16-vim'

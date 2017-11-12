@@ -1,0 +1,12 @@
+# bundle id	UTI	role
+org.videolan.vlc	avi	viewer
+org.videolan.vlc	flac	viewer
+org.videolan.vlc	flv	viewer
+org.videolan.vlc	m4a	viewer
+org.videolan.vlc	mkv	viewer
+org.videolan.vlc	mov	viewer
+org.videolan.vlc	mp3	viewer
+org.videolan.vlc	mp4	viewer
+org.videolan.vlc	mpg	viewer
+org.videolan.vlc	wav	viewer
+org.videolan.vlc	wmv	viewer

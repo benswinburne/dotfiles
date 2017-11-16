@@ -43,6 +43,9 @@ dockutil --add /Applications/iTerm.app --position 2
 dockutil --add /Applications/Sublime\ Text.app --position 3
 dockutil --add /Applications/Slack.app --position 4
 
+# Bye itunes
+sudo chmod -x /Applications/iTunes.app
+
 # Enable tap to click (Trackpad) for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1

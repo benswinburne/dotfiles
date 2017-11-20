@@ -205,6 +205,14 @@ brew install cmake # for YCM
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
+# Default applications
+brew install duti
+brew cask install outset
+sudo touch /usr/local/outset/login-every/duti.sh
+sudo chmod +x /usr/local/outset/login-every/duti.sh
+echo "duti ~/.dotfiles/duti/" | sudo tee /usr/local/outset/login-every/duti.sh
+duti ~/.dotfiles/duti/
+
 # This repo
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
 

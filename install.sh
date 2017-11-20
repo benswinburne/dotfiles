@@ -108,6 +108,7 @@ brew cask install dropbox
 mas install 1056643111 # Clocker - menu bar clock
 
 # Dev stuff
+brew install tldr
 pip install howdoi
 brew install python
 brew cask install sequel-pro

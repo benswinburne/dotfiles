@@ -11,8 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Editor
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -27,20 +26,33 @@ Plugin 'ervandew/supertab'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
+Plugin 'ternjs/tern_for_vim'
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'MattesGroeger/vim-bookmarks'
+
+" NerdTree
+Plugin 'scrooloose/nerdtree'
+" Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plugin 'ryanoasis/vim-devicons'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline-themes'
 
 " Language Specific
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/jspc.vim'
-Bundle 'vim-php/vim-composer'
 Plugin 'moll/vim-node'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
+" Plugin 'othree/jspc.vim'
+Bundle 'vim-php/vim-composer'
+Plugin 'leshill/vim-json'
+Plugin 'chrisbra/Colorizer' " Hex code colouring
 
 " PHP
 Bundle 'stephpy/vim-php-cs-fixer'
@@ -49,9 +61,8 @@ Bundle 'tobyS/vmustache'
 Bundle 'arnaud-lb/vim-php-namespace'
 
 " Syntax
-Plugin 'scrooloose/syntastic'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'kylef/apiblueprint.vim'
 
 " Git
@@ -113,6 +124,11 @@ set scrolloff=3
 
 " Remove the delay exiting insert mode
 set ttimeoutlen=0
+
+" set guifont=DroidSansMono\ Nerd\ Font:h11
+" set guifont=Meslo\ LG\ L\ DZ\ Regular\ for\ Powerline:h11
+" set guifont=Meslo\ Nerd\ Font:h11
+
 
 " Colors
 " ----------------------
@@ -212,6 +228,9 @@ nnoremap <leader>v V`]
 " Close all buffers except NerdTree
 nnoremap <leader>bd :bufdo bd<CR>
 
+" Buffer list handled by fzf
+nnoremap <leader>b :Buffers<CR>
+
 " Redraw the window (force)
 nnoremap <leader>rd :redraw!<CR>
 
@@ -239,7 +258,9 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 " Vimux
 " ----------------------
 map <leader>x :VimuxPromptCommand<CR>
-map <leader>t :call VimuxRunCommand("clear; phpunit; echo;")<CR>
+map <leader>tn :call VimuxRunCommand("ava; echo;")<CR>
+map <leader>tp :call VimuxRunCommand("phpunit; echo;")<CR>
+map <leader>tr :call VimuxRunCommand("!!")<CR>
 
 " Move line
 " ----------------------
@@ -259,13 +280,26 @@ nmap <Leader>lm :!php artisan migrate
 
 " Syntastic
 " ----------------------
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['standard']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['standard']
+" let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+" let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
+
+" Put this in vimrc or a plugin file of your own.
+" After this is configured, :ALEFix will try and fix your JS code with ESLint.
+" \   'php': ['/usr/local/bin/phpcs', '/usr/local/bin/phpmd'],
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
 
 " nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<cr>
@@ -284,29 +318,14 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 set wildignore+=*/node_modules/**
 set wildignore+=*/.git/**
 set wildignore+=*/vendor/**
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
-let g:ctrlp_show_hidden = 1
-nmap <D-p> :CtrlP<cr>
-nmap <D-r> :CtrlPBufTag<cr>
-nmap <D-e> :CtrlPMRUFiles<cr>
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
-" nnoremap <silent> <Leader>t :CtrlP<cr>
-" nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
+
+nmap <c-p> :FZF<cr>
 
 " The Silver Searcher
 " ----------------------
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " bind K to grep word under cursor
@@ -318,7 +337,7 @@ nnoremap \ :Ag<SPACE>
 " Statusline
 " ----------------------
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " NERDTree
@@ -330,22 +349,22 @@ map <D-1> :NERDTreeToggle<CR>
 
 " YouCompleteMe
 " ----------------------
-let g:ycm_filetype_blacklist = {
-  \ 'html' : 1
-  \}
-let g:ycm_filetype_specific_completion_to_disable = {
-  \ 'html': 1
-  \}
+" let g:ycm_filetype_blacklist = {
+"   \ 'html' : 1
+"   \}
+" let g:ycm_filetype_specific_completion_to_disable = {
+"   \ 'html': 1
+"   \}
 
 " using supertab to allow YCM and UltiSnips to play nice
 " Set shortcuts for ycm
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
-let g:delimitMate_expand_cr=1
+" let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" let g:delimitMate_expand_cr=1
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.

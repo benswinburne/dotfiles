@@ -102,7 +102,6 @@ brew cask install flux
 brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
-brew cask install dropbox
 
 mas install 1056643111 # Clocker - menu bar clock
 
@@ -168,6 +167,8 @@ valet start
 
 composer global require tightenco/lambo
 
+mysql_secure_installation
+
 # Symlink all the things
 ln -s ~/.dotfiles/npm/.npmrc ~/.npmrc
 ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
@@ -178,10 +179,12 @@ ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
-ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
+# ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
+mkdir -p ~/Dropbox/.ssh
+mkdir -p ~/Dropbox/.aws
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
 sudo chmod 600 ~/.ssh/*
@@ -200,7 +203,8 @@ popd
 brew install vim
 brew unlink vim && brew link vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+# vim +PluginInstall +qall &>/dev/null
+echo | echo | vim +PluginInstall +qall &>/dev/null
 brew install cmake # for YCM
 (cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
 
@@ -224,3 +228,5 @@ brew update
 brew cleanup
 brew cask cleanup
 brew prune
+
+reboot

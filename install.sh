@@ -104,6 +104,7 @@ brew cask install spectacle
 brew cask install vlc
 
 mas install 1056643111 # Clocker - menu bar clock
+open /Applications/Clocker.app/
 
 # Dev stuff
 brew install tldr
@@ -156,6 +157,7 @@ yarn global add http-server
 yarn global add nodemon
 
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
 
 # Laravel Valet
 mkdir -p ~/Sites

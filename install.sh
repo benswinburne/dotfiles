@@ -155,6 +155,7 @@ yarn global add http-server
 yarn global add standard
 yarn global add http-server
 yarn global add nodemon
+yarn global add serverless
 
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
@@ -226,6 +227,12 @@ duti ~/.dotfiles/duti/
 
 # This repo
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
+
+# Folders I inevitably make later
+mkdir -p ~/Sites
+mkdir -p ~/Sites/octaive
+mkdir -p ~/Downloads/Torrents/Complete
+mkdir -p ~/Downloads/Torrents/.pending
 
 # Clean up
 brew update

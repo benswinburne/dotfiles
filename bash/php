@@ -10,12 +10,3 @@ alias homestead='function __homestead() { (cd ~/.homestead && vagrant $*); unset
 function tinker  { php artisan tinker; }
 function artisan { php artisan "$@"; }
 
-function laramagic {
-  PROJECTNAME=$1
-  cd ~/Sites
-  composer create-project laravel/laravel $PROJECTNAME --prefer-dist
-  cd $PROJECTNAME
-  git init
-  git add .
-  git commit -m "Initial commit."
-}

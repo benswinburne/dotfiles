@@ -36,9 +36,10 @@ function ....  { cd ../../.. ; }
 function ..... { cd ../../../.. ; }
 
 function sites      { cd ~/Sites ; }
-function seedmedia  { cd ~/Sites/seedmedia ; }
+function octaive  { cd ~/Sites/octaive ; }
 function playground { cd ~/Sites/playground ; }
 function dotfiles   { cd ~/.dotfiles ; }
+
 
 
 # Utilities
@@ -47,6 +48,7 @@ function g        { git "$@"; }
 function ip       { curl ident.me; echo; }
 function localip  { ipconfig getifaddr en0 ; }
 #function tunnel   { ssh -D 8080 -C -N $argv ; }
+function dict { open "dict://$@"; }
 
 # Homebrew
 function fix-brew { brew update; brew cleanup; brew cask cleanup; brew prune; }
@@ -95,3 +97,9 @@ alias git='hub'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+# Itunes stuff
+alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"
+alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
+
+

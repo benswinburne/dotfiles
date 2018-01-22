@@ -192,11 +192,13 @@ sudo chmod 600 ~/.ssh/*
 source ~/.bash_profile
 
 # Sublime
-mkdir -p ~/Dropbox/Sublime
+mkdir -p ~/Dropbox/Sublime/User
 pushd .
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 rm -r User
 ln -s ~/Dropbox/Sublime/User
+rm -rf ~/Dropbox/Sublime/User
 popd
 
 # Vim

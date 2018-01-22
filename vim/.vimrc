@@ -12,7 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -284,15 +284,16 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 set wildignore+=*/node_modules/**
 set wildignore+=*/.git/**
 set wildignore+=*/vendor/**
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
-let g:ctrlp_show_hidden = 1
-nmap <D-p> :CtrlP<cr>
-nmap <D-r> :CtrlPBufTag<cr>
-nmap <D-e> :CtrlPMRUFiles<cr>
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+nmap <C-p> :FZF .<CR>
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
+" let g:ctrlp_show_hidden = 1
+" nmap <D-p> :CtrlP<cr>
+" nmap <D-r> :CtrlPBufTag<cr>
+" nmap <D-e> :CtrlPMRUFiles<cr>
+" let g:ctrlp_prompt_mappings = {
+"     \ 'AcceptSelection("e")': ['<c-t>'],
+"     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+"     \ }
 " nnoremap <silent> <Leader>t :CtrlP<cr>
 " nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
 

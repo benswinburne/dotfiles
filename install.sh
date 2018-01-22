@@ -232,5 +232,6 @@ brew update
 brew cleanup
 brew cask cleanup
 brew prune
+printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
 
 reboot

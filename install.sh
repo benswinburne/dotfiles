@@ -24,7 +24,6 @@ dockutil --remove 'Calendar' --allhomes
 dockutil --remove 'Siri' --allhomes
 dockutil --remove 'Safari' --allhomes
 dockutil --remove 'Mail' --allhomes
-dockutil --remove 'Terminal' --allhomes
 dockutil --remove 'Launchpad' --allhomes
 dockutil --remove 'Notes' --allhomes
 dockutil --remove 'FaceTime' --allhomes
@@ -154,6 +153,8 @@ yarn global add instant-markdown-d
 yarn global add diff-so-fancy
 yarn global add http-server
 yarn global add standard
+yarn global add http-server
+yarn global add nodemon
 
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 
@@ -164,6 +165,8 @@ export PATH=~/.composer/vendor/bin:$PATH
 valet install
 (cd ~/Sites && valet park)
 valet start
+
+composer global require tightenco/lambo
 
 # Symlink all the things
 ln -s ~/.dotfiles/npm/.npmrc ~/.npmrc

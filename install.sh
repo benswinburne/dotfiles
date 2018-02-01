@@ -36,6 +36,7 @@ brew cask install google-chrome
 brew cask install iterm2
 brew cask install sublime-text
 brew cask install slack
+brew cask install transmission
 
 dockutil --add /Applications/Google\ Chrome.app --position 1
 dockutil --add /Applications/iTerm.app --position 2

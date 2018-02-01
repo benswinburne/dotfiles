@@ -41,6 +41,7 @@ Plugin 'othree/jspc.vim'
 Bundle 'vim-php/vim-composer'
 Plugin 'moll/vim-node'
 Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
 
 " PHP
 Bundle 'stephpy/vim-php-cs-fixer'

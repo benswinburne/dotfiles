@@ -36,7 +36,6 @@ brew cask install google-chrome
 brew cask install iterm2
 brew cask install sublime-text
 brew cask install slack
-brew cask install transmission
 
 dockutil --add /Applications/Google\ Chrome.app --position 1
 dockutil --add /Applications/iTerm.app --position 2
@@ -103,6 +102,8 @@ brew cask install flux
 brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
+brew cask install transmission
+brew cask install postman
 
 mas install 1056643111 # Clocker - menu bar clock
 open /Applications/Clocker.app/
@@ -157,6 +158,7 @@ yarn global add standard
 yarn global add http-server
 yarn global add nodemon
 yarn global add serverless
+yarn global add ngrok
 
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins

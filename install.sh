@@ -193,7 +193,7 @@ mkdir -p ~/Dropbox/.ssh
 mkdir -p ~/Dropbox/.aws
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
-sudo chmod 600 ~/.ssh/*
+sudo find ~/.ssh -type f -exec chmod 600 -- {} +
 
 source ~/.bash_profile
 

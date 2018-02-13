@@ -141,6 +141,7 @@ brew install redis
 brew install elasticsearch
 brew install hub
 brew install coreutils
+brew install siege
 
 brew install fzf
 
@@ -193,6 +194,7 @@ mkdir -p ~/Dropbox/.ssh
 mkdir -p ~/Dropbox/.aws
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
+rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege
 sudo find ~/.ssh -type f -exec chmod 600 -- {} +
 
 source ~/.bash_profile

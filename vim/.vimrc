@@ -363,7 +363,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
 
-" Hardmode
+" Movement
 " -------------------
 " noremap h <NOP>
 " noremap j <NOP>
@@ -375,6 +375,12 @@ for prefix in ['i', 'n', 'v']
     exe prefix . "noremap " . key . " <Nop>"
   endfor
 endfor
+
+" Use tab and shift tab to switch between buffers
+nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR>
+ \ :write<CR> :endif<CR>:bnext<CR>
+nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
+ \ :write<CR> :endif<CR>:bprevious<CR>
 
 " Things to do
 " -------------------

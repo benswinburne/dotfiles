@@ -13,11 +13,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" Lightline
+Plugin 'itchyny/lightline.vim'
+Plugin 'daviesjamie/vim-base16-lightline'
+
 " Editor
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
-" Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-obsession'
@@ -37,7 +39,6 @@ Plugin 'MattesGroeger/vim-bookmarks'
 
 " Themes
 Plugin 'chriskempson/base16-vim'
-Plugin 'vim-airline/vim-airline-themes'
 
 " Language Specific
 Plugin 'pangloss/vim-javascript'
@@ -125,7 +126,20 @@ syntax enable           " enable syntax processing
 let base16colorspace=256
 set background=dark
 colorscheme base16-eighties
+set t_Co=256
 set t_ut=
+hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr ctermfg=NONE ctermbg=NONE
+hi VertSplit ctermbg=NONE guibg=NONE
+hi GitGutterAdd guibg=NONE ctermbg=NONE
+hi GitGutterChange guibg=NONE ctermbg=NONE
+hi GitGutterDelete guibg=NONE ctermbg=NONE
+hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
+" transparent gutter
+hi SignColumn guibg=NONE ctermbg=NONE
+" transparent line numbers
+hi LineNr guibg=NONE ctermbg=NONE
+hi def link jsObjectKey Label
 
 " Spaces & Tabs
 " ----------------------
@@ -246,10 +260,6 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 map <leader>x :VimuxPromptCommand<CR>
 map <leader>t :call VimuxRunCommand("clear; phpunit; echo;")<CR>
 
-" Move line
-" ----------------------
-" let g:move_key_modifier = 'C'
-
 " Laravel Mappings
 " ----------------------
 nmap <Leader>lr :e app/Http/routes.php<CR>
@@ -258,6 +268,7 @@ nmap <Leader>lmr :!php artisan migrate:refreh --seed
 nmap <Leader>lm :!php artisan migrate
 
 " Ale
+" ----------------------
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_column_always = 1
@@ -275,23 +286,16 @@ let g:ale_fixers = {
 
 " Nerdtree
 " ----------------------
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" How can I close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+  \ && b:NERDTree.isTabTree()) | q | endif
+
 let NERDTreeShowHidden=1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
-" NERDTree syntax hightlight
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
-
-" Airline
-" ----------------------
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_theme='base16'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " ctrlp - fuzzy search
 " ----------------------
@@ -300,29 +304,11 @@ set wildignore+=*/.git/**
 set wildignore+=*/vendor/**
 nmap <C-p> :FZF .<CR>
 
-" The Silver Searcher
-" ----------------------
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
 nnoremap \ :Ag<SPACE>
-
-" Statusline
-" ----------------------
-set statusline+=%#warningmsg#
-set statusline+=%*
 
 " NERDTree
 " ----------------------
@@ -330,6 +316,14 @@ let g:NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
 map <leader>nt :NERDTreeToggle<CR>
 map <D-1> :NERDTreeToggle<CR>
+
+" Lightline
+" ----------------------
+let g:lightline = {
+\   'colorscheme': 'base16'
+\ }
+
+autocmd User ALELint call lightline#update()
 
 " YouCompleteMe
 " ----------------------
@@ -359,13 +353,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>""
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" General development
-" -------------------
-"augroup autosourcing
-"  autocmd!
-"  autocmd BufWritePost *.php silent! !ctags -R --exclude=@.gitignore .
-"augroup END
-
 " Text wrapping
 " -------------------
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
@@ -384,23 +371,13 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
-" Notes and reminders
-" -------------------
-
-" "*y copy to system clipboard
-" ctrl + ] to go to function definition, ctrl+o to go back
-" ysiw) wrap word in parentheses
-" :%y+ next command on all lines, yank, copy to clipboard
-
 " Things to do
 " -------------------
 "  Fix vim-move (closed issue about OSX)
-"  macro to write method
-"  macro to write route
-"  macro to write class
-"  macro to assign constructor argument
 "  bump method up shift command up
 "  php code coverage ? https://github.com/joonty/vim-phpqa
-"  xdebug
-"  look into line markers
-"  work out why editorconfig isn't working properly
+
+" Move line
+" ----------------------
+" let g:move_key_modifier = 'C'
+

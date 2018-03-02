@@ -352,7 +352,9 @@ autocmd User ALELint call lightline#update()
 
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
+" let g:SuperTabDefaultCompletionType = '<C-Tab>'
+let g:SuperTabCrMapping = 1
+let g:SuperTabDefaultCompletionType = '<c-n>'
 let g:delimitMate_expand_cr=1
 
 " Trigger configuration. Do not use <tab> if you use

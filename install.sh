@@ -105,6 +105,7 @@ brew cask install vlc
 brew cask install transmission
 brew cask install postman
 
+mas install 1006087419 # SnippetsLab
 mas install 1056643111 # Clocker - menu bar clock
 open /Applications/Clocker.app/
 

@@ -323,6 +323,11 @@ let g:lightline = {
 \   'colorscheme': 'base16'
 \ }
 
+let g:lightline.tabline = {
+\   'left': [ ['tabs'] ],
+\   'right': [ ['close'] ]
+\ }
+
 autocmd User ALELint call lightline#update()
 
 " YouCompleteMe

@@ -54,7 +54,7 @@ Bundle 'tobyS/vmustache'
 Bundle 'arnaud-lb/vim-php-namespace'
 
 " Syntax
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'kylef/apiblueprint.vim'
@@ -257,15 +257,21 @@ nmap <Leader>la :!php artisan
 nmap <Leader>lmr :!php artisan migrate:refreh --seed
 nmap <Leader>lm :!php artisan migrate
 
-" Syntastic
-" ----------------------
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['standard']
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
+" Ale
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+let g:ale_sign_column_always = 1
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_echo_msg_format = '%linter%: %s'
+nnoremap <leader>an :ALENextWrap<cr>
+nnoremap <leader>ap :ALEPreviousWrap<cr>
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\}
 
 " Nerdtree
 " ----------------------
@@ -316,7 +322,6 @@ nnoremap \ :Ag<SPACE>
 " Statusline
 " ----------------------
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " NERDTree

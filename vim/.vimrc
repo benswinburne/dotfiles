@@ -8,10 +8,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Nerdtree related
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 " Editor
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'suan/vim-instant-markdown'
-Plugin 'scrooloose/nerdtree'
 " Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
@@ -58,7 +62,6 @@ Plugin 'kylef/apiblueprint.vim'
 " Git
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Frontend
 Plugin 'mattn/emmet-vim'
@@ -73,6 +76,7 @@ filetype plugin indent on    " required
 set nobackup
 set noswapfile
 set hidden
+set clipboard=unnamed
 
 " Mouse
 " ----------------------
@@ -210,7 +214,7 @@ set pastetoggle=<leader>p
 " select text that was just pasted
 nnoremap <leader>v V`]
 
-" Close all buffers except NerdTree
+" Close all buffers
 nnoremap <leader>bd :bufdo bd<CR>
 
 " Redraw the window (force)
@@ -246,11 +250,6 @@ map <leader>t :call VimuxRunCommand("clear; phpunit; echo;")<CR>
 " ----------------------
 " let g:move_key_modifier = 'C'
 
-" PHP Documenter
-" ----------------------
-let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <leader>db :call pdv#DocumentWithSnip()<CR>
-
 " Laravel Mappings
 " ----------------------
 nmap <Leader>lr :e app/Http/routes.php<CR>
@@ -268,8 +267,16 @@ let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_html_tidy_exec = 'tidy5' " use tidy-html5
 
-" nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
-cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<cr>
+" Nerdtree
+" ----------------------
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeShowHidden=1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+" NERDTree syntax hightlight
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
 " Airline
 " ----------------------
@@ -286,17 +293,6 @@ set wildignore+=*/node_modules/**
 set wildignore+=*/.git/**
 set wildignore+=*/vendor/**
 nmap <C-p> :FZF .<CR>
-" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|dist'
-" let g:ctrlp_show_hidden = 1
-" nmap <D-p> :CtrlP<cr>
-" nmap <D-r> :CtrlPBufTag<cr>
-" nmap <D-e> :CtrlPMRUFiles<cr>
-" let g:ctrlp_prompt_mappings = {
-"     \ 'AcceptSelection("e")': ['<c-t>'],
-"     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-"     \ }
-" nnoremap <silent> <Leader>t :CtrlP<cr>
-" nnoremap <silent> <leader>T :ClearCtrlPCache<cr>\|:CtrlP<cr>
 
 " The Silver Searcher
 " ----------------------
@@ -357,7 +353,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>""
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-" let g:EditorConfig_core_mode = 'external_command'
 
 " General development
 " -------------------

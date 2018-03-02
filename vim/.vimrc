@@ -13,8 +13,8 @@ Plugin 'chriskempson/base16-vim'
 
 " Editor
 Plugin 'tpope/vim-obsession'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
+" Plugin 'sirver/ultisnips'
+" Plugin 'honza/vim-snippets'
 Plugin 'rking/ag.vim'
 Plugin 'ervandew/supertab'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -23,9 +23,12 @@ Plugin 'benmills/vimux'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'MattesGroeger/vim-bookmarks'
-Plugin 'valloric/youcompleteme'
 Plugin 'w0rp/ale'
 Plugin 'sjl/gundo.vim'
+
+" Completion
+Plugin 'maralla/completor.vim'
+" Plugin 'ternjs/tern_for_vim'
 
 " Lightline
 Plugin 'itchyny/lightline.vim'
@@ -159,7 +162,11 @@ set lazyredraw            " redraw only when we need to.
 set showmatch             " highlight matching [{()}]
 set ruler                 " line/character numbers bottom right
 set colorcolumn=81        " show line at 81 chars, stop before the line
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 " change cursor in different modes
+
+" change cursor in different modes
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " Searching
 " ----------------------
@@ -281,6 +288,12 @@ let g:ale_fixers = {
 \   'javascript': ['standard'],
 \}
 
+" Tern
+" let g:tern_show_argument_hints = 'on_hold'
+" let g:tern_show_signature_in_pum = 1
+" autocmd FileType javascript,javascript.jsx setlocal omnifunc=tern#Complete
+" autocmd FileType javascript,javascript.jsx nnoremap <silent> <buffer> gb :TernDef<CR>
+
 " Nerdtree
 " ----------------------
 " How can I close vim if the only window left open is a NERDTree?
@@ -337,30 +350,15 @@ let g:lightline.tabline = {
 
 autocmd User ALELint call lightline#update()
 
-" YouCompleteMe
-" ----------------------
-let g:ycm_filetype_blacklist = {
-  \ 'html' : 1
-  \}
-let g:ycm_filetype_specific_completion_to_disable = {
-  \ 'html': 1
-  \}
-
-" using supertab to allow YCM and UltiSnips to play nice
-" Set shortcuts for ycm
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
 let g:SuperTabDefaultCompletionType = '<C-Tab>'
 let g:delimitMate_expand_cr=1
 
 " Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>""
+" let g:UltiSnipsExpandTrigger="<C-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>""
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']

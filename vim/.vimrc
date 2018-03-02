@@ -34,6 +34,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
 Plugin 'valloric/youcompleteme'
+Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'MattesGroeger/vim-bookmarks'
 
@@ -103,17 +104,6 @@ set undodir=~/.dotfiles/vim/cache/undo
 " Set a directory to store vim state etc
 set viminfo=<800,'10,/50,:100,h,f0,n~/.viminfo
 
-" set viminfo=%,<800,'10,/50,:100,h,f0,n~/.dotfiles/vim/cache/info
-"           | |    |   |   |    | |  + viminfo file path
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + disable 'hlsearch' loading viminfo
-"           | |    |   |   + command-line history saved
-"           | |    |   + search history saved
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
-
-
 " Offset scroll few lines before bottom
 set scrolloff=3
 
@@ -128,6 +118,7 @@ set background=dark
 colorscheme base16-eighties
 set t_Co=256
 set t_ut=
+" hi CursorLine ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
 " hi LineNr ctermfg=NONE ctermbg=NONE
 hi VertSplit ctermbg=NONE guibg=NONE
@@ -164,11 +155,7 @@ set lazyredraw            " redraw only when we need to.
 set showmatch             " highlight matching [{()}]
 set ruler                 " line/character numbers bottom right
 set colorcolumn=81        " show line at 81 chars, stop before the line
-
-" change cursor in different modes
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50 " change cursor in different modes
 
 " Searching
 " ----------------------
@@ -234,6 +221,12 @@ nnoremap <leader>bd :bufdo bd<CR>
 " Redraw the window (force)
 nnoremap <leader>rd :redraw!<CR>
 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+nnoremap \ :Ag<SPACE>
+
 " Quickly edit/reload the vimrc file
 " ----------------------
 nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
@@ -297,18 +290,28 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 
-" ctrlp - fuzzy search
+" fzf
 " ----------------------
-set wildignore+=*/node_modules/**
-set wildignore+=*/.git/**
-set wildignore+=*/vendor/**
-nmap <C-p> :FZF .<CR>
+nmap <C-p> :Files .<CR>
+nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
 
-" bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag<SPACE>
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
 
 " NERDTree
 " ----------------------

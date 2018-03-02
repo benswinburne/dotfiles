@@ -8,65 +8,69 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Nerdtree related
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Themes
+Plugin 'chriskempson/base16-vim'
+
+" Editor
+Plugin 'tpope/vim-obsession'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'rking/ag.vim'
+Plugin 'ervandew/supertab'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'benmills/vimux'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
+Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'valloric/youcompleteme'
+Plugin 'w0rp/ale'
+Plugin 'sjl/gundo.vim'
 
 " Lightline
 Plugin 'itchyny/lightline.vim'
 Plugin 'daviesjamie/vim-base16-lightline'
 
-" Editor
+" Nerdtree related
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Editing
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'suan/vim-instant-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-obsession'
 Plugin 'matchit.zip'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'rking/ag.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'ervandew/supertab'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'benmills/vimux'
 " Bundle 'matze/vim-move'
-Plugin 'valloric/youcompleteme'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
-Plugin 'MattesGroeger/vim-bookmarks'
-
-" Themes
-Plugin 'chriskempson/base16-vim'
 
 " Language Specific
+Plugin 'sheerun/vim-polyglot'
 Plugin 'pangloss/vim-javascript'
-Plugin 'othree/jspc.vim'
-Bundle 'vim-php/vim-composer'
 Plugin 'moll/vim-node'
-Plugin 'mxw/vim-jsx'
+Plugin 'leshill/vim-json'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'mattn/emmet-vim'
 
-" PHP
-Bundle 'stephpy/vim-php-cs-fixer'
-Bundle 'tobyS/pdv'
-Bundle 'tobyS/vmustache'
-Bundle 'arnaud-lb/vim-php-namespace'
-
-" Syntax
-Plugin 'w0rp/ale'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
-Plugin 'kylef/apiblueprint.vim'
+" Markdown
+Plugin 'suan/vim-instant-markdown'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/limelight.vim'
 
 " Git
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
-" Frontend
-Plugin 'mattn/emmet-vim'
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install'}
+
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" Bundle 'stephpy/vim-php-cs-fixer'
+" Bundle 'arnaud-lb/vim-php-namespace'
+" Plugin 'othree/yajs.vim'
+" Plugin 'othree/es.next.syntax.vim'
+" Plugin 'kylef/apiblueprint.vim'
+" Plugin 'othree/jspc.vim'
+" Plugin 'mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

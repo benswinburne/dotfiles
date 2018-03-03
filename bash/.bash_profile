@@ -102,4 +102,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"
 alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
 
+# Load rupa's z if installed
+[ -f $(brew --prefix)/etc/profile.d/z.sh ] \
+  && . $(brew --prefix)/etc/profile.d/z.sh
 

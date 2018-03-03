@@ -103,7 +103,6 @@ brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
 brew cask install transmission
-brew cask install postman
 
 mas install 1006087419 # SnippetsLab
 mas install 1056643111 # Clocker - menu bar clock
@@ -113,6 +112,7 @@ open /Applications/Clocker.app/
 brew install tldr
 pip install howdoi
 brew install python
+brew cask install postman
 brew cask install sequel-pro
 brew cask install docker
 brew cask install java
@@ -143,8 +143,8 @@ brew install elasticsearch
 brew install hub
 brew install coreutils
 brew install siege
-
 brew install fzf
+brew install z
 
 /usr/local/opt/fzf/install \
   --no-update-rc \

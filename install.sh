@@ -183,7 +183,8 @@ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/git/.gitignore ~/.gitignore
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
+ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
+ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin

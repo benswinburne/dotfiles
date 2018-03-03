@@ -13,7 +13,7 @@ Plugin 'chriskempson/base16-vim'
 
 " Editor
 Plugin 'tpope/vim-obsession'
-" Plugin 'sirver/ultisnips'
+Plugin 'sirver/ultisnips'
 " Plugin 'honza/vim-snippets'
 Plugin 'rking/ag.vim'
 Plugin 'ervandew/supertab'
@@ -48,7 +48,7 @@ Plugin 'Raimondi/delimitMate'
 " Bundle 'matze/vim-move'
 
 " Language Specific
-Plugin 'sheerun/vim-polyglot'
+" Plugin 'sheerun/vim-polyglot'
 Plugin 'pangloss/vim-javascript'
 Plugin 'moll/vim-node'
 Plugin 'leshill/vim-json'
@@ -353,14 +353,20 @@ autocmd User ALELint call lightline#update()
 " if tab doesn't expand snippet, its passed to supertab which calls YCM
 " shortcut from above
 " let g:SuperTabDefaultCompletionType = '<C-Tab>'
-let g:SuperTabCrMapping = 1
-let g:SuperTabDefaultCompletionType = '<c-n>'
-let g:delimitMate_expand_cr=1
+let g:SuperTabCrMapping = 0
+" let g:SuperTabDefaultCompletionType = '<c-n>'
+" let g:delimitMate_expand_cr=1
 
 " Trigger configuration. Do not use <tab> if you use
 " let g:UltiSnipsExpandTrigger="<C-tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>""
+" Set ultisnips triggers
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" map <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
+" imap <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
 
 " Editorconfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -394,6 +400,7 @@ nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
 "  Fix vim-move (closed issue about OSX)
 "  bump method up shift command up
 "  php code coverage ? https://github.com/joonty/vim-phpqa
+" make vim emmet work properly
 
 " Move line
 " ----------------------

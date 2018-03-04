@@ -1,83 +1,79 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.vim/plugged')
 " Themes
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 " Editor
-Plugin 'tpope/vim-obsession'
-Plugin 'sirver/ultisnips'
+Plug 'tpope/vim-obsession'
+Plug 'sirver/ultisnips'
 " Plugin 'honza/vim-snippets'
-Plugin 'rking/ag.vim'
-Plugin 'ervandew/supertab'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'benmills/vimux'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
-Plugin 'MattesGroeger/vim-bookmarks'
-Plugin 'w0rp/ale'
-Plugin 'sjl/gundo.vim'
+Plug 'rking/ag.vim'
+Plug 'ervandew/supertab'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'benmills/vimux'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'w0rp/ale'
+Plug 'sjl/gundo.vim'
 
 " Completion
-Plugin 'maralla/completor.vim'
+Plug 'maralla/completor.vim', { 'do': 'make js' }
 " Plugin 'ternjs/tern_for_vim'
 
 " Lightline
-Plugin 'itchyny/lightline.vim'
-Plugin 'daviesjamie/vim-base16-lightline'
+Plug 'itchyny/lightline.vim'
+Plug 'daviesjamie/vim-base16-lightline'
 
 " Nerdtree related
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Editing
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'matchit.zip'
-Plugin 'Raimondi/delimitMate'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tmhedberg/matchit'
+Plug 'Raimondi/delimitMate'
 " Bundle 'matze/vim-move'
 
 " Language Specific
 " Plugin 'sheerun/vim-polyglot'
-Plugin 'pangloss/vim-javascript'
-Plugin 'moll/vim-node'
-Plugin 'leshill/vim-json'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'mattn/emmet-vim'
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
+Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'leshill/vim-json', { 'for': ['json'] }
+Plug 'leafgarland/typescript-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'eruby', 'mustache', 'handlebars', 'hbs', 'javascript.jsx'] }
+Plug 'kylef/apiblueprint.vim', { 'for': ['apib'] }
 
 " Markdown
-Plugin 'suan/vim-instant-markdown'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'junegunn/limelight.vim'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
 " Git
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install'}
 
-" Plugin 'othree/javascript-libraries-syntax.vim'
-" Bundle 'stephpy/vim-php-cs-fixer'
-" Bundle 'arnaud-lb/vim-php-namespace'
-" Plugin 'othree/yajs.vim'
-" Plugin 'othree/es.next.syntax.vim'
-" Plugin 'kylef/apiblueprint.vim'
-" Plugin 'othree/jspc.vim'
-" Plugin 'mxw/vim-jsx'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'arnaud-lb/vim-php-namespace'
+" Plug 'othree/yajs.vim'
+" Plug 'othree/es.next.syntax.vim'
+" Plug 'othree/jspc.vim'
+" Plug 'mxw/vim-jsx'
+call plug#end()
 
 " General
 " ----------------------
@@ -86,6 +82,7 @@ set nobackup
 set noswapfile
 set hidden
 set clipboard=unnamed
+set nocompatible              " be iMproved, required
 
 " Mouse
 " ----------------------

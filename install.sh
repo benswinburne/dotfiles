@@ -103,31 +103,32 @@ brew cask install spotify
 brew cask install spectacle
 brew cask install vlc
 brew cask install transmission
+brew cask install alfred
+brew cask install postman
+brew cask install gitify # github notifications
 
 mas install 1006087419 # SnippetsLab
 mas install 1056643111 # Clocker - menu bar clock
 open /Applications/Clocker.app/
 
-# Dev stuff
+# Terminal applications
+brew install coreutils
 brew install tldr
+brew install z
 pip install howdoi
-brew install python
-brew cask install postman
-brew cask install sequel-pro
-brew cask install docker
-brew cask install java
-brew cask install gitify # github notifications
-brew cask install alfred
 brew install httpie
-brew install awscli
-brew install awless
 brew install git
+brew install hub
 brew install bash-completion
 brew install the_silver_searcher
-brew install tmux
-brew install reattach-to-user-namespace --with-wrap-launchctl # Make sure LaunchCtl works inside Tmux
+brew install siege
+
+# Languages
+brew install python
+brew cask install java
 brew install node
-brew install yarn --without-node
+
+# PHP
 brew install php71 --with-fpm
 brew install php71-xdebug
 brew install php71-memcached
@@ -136,16 +137,20 @@ brew install php-code-sniffer
 brew install php-cs-fixer
 brew install phpmd
 brew install composer
+
+# Servers
+brew cask install docker
 brew install memcached
-brew install mysql
 brew install redis
 brew install elasticsearch
-brew install hub
-brew install coreutils
-brew install siege
-brew install fzf
-brew install z
 
+# Yarn
+# ----------------
+brew install yarn --without-node
+curl -L https://goo.gl/unNQvE > `brew --prefix`/etc/bash_completion.d/yarn
+
+# FZF
+brew install fzf
 /usr/local/opt/fzf/install \
   --no-update-rc \
   --completion \
@@ -153,7 +158,6 @@ brew install z
   --no-fish \
   --no-zsh
 
-yarn global add instant-markdown-d
 yarn global add diff-so-fancy
 yarn global add http-server
 yarn global add standard
@@ -162,10 +166,25 @@ yarn global add nodemon
 yarn global add serverless
 yarn global add ngrok
 
+# AWS
+# ----------------
+mkdir -p ~/Dropbox/.aws
+rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
+brew install awscli
+brew install awsebcli
+brew install awless
+
+# Tmux
+# ----------------
+brew install tmux
+# Make sure LaunchCtl works inside Tmux
+brew install reattach-to-user-namespace --with-wrap-launchctl
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
 
+
 # Laravel Valet
+# ----------------
 mkdir -p ~/Sites
 composer global require laravel/valet
 export PATH=~/.composer/vendor/bin:$PATH
@@ -175,6 +194,10 @@ valet start
 
 composer global require tightenco/lambo
 
+# MySQL
+# ----------------
+brew install mysql
+brew cask install sequel-pro
 mysql_secure_installation
 
 # Symlink all the things
@@ -183,8 +206,6 @@ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/git/.gitignore ~/.gitignore
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
-ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 ln -s ~/.dotfiles/.tern-project ~/.tern-project
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
@@ -193,9 +214,7 @@ ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist
 ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 mkdir -p ~/Dropbox/.ssh
-mkdir -p ~/Dropbox/.aws
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
-rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
 rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege
 sudo find ~/.ssh -type f -exec chmod 600 -- {} +
 
@@ -214,11 +233,12 @@ popd
 # Vim
 brew install vim
 brew unlink vim && brew link vim
+ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
+ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# vim +PluginInstall +qall &>/dev/null
 echo | echo | vim +PluginInstall +qall &>/dev/null
-brew install cmake # for YCM
-(cd ~/.vim/bundle/YouCompleteMe; ./install.py --tern-completer )
+(cd ~/.vim/bundle/completor.vim; make js; )
+yarn global add instant-markdown-d
 
 # Iterm
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"

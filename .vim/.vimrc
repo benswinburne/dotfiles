@@ -401,6 +401,7 @@ nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
 "  bump method up shift command up
 "  php code coverage ? https://github.com/joonty/vim-phpqa
 " make vim emmet work properly
+" https://stackoverflow.com/a/3476411/769237
 
 " Move line
 " ----------------------

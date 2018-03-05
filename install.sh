@@ -9,7 +9,6 @@ brew tap wallix/awless
 
 brew install dockutil
 brew install mas
-
 mas signin ben.swinburne@gmail.com
 
 dockutil --remove 'System Preferences' --allhomes
@@ -235,9 +234,9 @@ brew install vim
 brew unlink vim && brew link vim
 ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-echo | echo | vim +PluginInstall +qall &>/dev/null
-(cd ~/.vim/bundle/completor.vim; make js; )
+# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# echo | echo | vim +PluginInstall +qall &>/dev/null
+# (cd ~/.vim/bundle/completor.vim; make js; )
 yarn global add instant-markdown-d
 
 # Iterm

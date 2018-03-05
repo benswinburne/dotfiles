@@ -17,15 +17,15 @@ Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
 
 " Completion
 Plug 'maralla/completor.vim', { 'do': 'make js' }
-" Plugin 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install'}
 
 " Lightline
 Plug 'itchyny/lightline.vim'
@@ -49,11 +49,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
-Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+" Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
-Plug 'leafgarland/typescript-vim'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'eruby', 'mustache', 'handlebars', 'hbs', 'javascript.jsx'] }
-Plug 'kylef/apiblueprint.vim', { 'for': ['apib'] }
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'javascript.jsx'] }
+Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 
 " Markdown
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -347,21 +347,25 @@ let g:lightline.tabline = {
 
 autocmd User ALELint call lightline#update()
 
-" if tab doesn't expand snippet, its passed to supertab which calls YCM
-" shortcut from above
-" let g:SuperTabDefaultCompletionType = '<C-Tab>'
-let g:SuperTabCrMapping = 0
-" let g:SuperTabDefaultCompletionType = '<c-n>'
-" let g:delimitMate_expand_cr=1
+let g:SuperTabDefaultCompletionType = "<c-n>" " Cycle down the list
+let g:SuperTabCrMapping = 1 "
 
-" Trigger configuration. Do not use <tab> if you use
-" let g:UltiSnipsExpandTrigger="<C-tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>""
-" Set ultisnips triggers
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+      return pumvisible() ? "\<C-y>" : "\<CR>"
+    endif
+endfunction
+
+inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
+
 " map <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
 " imap <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
 

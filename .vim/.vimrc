@@ -12,6 +12,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-obsession'
 Plug 'sirver/ultisnips'
 " Plugin 'honza/vim-snippets'
+
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -119,7 +120,7 @@ set ttimeoutlen=0
 syntax enable           " enable syntax processing
 let base16colorspace=256
 set background=dark
-colorscheme base16-eighties
+:silent! colorscheme base16-eighties
 set t_Co=256
 set t_ut=
 " hi CursorLine ctermbg=NONE
@@ -224,6 +225,7 @@ set pastetoggle=<leader>p
 nnoremap <leader>v V`]
 
 " Close all buffers
+nmap bd :bd<cr>
 nnoremap <leader>bd :bufdo bd<CR>
 
 " Redraw the window (force)
@@ -258,8 +260,9 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 
 " Vimux
 " ----------------------
-map <leader>x :VimuxPromptCommand<CR>
-map <leader>t :call VimuxRunCommand("clear; phpunit; echo;")<CR>
+map <leader>X :VimuxPromptCommand<CR>
+map <leader>x :VimuxRunLastCommand<CR>
+map <leader>t :call VimuxRunCommand("!!")<CR>
 
 " Laravel Mappings
 " ----------------------

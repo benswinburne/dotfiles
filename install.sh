@@ -164,6 +164,7 @@ yarn global add http-server
 yarn global add nodemon
 yarn global add serverless
 yarn global add ngrok
+yarn global add yaml-lint
 
 # AWS
 # ----------------
@@ -211,11 +212,15 @@ ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist
-ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
 mkdir -p ~/Dropbox/.ssh
 rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
 rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege
 sudo find ~/.ssh -type f -exec chmod 600 -- {} +
+
+# Fonts
+ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
+brew tap caskroom/fonts
+brew cask install font-hack-nerd-font
 
 source ~/.bash_profile
 

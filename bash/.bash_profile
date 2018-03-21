@@ -96,7 +96,7 @@ alias git='hub'
 # Enable fuzzy search etc
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.map -g ""'
 
 # Itunes stuff
 alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"

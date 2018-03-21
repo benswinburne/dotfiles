@@ -1,0 +1,33 @@
+snippet req "require" b
+const `!p
+def formatVariableName(path):
+	lastPart = path.split('/')[-1]
+	return re.sub(r'[_\-]', '', lastPart.title())
+snip.rv = formatVariableName(t[1])
+` = require('${1}')$0
+endsnippet
+
+snippet imp "import" b
+import `!p
+def formatVariableName(path):
+	lastPart = path.split('/')[-1]
+	return re.sub(r'[_\-]', '', lastPart.title())
+snip.rv = formatVariableName(t[1])
+` from '${1}'$0
+endsnippet
+
+snippet cl "console.log(...)" b
+console.log($0)
+endsnippet
+
+snippet log "console.log(...)" b
+console.log($0)
+endsnippet
+
+snippet @p "@param {Type} varname Description"
+@param {${1:Type}} ${2:varname} ${3:Description}
+endsnippet
+
+snippet @ret "@return {Type} Description"
+@return {${1:Type}} ${2:Description}
+endsnippet

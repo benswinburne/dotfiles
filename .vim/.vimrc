@@ -11,6 +11,7 @@ Plug 'chriskempson/base16-vim'
 " Editor
 Plug 'tpope/vim-obsession'
 Plug 'sirver/ultisnips'
+Plug 'universal-ctags/ctags'
 " Plugin 'honza/vim-snippets'
 
 Plug 'rking/ag.vim'
@@ -225,7 +226,7 @@ set pastetoggle=<leader>p
 nnoremap <leader>v V`]
 
 " Close all buffers
-nmap bd :bd<cr>
+nmap qq :bd<cr>
 nnoremap <leader>bd :bufdo bd<CR>
 
 " Redraw the window (force)
@@ -258,6 +259,12 @@ let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by defaul
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
+" JSDoc
+nmap <leader>jd :JsDoc<cr>
+let g:jsdoc_enable_es6 = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_allow_input_prompt = 1
+
 " Vimux
 " ----------------------
 map <leader>X :VimuxPromptCommand<CR>
@@ -281,6 +288,7 @@ highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%linter%: %s'
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
+nnoremap <leader>af :ALEFix<cr>
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \}
@@ -306,6 +314,10 @@ let NERDTreeMinimalUI = 1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
+
+" Tags
+" ----------------------
+nmap <leader>ct :TagbarToggle<CR>
 
 " fzf
 " ----------------------
@@ -355,8 +367,8 @@ let g:SuperTabCrMapping = 1 "
 
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<c-o>"
 
-let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
 function! ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()

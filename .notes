@@ -1,0 +1,8 @@
+
+Plug 'jdkanani/vim-material-theme'
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'kristijanhusak/vim-hybrid-material'
+" set termguicolors
+" :silent! colorscheme quantum
+" :silent! colorscheme hybrid_material
+" :silent! colorscheme material-theme

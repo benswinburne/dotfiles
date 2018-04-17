@@ -17,6 +17,7 @@ Plug 'universal-ctags/ctags'
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 Plug 'junegunn/fzf.vim'
@@ -270,6 +271,7 @@ let g:jsdoc_allow_input_prompt = 1
 map <leader>X :VimuxPromptCommand<CR>
 map <leader>x :VimuxRunLastCommand<CR>
 map <leader>t :call VimuxRunCommand("!!")<CR>
+map <leader>r :!refchrome<CR>
 
 " Laravel Mappings
 " ----------------------
@@ -283,6 +285,7 @@ nmap <Leader>lm :!php artisan migrate
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%linter%: %s'

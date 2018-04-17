@@ -24,6 +24,7 @@ colorflag="-G"
 alias ls="command ls $1 ${colorflag}"
 alias la="ls -laF ${colorflag}" # all files inc dotfiles, in long format
 alias ll="ls -lhA"
+alias rs="fc -s"
 
 # Dotfiles & Sourcing
 function sbp { source ~/.bash_profile ; }
@@ -101,6 +102,9 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.map -g ""'
 # Itunes stuff
 alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"
 alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
+
+# Refresh chrome
+alias refchrome="osascript -e 'tell application \"Google Chrome\" to tell the active tab of its first window to reload'"
 
 # Load rupa's z if installed
 [ -f $(brew --prefix)/etc/profile.d/z.sh ] \

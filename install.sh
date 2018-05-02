@@ -108,7 +108,9 @@ brew cask install gitify # github notifications
 
 mas install 1006087419 # SnippetsLab
 mas install 1056643111 # Clocker - menu bar clock
+mas install 928871589 # noizio
 open /Applications/Clocker.app/
+open /Applications/Noizio.app/
 
 # Terminal applications
 brew install coreutils

@@ -122,7 +122,8 @@ set ttimeoutlen=0
 syntax enable           " enable syntax processing
 let base16colorspace=256
 set background=dark
-:silent! colorscheme base16-eighties
+" :silent! colorscheme base16-eighties
+:silent! colorscheme $VIM_COLORSCHEME
 set t_Co=256
 set t_ut=
 " hi CursorLine ctermbg=NONE

@@ -124,6 +124,10 @@ brew install siege
 
 # Languages
 brew install python
+brew install python@2
+# brew unlink python && brew link --overwrite python
+# pip2 install --upgrade pip setuptools
+# pip3 install --upgrade pip setuptools
 brew cask install java
 brew install node
 
@@ -182,6 +186,17 @@ brew install reattach-to-user-namespace --with-wrap-launchctl
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
 
+# Mutt
+# ----------------
+# brew install mutt
+# mkdir -p ~/.mutt/cache/headers
+# mkdir -p ~/.mutt/cache/bodies
+# touch ~/.mutt/certificates
+
+# Weechat
+# ----------------
+brew install weechat --with-aspell --with-perl --with-python@2
+pip install websocket-client
 
 # Laravel Valet
 # ----------------

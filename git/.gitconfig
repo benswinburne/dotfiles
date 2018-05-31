@@ -17,6 +17,7 @@
   co = checkout
   chb = checkout -b
   cob = checkout -b
+  branch-date = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
 
   # stash
   st = stash

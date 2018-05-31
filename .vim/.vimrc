@@ -119,14 +119,16 @@ set ttimeoutlen=0
 
 " Colors
 " ----------------------
-syntax enable           " enable syntax processing
+" https://codeyarns.com/2011/07/29/vim-chart-of-color-names/
+syntax enable " enable syntax processing
 let base16colorspace=256
 set background=dark
-" :silent! colorscheme base16-eighties
 :silent! colorscheme $VIM_COLORSCHEME
 set t_Co=256
 set t_ut=
-" hi CursorLine ctermbg=NONE
+hi CursorLine ctermbg=NONE
+" Needed for material but not eighties
+hi ColorColumn guibg=NONE ctermbg=19
 hi Normal guibg=NONE ctermbg=NONE
 " hi LineNr ctermfg=NONE ctermbg=NONE
 hi VertSplit ctermbg=NONE guibg=NONE
@@ -139,6 +141,8 @@ hi SignColumn guibg=NONE ctermbg=NONE
 " transparent line numbers
 hi LineNr guibg=NONE ctermbg=NONE
 hi def link jsObjectKey Label
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%>80v.\+/
 
 " Spaces & Tabs
 " ----------------------

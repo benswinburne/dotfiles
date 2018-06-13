@@ -132,6 +132,7 @@ brew install python@2
 # pip3 install --upgrade pip setuptools
 brew cask install java
 brew install node
+brew intall golang
 
 # PHP
 brew install php71 --with-fpm
@@ -260,6 +261,9 @@ ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 # echo | echo | vim +PluginInstall +qall &>/dev/null
 # (cd ~/.vim/bundle/completor.vim; make js; )
 yarn global add instant-markdown-d
+
+# WTF
+ln -s ~/.dotfiles/.wtf ~/.wtf
 
 # Iterm
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"

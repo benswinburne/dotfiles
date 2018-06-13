@@ -6,6 +6,7 @@ source ~/.dotfiles/bash/php
 source ~/.dotfiles/bash/ruby
 source ~/.dotfiles/bash/osx
 source ~/.dotfiles/bash/nodejs
+source ~/.dotfiles/bash/golang
 
 alias sudo='sudo '          # Enable aliases to be sudo'ed
 export EDITOR=$(which vim)  # Set up Editor

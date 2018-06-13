@@ -87,8 +87,9 @@ wtf:
     weather:
       # From http://openweathermap.org/help/city_list.txt
       cityids:
-      - 3370352
-      - 1283240
+      - 5128581 # NYC
+      - 6058560 # London
+      - 5391959 # San Francisco
       colors:
         current: "lightblue"
       enabled: true

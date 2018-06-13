@@ -46,6 +46,7 @@ function dotfiles   { cd ~/.dotfiles ; }
 
 # Utilities
 function g        { git "$@"; }
+function nah      { git reset --hard && git clean -df; }
 # function grep     { command grep --color=auto "$@" ; }
 function ip       { curl ident.me; echo; }
 function localip  { ipconfig getifaddr en0 ; }
@@ -111,3 +112,5 @@ alias refchrome="osascript -e 'tell application \"Google Chrome\" to tell the ac
 [ -f $(brew --prefix)/etc/profile.d/z.sh ] \
   && . $(brew --prefix)/etc/profile.d/z.sh
 
+# WTF
+WTF_OWM_API_KEY=$(cat ~/Dropbox/.wtf/weather)

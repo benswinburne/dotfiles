@@ -278,6 +278,11 @@ map <leader>x :VimuxRunLastCommand<CR>
 map <leader>t :call VimuxRunCommand("!!")<CR>
 map <leader>r :!refchrome<CR>
 
+" Multiple cursors
+" ----------------------
+let g:multi_cursor_exit_from_insert_mode = 0
+let g:multi_cursor_exit_from_visual_mode = 1
+
 " Laravel Mappings
 " ----------------------
 nmap <Leader>lr :e app/Http/routes.php<CR>

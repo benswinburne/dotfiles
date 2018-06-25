@@ -57,6 +57,7 @@ Plug 'leshill/vim-json', { 'for': ['json'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'javascript.jsx'] }
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
+Plug 'chr4/nginx.vim'
 
 " Markdown
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }

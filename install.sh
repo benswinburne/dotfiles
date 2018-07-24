@@ -3,7 +3,6 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew tap homebrew/dupes
-brew tap homebrew/php
 brew tap homebrew/services
 brew tap wallix/awless
 
@@ -135,13 +134,13 @@ brew install node
 brew intall golang
 
 # PHP
-brew install php71 --with-fpm
-brew install php71-xdebug
-brew install php71-memcached
+brew install php
+echo '' | pecl install xdebug
+echo '' | pecl install memcached
 brew install phpunit
 brew install php-code-sniffer
 brew install php-cs-fixer
-brew install phpmd
+# brew install phpmd
 brew install composer
 
 # Servers

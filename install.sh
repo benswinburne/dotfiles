@@ -122,6 +122,7 @@ brew install hub
 brew install bash-completion
 brew install the_silver_searcher
 brew install siege
+brew install shellcheck
 
 # Languages
 brew install python

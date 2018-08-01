@@ -45,6 +45,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tmhedberg/matchit'
 Plug 'Raimondi/delimitMate'
+Plug 'karlbright/qfdo.vim'
 " Bundle 'matze/vim-move'
 
 " Language Specific

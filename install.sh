@@ -172,6 +172,7 @@ yarn global add serverless
 yarn global add ngrok
 yarn global add yaml-lint
 yarn global add fusuma
+yarn global add eslint_d
 
 # AWS
 # ----------------

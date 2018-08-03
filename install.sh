@@ -123,6 +123,7 @@ brew install bash-completion
 brew install the_silver_searcher
 brew install siege
 brew install shellcheck
+brew install z
 
 # Languages
 brew install python

@@ -340,6 +340,7 @@ nmap <leader>ct :TagbarToggle<CR>
 " fzf
 " ----------------------
 nmap <C-p> :Files .<CR>
+nnoremap <C-S-p> :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
 
 function! s:buflist()

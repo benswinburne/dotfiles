@@ -2,11 +2,13 @@
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+HOMEBREW_NO_AUTO_UPDATE=1
+
 brew tap homebrew/dupes
 brew tap homebrew/services
 brew tap wallix/awless
 
-brew install dockutil
+brew ls --versions dockutil || brew install dockutil
 brew install mas
 mas signin ben.swinburne@gmail.com
 
@@ -179,7 +181,9 @@ yarn global add eslint_d
 # AWS
 # ----------------
 mkdir -p ~/Dropbox/.aws
-rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws
+
+if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
+
 brew install awscli
 brew install awsebcli
 brew install awless
@@ -233,9 +237,10 @@ ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist
+
 mkdir -p ~/Dropbox/.ssh
-rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh
-rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege
+if ! [ -L ~/.ssh ]; then rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh; fi
+if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
 sudo find ~/.ssh -type f -exec chmod 600 -- {} +
 
 # Fonts
@@ -247,16 +252,20 @@ source ~/.bash_profile
 
 # Sublime
 mkdir -p ~/Dropbox/Sublime/User
-pushd .
+pushd . || return
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
-rm -r User
-ln -s ~/Dropbox/Sublime/User
-rm -rf ~/Dropbox/Sublime/User
-popd
+
+# if ! [ -L ./User ]; then
+  # rm -r User; ln -s ~/Dropbox/Sublime/User
+  # rm -rf ~/Dropbox/Sublime/User
+# fi
+popd || return
 
 # Vim
 brew install vim
+# brew ls --versions vim > /dev/null 2>&1 || brew install vim
+brew ls --versions vim && brew upgrade vim || brew install vim
 brew unlink vim && brew link vim
 ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
@@ -269,7 +278,7 @@ yarn global add instant-markdown-d
 ln -s ~/.dotfiles/.wtf ~/.wtf
 
 # Iterm
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.dotfiles/iterm"
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.dotfiles/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Default applications
@@ -294,6 +303,7 @@ brew update
 brew cleanup
 brew cask cleanup
 brew prune
-printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase
+export HOMEBREW_NO_AUTO_UPDATE=0
 
-reboot
+printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
+

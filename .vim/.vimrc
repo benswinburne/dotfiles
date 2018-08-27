@@ -11,7 +11,8 @@ Plug 'chriskempson/base16-vim'
 " Editor
 Plug 'tpope/vim-obsession'
 Plug 'sirver/ultisnips'
-Plug 'universal-ctags/ctags'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 " Plugin 'honza/vim-snippets'
 
 Plug 'rking/ag.vim'
@@ -25,10 +26,10 @@ Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
+Plug 'ap/vim-buftabline'
 
 " Completion
 Plug 'maralla/completor.vim', { 'do': 'make js' }
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install'}
 
 " Lightline
 Plug 'itchyny/lightline.vim'
@@ -56,9 +57,13 @@ Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 
 " Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'javascript.jsx'] }
+Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
-Plug 'chr4/nginx.vim'
+Plug 'chr4/nginx.vim', { 'for': ['conf'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+" Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
+Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install'}
+Plug 'jwalton512/vim-blade', { 'for': ['blade'] }
 
 " Markdown
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -68,8 +73,6 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install'}
 
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'stephpy/vim-php-cs-fixer'
@@ -169,6 +172,7 @@ set lazyredraw            " redraw only when we need to.
 set showmatch             " highlight matching [{()}]
 set ruler                 " line/character numbers bottom right
 set colorcolumn=81        " show line at 81 chars, stop before the line
+set noshowmode            " leave statusline to handle this
 
 " change cursor in different modes
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -259,13 +263,20 @@ augroup END
 
 " PHP CS Fixer
 " ----------------------
-let g:php_cs_fixer_level = "psr2"                 " which level ?
-let g:php_cs_fixer_config = "default"             " configuration
-let g:php_cs_fixer_config_fire = ".php_cs"        " configuration file
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+" let g:php_cs_fixer_level = "psr2"                 " which level ?
+" let g:php_cs_fixer_config = "default"             " configuration
+" let g:php_cs_fixer_config_fire = ".php_cs"        " configuration file
+" let g:php_cs_fixer_php_path = "php"               " Path to PHP
+" let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+" let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+" let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+
+" PHPActor
+" ----------------------
+" Goto definition of class or class member under the cursor
+nmap <Leader>o :call phpactor#GotoDefinition()<CR>
+" Include use statement
+nmap <Leader>u :call phpactor#UseAdd()<CR>
 
 " JSDoc
 nmap <leader>jd :JsDoc<cr>
@@ -300,6 +311,7 @@ let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 0
 let g:ale_javascript_eslint_executable='eslint_d'
 let g:ale_javascript_eslint_use_global = 1
+let g:ale_php_cs_fixer_use_global = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%linter%: %s'
@@ -309,10 +321,16 @@ nnoremap <leader>af :ALEFix<cr>
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow', 'standard'],
 \   'sh': ['shellcheck'],
+\   'php': ['phpcs', 'phpmd', 'phpstan'],
+\   'scss': ['stylelint'],
 \}
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint', 'standard'],
+\   'php': ['php_cs_fixer', 'phpcbf'],
+\   'scss': ['prettier'],
 \}
+
+" phpcbf
 
 " Tern
 " let g:tern_show_argument_hints = 'on_hold'
@@ -335,14 +353,35 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 
 " Tags
 " ----------------------
-nmap <leader>ct :TagbarToggle<CR>
+" nmap <leader>ct :TagbarToggle<CR>
+" map <silent> <leader>jd :CtrlPTag<cr><C-\>
+" let g:gutentags_trace = 1
+let g:gutentags_cache_dir = '/tmp/gutentags' " Where to store tag files
+let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
+  \ '*.phar', '*.ini', '*.rst', '*.md',
+  \ '*vendor/*/test*', '*vendor/*/Test*',
+  \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
+  \ '*var/cache*', '*var/log*']
+
+" PHP
+" ----------------------
+function! IPhpExpandClass()
+  call PhpExpandClass()
+  call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+let g:php_namespace_sort_after_insert = 1
 
 " fzf
 " ----------------------
 nmap <C-p> :Files .<CR>
-nnoremap <C-S-p> :Files <C-R>=expand('%:h')<CR><CR>
+" nnoremap <C-S-p> :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
 
+" Select buffer
 function! s:buflist()
   redir => ls
   silent ls
@@ -360,6 +399,81 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
+
+" Jump to tags
+function! s:tags_sink(line)
+  let parts = split(a:line, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent e' parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+function! s:tags()
+  if empty(tagfiles())
+    echohl WarningMsg
+    echom 'Preparing tags'
+    echohl None
+    call system('ctags -R')
+  endif
+
+  call fzf#run({
+  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  \            '| grep -v -a ^!',
+  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+  \ 'down':    '40%',
+  \ 'sink':    function('s:tags_sink')})
+endfunction
+
+command! Tags call s:tags()
+
+" Jump to tags in the current buffer
+
+function! s:align_lists(lists)
+  let maxes = {}
+  for list in a:lists
+    let i = 0
+    while i < len(list)
+      let maxes[i] = max([get(maxes, i, 0), len(list[i])])
+      let i += 1
+    endwhile
+  endfor
+  for list in a:lists
+    call map(list, "printf('%-'.maxes[v:key].'s', v:val)")
+  endfor
+  return a:lists
+endfunction
+
+function! s:btags_source()
+  let lines = map(split(system(printf(
+    \ 'ctags -f - --sort=no --excmd=number --language-force=%s %s',
+    \ &filetype, expand('%:S'))), "\n"), 'split(v:val, "\t")')
+  if v:shell_error
+    throw 'failed to extract tags'
+  endif
+  return map(s:align_lists(lines), 'join(v:val, "\t")')
+endfunction
+
+function! s:btags_sink(line)
+  execute split(a:line, "\t")[2]
+endfunction
+
+function! s:btags()
+  try
+    call fzf#run({
+    \ 'source':  s:btags_source(),
+    \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+    \ 'down':    '40%',
+    \ 'sink':    function('s:btags_sink')})
+  catch
+    echohl WarningMsg
+    echom v:exception
+    echohl None
+  endtry
+endfunction
+
+command! BTags call s:btags()
 
 " NERDTree
 " ----------------------

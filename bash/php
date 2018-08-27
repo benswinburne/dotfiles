@@ -10,3 +10,4 @@ alias homestead='function __homestead() { (cd ~/.homestead && vagrant $*); unset
 function tinker  { php artisan tinker; }
 function artisan { php artisan "$@"; }
 
+function mrs { php artisan migrate:refresh --seed; }

@@ -1,12 +1,14 @@
 #!/bin/bash
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ # install homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 HOMEBREW_NO_AUTO_UPDATE=1
 
 brew tap homebrew/dupes
 brew tap homebrew/services
-brew tap wallix/awless
 
 brew ls --versions dockutil || brew install dockutil
 brew install mas
@@ -34,44 +36,14 @@ dockutil --remove 'Pages' --allhomes
 
 brew cask install google-chrome
 brew cask install iterm2
-brew cask install sublime-text
 brew cask install slack
 
 dockutil --add /Applications/Google\ Chrome.app --position 1
 dockutil --add /Applications/iTerm.app --position 2
-dockutil --add /Applications/Sublime\ Text.app --position 3
 dockutil --add /Applications/Slack.app --position 4
 
 # Bye itunes
 sudo chmod -x /Applications/iTunes.app
-
-# Enable tap to click (Trackpad) for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show file extensions
-defaults write NSGlobalDomain _HIHideMenuBar -bool true # Hide menu bar
-defaults write NSGlobalDomain AppleInterfaceStyle Dark # Dark interface
-
-# Disable emdash and smart quotes
-defaults write 'Apple Global Domain' NSAutomaticDashSubstitutionEnabled 0
-defaults write 'Apple Global Domain' NSAutomaticQuoteSubstitutionEnabled 0
-
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms) # Keyboard repeat rate
-defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms) # Keyboard repeat rate
-defaults write -g ApplePressAndHoldEnabled -bool false # Don't hold key for other letters
-
-#defaults write com.apple.dock workspaces-auto-swoosh -bool NO # Disable cmd+tab between spaces
-#defaults write com.apple.dock mru-spaces -bool false # Don't rerrange spaces based on use
-defaults write com.apple.dock autohide-time-modifier -float 0 # Dock hide delay
-defaults write com.apple.dock autohide -bool true # Dock hide automatically
-defaults write com.apple.dock tilesize -int 30 # Dock height
-defaults write com.apple.dock minimize-to-application -bool true # minimise into application icoe
-defaults write com.apple.finder AppleShowAllFiles true # show hidden files
-defaults write com.apple.TextEdit RichText -int 0 # plain text in textedit
-defaults write com.apple.ImageCapture disableHotPlug -bool true # don't open photos
-sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist # disable itunes buttons
 
 # unhide user library folder
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
@@ -82,19 +54,12 @@ sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 
 # Screensaver and timeout
 brew cask install aerial
-defaults write com.apple.dock wvous-bl-corner -int 10 # Lock hot corner
-defaults write com.apple.dock wvous-br-corner -int 5 # Bottom right screensaver
-defaults -currentHost write com.apple.screensaver idleTime 300
-defaults -currentHost write com.apple.screensaver CleanExit -bool true
-defaults -currentHost write com.apple.screensaver askForPasswordDelay 0
-defaults -currentHost write com.apple.screensaver askForPassword -bool true
-defaults -currentHost write com.apple.screensaver \
-  moduleDict -dict moduleName Aerial path "~/Library/Screen Savers/Aerial.saver" type 0
 
 killall Dock
 killall Finder
 killall SystemUIServer
 
+brew cask install sublime-text
 brew install ansiweather
 brew cask install dropbox
 brew cask install caffeine
@@ -126,6 +91,7 @@ brew install the_silver_searcher
 brew install siege
 brew install shellcheck
 brew install z
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 # Languages
 brew install python
@@ -146,6 +112,7 @@ brew install php-code-sniffer
 brew install php-cs-fixer
 # brew install phpmd
 brew install composer
+composer global require phpstan/phpstan
 
 # Servers
 brew cask install docker
@@ -181,11 +148,10 @@ yarn global add eslint_d
 # AWS
 # ----------------
 mkdir -p ~/Dropbox/.aws
-
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
-
 brew install awscli
 brew install awsebcli
+brew tap wallix/awless
 brew install awless
 
 # Tmux
@@ -195,13 +161,6 @@ brew install tmux
 brew install reattach-to-user-namespace --with-wrap-launchctl
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
-
-# Mutt
-# ----------------
-# brew install mutt
-# mkdir -p ~/.mutt/cache/headers
-# mkdir -p ~/.mutt/cache/bodies
-# touch ~/.mutt/certificates
 
 # Weechat
 # ----------------
@@ -223,7 +182,7 @@ composer global require tightenco/lambo
 # ----------------
 brew install mysql
 brew cask install sequel-pro
-mysql_secure_installation
+# mysql_secure_installation
 
 # Symlink all the things
 ln -s ~/.dotfiles/npm/.npmrc ~/.npmrc
@@ -231,7 +190,7 @@ ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/git/.gitignore ~/.gitignore
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/.tern-project ~/.tern-project
+ln -s ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
@@ -269,15 +228,15 @@ brew ls --versions vim && brew upgrade vim || brew install vim
 brew unlink vim && brew link vim
 ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
-# git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# echo | echo | vim +PluginInstall +qall &>/dev/null
-# (cd ~/.vim/bundle/completor.vim; make js; )
 yarn global add instant-markdown-d
+# vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+vim '+PlugUpdate' '+qall'
 
 # WTF
 ln -s ~/.dotfiles/.wtf ~/.wtf
 
 # Iterm
+defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.dotfiles/iterm"
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.dotfiles/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 

@@ -3,10 +3,11 @@
 export CLICOLOR=1
 export TERM=xterm-256color
 
-# BASE16_SHELL="$HOME/.dotfiles/bash/themes/base16-eighties.dark.sh"
-BASE16_SHELL="$HOME/.dotfiles/bash/themes/base16-material.dark.sh"
-export VIM_COLORSCHEME="base16-material"
-# export VIM_COLORSCHEME="base16-eighties"
+# BASE16_SHELL="$HOME/.dotfiles/bash/themes/base16-material.dark.sh"
+# export VIM_COLORSCHEME="base16-material"
+
+BASE16_SHELL="$HOME/.dotfiles/bash/themes/base16-eighties.dark.sh"
+export VIM_COLORSCHEME="base16-eighties"
 
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 # source $BASE16_SHELL

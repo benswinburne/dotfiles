@@ -49,11 +49,12 @@ function dotfiles   { cd ~/.dotfiles || return; }
 # Utilities
 function g        { git "$@"; }
 function nah      { git reset --hard && git clean -df; }
-# function grep     { command grep --color=auto "$@" ; }
 function ip       { curl ident.me; echo; }
 function localip  { ipconfig getifaddr en0 ; }
-#function tunnel   { ssh -D 8080 -C -N $argv ; }
-function dict { open "dict://$@"; }
+function dict     { open "dict://$*"; }
+function mkd      { mkdir -p "$@" && cd "$@" || return; }
+# function grep     { command grep --color=auto "$@" ; }
+# function tunnel   { ssh -D 8080 -C -N $argv ; }
 
 # Homebrew
 function fix-brew { brew update; brew cleanup; brew cask cleanup; brew prune; }

@@ -193,6 +193,7 @@ ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
 ln -s ~/.dotfiles/.osx ~/.osx
 ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
+ln -s ~/.dotfiles/.editorconfig ~/.editorconfig
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist

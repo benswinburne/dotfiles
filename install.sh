@@ -185,15 +185,15 @@ brew cask install sequel-pro
 # mysql_secure_installation
 
 # Symlink all the things
-ln -s ~/.dotfiles/npm/.npmrc ~/.npmrc
-ln -s ~/.dotfiles/bash/.bash_profile ~/.bash_profile
-ln -s ~/.dotfiles/git/.gitignore ~/.gitignore
-ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
-ln -s ~/.dotfiles/.osx ~/.osx
-ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
-ln -s ~/.dotfiles/.editorconfig ~/.editorconfig
+ln -sf ~/.dotfiles/.npmrc ~/.npmrc
+ln -sf ~/.dotfiles/bash/.bash_profile ~/.bash_profile
+ln -sf ~/.dotfiles/.gitignore ~/.gitignore
+ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
+ln -sf ~/.dotfiles/.osx ~/.osx
+ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
+ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 ln -s ~/.dotfiles/transmission/org.m0k.transmission.plist \
   ~/Library/Preferences/org.m0k.transmission.plist

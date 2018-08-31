@@ -186,7 +186,7 @@ brew cask install sequel-pro
 
 # Symlink all the things
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
-ln -sf ~/.dotfiles/bash/.bash_profile ~/.bash_profile
+ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
 ln -sf ~/.dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf

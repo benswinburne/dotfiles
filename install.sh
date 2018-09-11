@@ -123,7 +123,7 @@ brew install elasticsearch
 # Yarn
 # ----------------
 brew install yarn --without-node
-curl -L https://goo.gl/unNQvE > `brew --prefix`/etc/bash_completion.d/yarn
+brew install yarn-completion
 
 # FZF
 brew install fzf

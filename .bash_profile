@@ -10,6 +10,10 @@ source ~/.dotfiles/bash/osx
 source ~/.dotfiles/bash/nodejs
 source ~/.dotfiles/bash/golang
 
+# Add Python bin directories to path
+python3.7 -m site &> /dev/null && PATH="$PATH:$(python3.7 -m site --user-base)/bin"
+python2.7 -m site &> /dev/null && PATH="$PATH:$(python2.7 -m site --user-base)/bin"
+
 alias sudo='sudo '          # Enable aliases to be sudo'ed
 shopt -s nocaseglob					# Case-insensitive globbing (used in pathname expansion)
 shopt -s histappend					# Append to the Bash history file, rather than overwriting it

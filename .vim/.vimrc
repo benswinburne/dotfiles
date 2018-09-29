@@ -14,6 +14,7 @@ Plug 'sirver/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 " Plugin 'honza/vim-snippets'
+Plug 'djoshea/vim-autoread'
 
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
@@ -27,6 +28,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
 Plug 'ap/vim-buftabline'
+Plug 'ap/vim-css-color'
 
 " Completion
 Plug 'maralla/completor.vim', { 'do': 'make js' }
@@ -39,11 +41,13 @@ Plug 'daviesjamie/vim-base16-lightline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'unkiwii/vim-nerdtree-sync'
 
 " Editing
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
 Plug 'tmhedberg/matchit'
 Plug 'Raimondi/delimitMate'
 Plug 'karlbright/qfdo.vim'
@@ -51,13 +55,18 @@ Plug 'karlbright/qfdo.vim'
 
 " Language Specific
 " Plugin 'sheerun/vim-polyglot'
+
+" Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'styled-components/vim-styled-components', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'js', 'jsx', 'javascript.jsx']}
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
-" Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
+
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
@@ -66,7 +75,7 @@ Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install'}
 Plug 'jwalton512/vim-blade', { 'for': ['blade'] }
 
 " Markdown
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
@@ -146,7 +155,7 @@ hi SignColumn guibg=NONE ctermbg=NONE
 " transparent line numbers
 hi LineNr guibg=NONE ctermbg=NONE
 hi def link jsObjectKey Label
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+" highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%>80v.\+/
 
 " Spaces & Tabs
@@ -271,6 +280,8 @@ augroup END
 " let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 " let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
+let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
+
 " PHPActor
 " ----------------------
 " Goto definition of class or class member under the cursor
@@ -307,10 +318,11 @@ nmap <Leader>lm :!php artisan migrate
 " ----------------------
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
+let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 0
-let g:ale_javascript_eslint_executable='eslint_d'
+let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable='eslint_d'
 let g:ale_php_cs_fixer_use_global = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
@@ -321,13 +333,14 @@ nnoremap <leader>af :ALEFix<cr>
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow', 'standard'],
 \   'sh': ['shellcheck'],
-\   'php': ['phpcs', 'phpmd', 'phpstan'],
-\   'scss': ['stylelint'],
+\   'scss': ['prettier', 'scss-lint', 'stylelint'],
 \}
+" \   'php': ['phpcs', 'phpmd', 'phpstan'],
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint', 'standard'],
-\   'php': ['php_cs_fixer', 'phpcbf'],
-\   'scss': ['prettier'],
+\   'php': ['phpcbf'],
+\   'scss': ['prettier', 'stylelint'],
+\   'json': ['fixjson'],
 \}
 
 " phpcbf
@@ -539,10 +552,41 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 " Use tab and shift tab to switch between buffers
-nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR>
- \ :write<CR> :endif<CR>:bnext<CR>
-nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
- \ :write<CR> :endif<CR>:bprevious<CR>
+" nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR>
+"  \ :write<CR> :endif<CR>:bnext<CR>
+" nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
+"  \ :write<CR> :endif<CR>:bprevious<CR>
+nnoremap <silent> <tab> :bnext<CR>
+nnoremap <silent> <s-tab> :bprevious<CR>
+
+
+" vim-bookmarks
+" -------------------
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+  nmap mm :BookmarkToggle<CR>
+  nmap mi :BookmarkAnnotate<CR>
+  nmap mn :BookmarkNext<CR>
+  nmap mp :BookmarkPrev<CR>
+  nmap ma :BookmarkShowAll<CR>
+  nmap mc :BookmarkClear<CR>
+  nmap mx :BookmarkClearAll<CR>
+  nmap mkk :BookmarkMoveUp
+  nmap mjj :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+  unmap mm
+  unmap mi
+  unmap mn
+  unmap mp
+  unmap ma
+  unmap mc
+  unmap mx
+  unmap mkk
+  unmap mjj
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " Things to do
 " -------------------
@@ -555,4 +599,3 @@ nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
 " Move line
 " ----------------------
 " let g:move_key_modifier = 'C'
-

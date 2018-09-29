@@ -82,16 +82,17 @@ open /Applications/Noizio.app/
 brew install coreutils
 brew install tldr
 brew install z
-pip install howdoi
 brew install httpie
 brew install git
 brew install hub
 brew install bash-completion
 brew install the_silver_searcher
 brew install siege
-brew install shellcheck
 brew install z
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+brew install shellcheck # Shell linting
+brew install hadolint # Dockerfile linting
 
 # Languages
 brew install python
@@ -102,6 +103,9 @@ brew install python@2
 brew cask install java
 brew install node
 brew intall golang
+
+pip install howdoi --user
+pip install cfn-lint --user # cfn linting
 
 # PHP
 brew install php
@@ -144,6 +148,8 @@ yarn global add ngrok
 yarn global add yaml-lint
 yarn global add fusuma
 yarn global add eslint_d
+yarn global add package-size
+yarn global add fixjson
 
 # AWS
 # ----------------
@@ -232,6 +238,7 @@ ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 yarn global add instant-markdown-d
 # vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 vim '+PlugUpdate' '+qall'
+
 
 # WTF
 ln -s ~/.dotfiles/.wtf ~/.wtf

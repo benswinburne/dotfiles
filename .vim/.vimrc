@@ -16,6 +16,8 @@ Plug 'skywind3000/gutentags_plus'
 " Plugin 'honza/vim-snippets'
 Plug 'djoshea/vim-autoread'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'rking/ag.vim'
 Plug 'ervandew/supertab'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -156,7 +158,7 @@ hi SignColumn guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
 hi def link jsObjectKey Label
 " highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%>80v.\+/
+" match OverLength /\%>80v.\+/
 
 " Spaces & Tabs
 " ----------------------
@@ -358,11 +360,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
   \ && b:NERDTree.isTabTree()) | q | endif
 
 let NERDTreeShowHidden=1
-let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
+let NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeChDirMode=2
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
+
+map <leader>nt :NERDTreeToggle<CR>
+map <D-1> :NERDTreeToggle<CR>
 
 " Tags
 " ----------------------
@@ -488,13 +494,6 @@ endfunction
 
 command! BTags call s:btags()
 
-" NERDTree
-" ----------------------
-let g:NERDTreeChDirMode=2
-let NERDTreeShowHidden=1
-map <leader>nt :NERDTreeToggle<CR>
-map <D-1> :NERDTreeToggle<CR>
-
 " Lightline
 " ----------------------
 let g:lightline = {
@@ -540,10 +539,6 @@ autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
 
 " Movement
 " -------------------
-" noremap h <NOP>
-" noremap j <NOP>
-" noremap k <NOP>
-" noremap l <NOP>
 " Unbind the cursor keys in insert, normal and visual modes.
 for prefix in ['i', 'n', 'v']
   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
@@ -552,16 +547,12 @@ for prefix in ['i', 'n', 'v']
 endfor
 
 " Use tab and shift tab to switch between buffers
-" nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR>
-"  \ :write<CR> :endif<CR>:bnext<CR>
-" nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR>
-"  \ :write<CR> :endif<CR>:bprevious<CR>
 nnoremap <silent> <tab> :bnext<CR>
 nnoremap <silent> <s-tab> :bprevious<CR>
 
-
 " vim-bookmarks
 " -------------------
+" Prevent clashes with keybindings when in NERDTree
 let g:bookmark_no_default_key_mappings = 1
 function! BookmarkMapKeys()
   nmap mm :BookmarkToggle<CR>
@@ -590,12 +581,5 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " Things to do
 " -------------------
-"  Fix vim-move (closed issue about OSX)
-"  bump method up shift command up
-"  php code coverage ? https://github.com/joonty/vim-phpqa
 " make vim emmet work properly
 " https://stackoverflow.com/a/3476411/769237
-
-" Move line
-" ----------------------
-" let g:move_key_modifier = 'C'

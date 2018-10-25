@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# https://stackoverflow.com/a/34573844/769237
+
+VERBOSE=false
+
+PROG="$(basename $0)"
+DIR="${HOME}/.cache/${PROG}"
+mkdir -p "${DIR}"
+EXPIRY=3600 # default to 1 hour
+
+# check if first argument is a number, if so use it as expiration (seconds)
+[ "$1" -eq "$1" ] 2>/dev/null && EXPIRY=$1 && shift
+
+[ "$VERBOSE" = true ] && echo "Using expiration $EXPIRY seconds"
+
+CMD="$@"
+HASH=$(echo "$CMD" | md5 | awk '{print $1}')
+CACHE="$DIR/$HASH"
+
+test -f "${CACHE}" && \
+	[ $(expr $(date +%s) - $(date -r "$CACHE" +%s)) -le $EXPIRY ] || \
+		( [ "$VERBOSE" = true ] && echo "Cache miss"; \
+			eval "$CMD" > "${CACHE}" )
+
+cat "${CACHE}"

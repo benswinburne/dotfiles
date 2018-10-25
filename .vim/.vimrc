@@ -16,6 +16,7 @@ Plug 'skywind3000/gutentags_plus'
 " Plugin 'honza/vim-snippets'
 Plug 'djoshea/vim-autoread'
 
+Plug 'whatyouhide/vim-tmux-syntax'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'rking/ag.vim'

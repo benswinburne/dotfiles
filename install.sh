@@ -89,6 +89,7 @@ brew install bash-completion
 brew install the_silver_searcher
 brew install siege
 brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+brew install jq # Like sed/awk for json. Used for weather data in tmux
 
 brew install shellcheck # Shell linting
 brew install hadolint # Dockerfile linting

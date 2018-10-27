@@ -268,7 +268,6 @@ mkdir -p ~/Downloads/Torrents/.pending
 # Clean up
 brew update
 brew cleanup
-brew cask cleanup
 brew prune
 export HOMEBREW_NO_AUTO_UPDATE=0
 

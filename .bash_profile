@@ -5,11 +5,33 @@ export PATH=$HOME/.dotfiles/scripts:$PATH
 BREW_PREFIX=$(brew --prefix)
 
 source ~/.dotfiles/bash/colours
-source ~/.dotfiles/bash/php
-source ~/.dotfiles/bash/ruby
-source ~/.dotfiles/bash/osx
-source ~/.dotfiles/bash/nodejs
-source ~/.dotfiles/bash/golang
+
+# PHP
+export PATH=~/.composer/vendor/bin:$PATH
+
+function tinker  { php artisan tinker; }
+function artisan { php artisan "$@"; }
+function mrs     { php artisan migrate:refresh --seed; }
+
+# Go
+export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# NodeJS
+export PATH=${HOME}/.npm-packages/bin:$PATH
+export PATH=./node_modules/.bin:$PATH
+
+__ORIG_PATH=$PATH
+function cd {
+  NPMBIN=$(realpath "$@")/node_modules/.bin
+  if [ -d "$NPMBIN" ]; then
+   export PATH=$NPMBIN:$__ORIG_PATH
+  fi
+
+  command cd "$@";
+}
 
 # Add Python bin directories to path
 python3.7 -m site &> /dev/null && PATH="$PATH:$(python3.7 -m site --user-base)/bin"
@@ -32,6 +54,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # Color LS
 colorflag="-G"
 function ls() { command ls "$1" ${colorflag}; }
+alias ls="ls -"
 alias la="ls -laF \${colorflag}" # all files inc dotfiles, in long format
 alias ll="ls -lhA"
 alias rs="fc -s"

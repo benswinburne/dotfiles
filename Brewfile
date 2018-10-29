@@ -100,7 +100,7 @@ cask "java8"
 
 # Node related
 brew "node"
-brew "node@8"
+brew "node@8", link: true
 brew "yarn", args: ["without-node"]
 brew "yarn-completion"
 

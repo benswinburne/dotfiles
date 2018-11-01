@@ -91,16 +91,15 @@ composer global require phpstan/phpstan
   --no-fish \
   --no-zsh
 
-yarn global add diff-so-fancy
-yarn global add http-server
 yarn global add nodemon
 yarn global add serverless
-yarn global add ngrok
-yarn global add yaml-lint
-yarn global add fusuma
+# yarn global add fusuma
 yarn global add eslint_d
 yarn global add package-size
 yarn global add fixjson
+yarn global add dynamodb-admin
+# yarn global add botpress
+# yarn global add svgr
 
 # AWS
 # ----------------

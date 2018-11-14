@@ -29,7 +29,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'w0rp/ale'
-Plug 'sjl/gundo.vim'
 Plug 'ap/vim-buftabline'
 Plug 'ap/vim-css-color'
 
@@ -119,11 +118,17 @@ set backspace=2
 " Trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Tell it to use an undo file
-set undofile
+if has('persistent_undo')
+  " Create an undodir if it doesn't exist
+  silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 
-" Set a directory to store the undo history
-set undodir=~/.dotfiles/vim/cache/undo
+  " Set a directory to store the undo history
+  set undodir=~/.vim/undodir
+
+  " Maintain undo history between sessions
+  set undofile
+endif
+
 
 " Set a directory to store vim state etc
 set viminfo=<800,'10,/50,:100,h,f0,n~/.viminfo
@@ -339,9 +344,9 @@ let g:ale_linters = {
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
 \}
 " \   'php': ['phpcs', 'phpmd', 'phpstan'],
+" \   'php': ['phpcbf'],
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint', 'standard'],
-\   'php': ['phpcbf'],
 \   'scss': ['prettier', 'stylelint'],
 \   'json': ['fixjson'],
 \}

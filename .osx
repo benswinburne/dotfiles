@@ -331,11 +331,11 @@ ln -sf ~/.dotfiles/spectacle.json \
 
 # Use `~/Downloads/Torrents/.incomplete` to store incomplete downloads
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downlodas/Torrents/.incomplete"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents/.incomplete"
 
 # Use `~/Downloads` to store completed downloads
 defaults write org.m0k.transmission DownloadLocationConstant -bool true
-defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downlodas/Torrents"
+defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/Torrents"
 
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false

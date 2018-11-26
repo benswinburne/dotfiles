@@ -135,6 +135,7 @@ ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
 ln -sf ~/.dotfiles/.osx ~/.osx
 ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
+ln -sf ~/.dotfiles/.agignore ~/.agignore
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 
 mkdir -p ~/Dropbox/.ssh

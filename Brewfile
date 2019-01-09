@@ -35,6 +35,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 
 # Dev Stuff
+brew "bash"
 brew "coreutils"
 cask "postman"
 cask "sequel-pro"

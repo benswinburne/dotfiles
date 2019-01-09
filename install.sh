@@ -174,11 +174,11 @@ vim '+PlugUpdate' '+qall'
 # ------
 # Completion
 ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion \
-	$(brew --prefix)/etc/bash_completion.d/docker
+	"$(brew --prefix)/etc/bash_completion.d/docker"
 ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion \
-	$(brew --prefix)/etc/bash_completion.d/docker-machine
+	"$(brew --prefix)/etc/bash_completion.d/docker-machine"
 ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion \
-	$(brew --prefix)/etc/bash_completion.d/docker-compose
+	"$(brew --prefix)/etc/bash_completion.d/docker-compose"
 
 # ECR Credentials
 go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login

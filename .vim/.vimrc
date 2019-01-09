@@ -15,6 +15,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 " Plugin 'honza/vim-snippets'
 Plug 'djoshea/vim-autoread'
+Plug 'tpope/vim-rsi' " Readline style insertion
 
 Plug 'whatyouhide/vim-tmux-syntax'
 Plug 'christoomey/vim-tmux-navigator'
@@ -75,6 +76,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 " Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
 Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install'}
 Plug 'jwalton512/vim-blade', { 'for': ['blade'] }
+Plug 'shawncplus/phpcomplete.vim'
 
 " Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -339,16 +341,18 @@ nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 nnoremap <leader>af :ALEFix<cr>
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow', 'standard'],
-\   'sh': ['shellcheck'],
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
+\   'javascript': ['eslint', 'flow', 'standard'],
+\   'php': ['phpcs', 'phpmd', 'phpstan'],
+\   'sh': ['shellcheck'],
+\   'Dockerfile': ['hadolint'],
 \}
-" \   'php': ['phpcs', 'phpmd', 'phpstan'],
-" \   'php': ['phpcbf'],
 let g:ale_fixers = {
-\   'javascript': ['prettier', 'eslint', 'standard'],
 \   'scss': ['prettier', 'stylelint'],
+\   'javascript': ['prettier', 'eslint', 'standard'],
+\   'typescript': ['prettier', 'tslint'],
 \   'json': ['fixjson'],
+\   'php': ['php_cs_fixer', 'phpcbf'],
 \}
 
 " phpcbf

@@ -53,8 +53,8 @@ export HISTCONTROL=ignoreboth:erasedups
 
 # Color LS
 colorflag="-G"
-function ls() { command ls "$1" ${colorflag}; }
-alias ls="ls -"
+# function ls() { command ls "$1" ${colorflag}; }
+# alias ls="ls -"
 alias la="ls -laF \${colorflag}" # all files inc dotfiles, in long format
 alias ll="ls -lhA"
 alias rs="fc -s"

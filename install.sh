@@ -73,6 +73,7 @@ killall SystemUIServer
 
 open /Applications/Clocker.app/
 open /Applications/Noizio.app/
+open /Applications/Docker.app/
 
 pip install howdoi --user
 pip install cfn-lint --user # cfn linting
@@ -169,6 +170,21 @@ ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 # vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 vim '+PlugUpdate' '+qall'
 
+# Docker
+# ------
+# Completion
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion \
+	$(brew --prefix)/etc/bash_completion.d/docker
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion \
+	$(brew --prefix)/etc/bash_completion.d/docker-machine
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion \
+	$(brew --prefix)/etc/bash_completion.d/docker-compose
+
+# ECR Credentials
+go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
+mkdir -p ~/.docker/
+ln -s ~/Dropbox/.docker/config.json ~/.docker/config.json
+
 
 # WTF
 ln -s ~/.dotfiles/.wtf ~/.wtf
@@ -195,3 +211,7 @@ brew prune
 
 printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
 
+# Add the new shell to the list of allowed shells
+# sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+# Change to the new shell
+# chsh -s /usr/local/bin/bash

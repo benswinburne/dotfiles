@@ -204,6 +204,18 @@ mkdir -p ~/Sites/octaive
 mkdir -p ~/Downloads/Torrents/Complete
 mkdir -p ~/Downloads/Torrents/.pending
 
+# Finder shortcuts
+pushd . || return
+git clone mosen/mysides /tmp/mysides
+cd /tmp/mysides || return
+make build
+build/Release/mysides add Sites \
+	"file:///Users/$(whoami)/Sites/"
+build/Release/mysides add Torrents \
+	"file:///Users/$(whoami)/Downloads/Torrents/Complete/"
+popd || return
+rm -rf /tmp/mysides
+
 # Clean up
 brew update
 brew cleanup

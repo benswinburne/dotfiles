@@ -73,10 +73,6 @@ Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
-" Plug 'arnaud-lb/vim-php-namespace', { 'for': ['php'] }
-Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install'}
-Plug 'jwalton512/vim-blade', { 'for': ['blade'] }
-Plug 'shawncplus/phpcomplete.vim'
 
 " Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -88,8 +84,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'stephpy/vim-php-cs-fixer'
-" Plug 'arnaud-lb/vim-php-namespace'
 " Plug 'othree/yajs.vim'
 " Plug 'othree/es.next.syntax.vim'
 " Plug 'othree/jspc.vim'
@@ -280,25 +274,6 @@ augroup autosourcing
   autocmd BufWritePost .vimrc source %
 augroup END
 
-" PHP CS Fixer
-" ----------------------
-" let g:php_cs_fixer_level = "psr2"                 " which level ?
-" let g:php_cs_fixer_config = "default"             " configuration
-" let g:php_cs_fixer_config_fire = ".php_cs"        " configuration file
-" let g:php_cs_fixer_php_path = "php"               " Path to PHP
-" let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-" let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-" let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
-
-let g:completor_php_omni_trigger = '([$\w]+|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
-
-" PHPActor
-" ----------------------
-" Goto definition of class or class member under the cursor
-nmap <Leader>o :call phpactor#GotoDefinition()<CR>
-" Include use statement
-nmap <Leader>u :call phpactor#UseAdd()<CR>
-
 " JSDoc
 nmap <leader>jd :JsDoc<cr>
 let g:jsdoc_enable_es6 = 1
@@ -317,13 +292,6 @@ map <leader>r :!refchrome<CR>
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 1
 
-" Laravel Mappings
-" ----------------------
-nmap <Leader>lr :e app/Http/routes.php<CR>
-nmap <Leader>la :!php artisan
-nmap <Leader>lmr :!php artisan migrate:refreh --seed
-nmap <Leader>lm :!php artisan migrate
-
 " Ale
 " ----------------------
 let g:ale_sign_error = '✖'
@@ -333,7 +301,6 @@ let g:ale_sign_column_always = 1
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable='eslint_d'
-let g:ale_php_cs_fixer_use_global = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%linter%: %s'
@@ -343,7 +310,6 @@ nnoremap <leader>af :ALEFix<cr>
 let g:ale_linters = {
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
 \   'javascript': ['eslint', 'flow', 'standard'],
-\   'php': ['phpcs', 'phpmd', 'phpstan'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
 \}
@@ -352,10 +318,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint', 'standard'],
 \   'typescript': ['prettier', 'tslint'],
 \   'json': ['fixjson'],
-\   'php': ['php_cs_fixer', 'phpcbf'],
 \}
-
-" phpcbf
 
 " Tern
 " let g:tern_show_argument_hints = 'on_hold'
@@ -391,18 +354,6 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
   \ '*vendor/*/test*', '*vendor/*/Test*',
   \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
   \ '*var/cache*', '*var/log*']
-
-" PHP
-" ----------------------
-function! IPhpExpandClass()
-  call PhpExpandClass()
-  call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
-let g:php_namespace_sort_after_insert = 1
 
 " fzf
 " ----------------------

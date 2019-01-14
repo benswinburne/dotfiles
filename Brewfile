@@ -12,7 +12,7 @@ tap "wallix/awless"
 # General programs
 cask "aerial"
 cask "alfred"
-cask "caffeine"
+cask "keepingyouawake"
 cask "dropbox"
 cask "google-chrome"
 cask "firefox"

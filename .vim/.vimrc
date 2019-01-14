@@ -13,7 +13,6 @@ Plug 'tpope/vim-obsession'
 Plug 'sirver/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
-" Plugin 'honza/vim-snippets'
 Plug 'djoshea/vim-autoread'
 Plug 'tpope/vim-rsi' " Readline style insertion
 
@@ -53,29 +52,20 @@ Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
 Plug 'tmhedberg/matchit'
 Plug 'Raimondi/delimitMate'
-Plug 'karlbright/qfdo.vim'
-" Bundle 'matze/vim-move'
 
 " Language Specific
-" Plugin 'sheerun/vim-polyglot'
-
-" Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'styled-components/vim-styled-components', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
-" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'js', 'jsx', 'javascript.jsx']}
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
 Plug 'leshill/vim-json', { 'for': ['json'] }
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 
 " Markdown
-" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
@@ -83,6 +73,13 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Plugin 'honza/vim-snippets'
+" Plug 'karlbright/qfdo.vim'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
+" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+" Plug 'styled-components/vim-styled-components', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+" Plug 'flowtype/vim-flow', { 'for': ['javascript', 'js', 'jsx', 'javascript.jsx']}
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'othree/yajs.vim'
 " Plug 'othree/es.next.syntax.vim'

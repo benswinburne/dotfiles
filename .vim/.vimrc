@@ -65,6 +65,10 @@ Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 
+Plug 'StanAngeloff/php.vim'
+Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
+Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php'] }
+
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
@@ -295,26 +299,35 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable='eslint_d'
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%linter%: %s'
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 nnoremap <leader>af :ALEFix<cr>
+
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = '~/.composer/vendor/bin/php-language-server.php'
+let g:ale_php_phpmd_ruleset = '~/.composer/vendor/flickerleap/phpmd/ruleset.xml'
+
 let g:ale_linters = {
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
 \   'javascript': ['eslint', 'flow', 'standard'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
+\   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
 \}
+
 let g:ale_fixers = {
 \   'scss': ['prettier', 'stylelint'],
 \   'javascript': ['prettier', 'eslint', 'standard'],
 \   'typescript': ['prettier', 'tslint'],
 \   'json': ['fixjson'],
+\   'php': ['prettier'],
 \}
 
 " Tern

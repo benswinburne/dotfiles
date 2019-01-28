@@ -38,17 +38,17 @@ mas "Pages", id: 409201541
 brew "bash"
 brew "coreutils"
 cask "postman"
-cask "sequel-pro"
+# cask "sequel-pro"
+cask "homebrew/cask-versions/sequel-pro-nightly"
+cask "tableplus"
 cask "botframework-emulator"
 brew "vim"
+cask "visual-studio-code"
 cask "docker"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 
 # PHP
 brew "php", restart_service: :changed
-brew "php-code-sniffer"
-brew "php-cs-fixer"
-brew "phpunit"
 brew "mcrypt"
 brew "composer"
 

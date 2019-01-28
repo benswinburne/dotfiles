@@ -83,6 +83,13 @@ pip install websocket-client
 echo '' | pecl install xdebug
 echo '' | pecl install memcached
 composer global require phpstan/phpstan
+composer global require phpunit/phpunit
+composer global require jetbrains/phpstorm-stubs:dev-master # needed for langserv
+composer global require felixfbecker/language-server
+composer global require dealerdirect/phpcodesniffer-composer-installer
+composer global require phpcompatibility/php-compatibility
+composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
+composer global require flickerleap/phpmd
 
 # FZF
 /usr/local/opt/fzf/install \
@@ -125,6 +132,7 @@ composer global require tightenco/lambo
 # MySQL
 # ---------------
 mysql_secure_installation
+mysql_upgrade -u root
 
 # Symlink all the things
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
@@ -138,6 +146,9 @@ ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
 ln -sf ~/.dotfiles/.agignore ~/.agignore
 ln -sf ~/.dotfiles/.ctags ~/.ctags
+ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml
+ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
+ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 
 mkdir -p ~/Dropbox/.ssh

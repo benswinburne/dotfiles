@@ -38,6 +38,7 @@ Plug 'maralla/completor.vim', { 'do': 'make js' }
 " Lightline
 Plug 'itchyny/lightline.vim'
 Plug 'daviesjamie/vim-base16-lightline'
+Plug 'maximbaz/lightline-ale'
 
 " Nerdtree related
 Plug 'scrooloose/nerdtree'
@@ -468,19 +469,45 @@ command! BTags call s:btags()
 " Lightline
 " ----------------------
 let g:lightline = {
-\   'colorscheme': 'base16'
+\  'colorscheme': 'base16',
 \ }
 
 let g:lightline.tabline = {
 \   'left': [ ['tabs'] ],
-\   'right': [ ['close'] ]
+\   'right': [ ['close'] ],
 \ }
 
-autocmd User ALELint call lightline#update()
+let g:lightline.component_expand = {
+\  'linter_checking': 'lightline#ale#checking',
+\  'linter_warnings': 'lightline#ale#warnings',
+\  'linter_errors': 'lightline#ale#errors',
+\  'linter_ok': 'lightline#ale#ok',
+\ }
 
+let g:lightline.component_type = {
+\  'readonly': 'error',
+\  'linter_warnings': 'warning',
+\  'linter_errors': 'error',
+\ }
+
+let g:lightline.active = {}
+let g:lightline.active.right = [
+\ ['lineinfo'], ['percent'], ['filetype'],
+\   [ 'readonly', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
+\ ]
+
+let g:lightline#ale#indicator_checking = '' " Linting/Loading Wheel etc
+let g:lightline#ale#indicator_warnings = "◆ "
+let g:lightline#ale#indicator_errors = "✗ "
+let g:lightline#ale#indicator_ok = ""
+
+" Supertab
+" --------
 let g:SuperTabDefaultCompletionType = "<c-n>" " Cycle down the list
 let g:SuperTabCrMapping = 1 "
 
+" UltiSnips
+" --------
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger = "<c-o>"
@@ -501,6 +528,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>
 " imap <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
 
 " Editorconfig
+" ------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Text wrapping

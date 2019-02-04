@@ -26,6 +26,9 @@ cask "vectr" # graphics
 cask "vlc"
 cask "flux"
 cask "iterm2"
+cask "qlstephen" # preview textfiles without extensions
+cask "qlmarkdown" # preview markdown
+cask "quicklook-json" # preview json
 mas "Clocker", id: 1056643111
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434

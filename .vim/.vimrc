@@ -272,10 +272,10 @@ nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Automatically source files named .vimrc when the buffer is written
-augroup autosourcing
-  autocmd!
-  autocmd BufWritePost .vimrc source %
-augroup END
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END " }
 
 " JSDoc
 nmap <leader>jd :JsDoc<cr>

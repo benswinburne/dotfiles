@@ -106,6 +106,7 @@ yarn global add eslint_d
 yarn global add package-size
 yarn global add fixjson
 yarn global add dynamodb-admin
+yarn global add htmlhint
 # yarn global add botpress
 # yarn global add svgr
 

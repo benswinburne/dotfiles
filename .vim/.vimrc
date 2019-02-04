@@ -65,10 +65,12 @@ Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx']}
 
 Plug 'StanAngeloff/php.vim'
 Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php'] }
+Plug 'jwalton512/vim-blade'
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -83,7 +85,6 @@ Plug 'tpope/vim-fugitive'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'styled-components/vim-styled-components', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'js', 'jsx', 'javascript.jsx']}
 " Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'othree/yajs.vim'
@@ -320,6 +321,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'flow', 'standard'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
+\   '\.blade\.php$': ['htmlhint', 'prettier'],
+\   'html': ['htmlhint', 'prettier'],
 \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
 \}
 
@@ -328,6 +331,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint', 'standard'],
 \   'typescript': ['prettier', 'tslint'],
 \   'json': ['fixjson'],
+\   '\.blade\.php$': ['prettier'],
 \   'php': ['prettier'],
 \}
 

@@ -46,6 +46,7 @@ brew "vim"
 cask "visual-studio-code"
 cask "docker"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+brew "tidy-html5"
 
 # PHP
 brew "php", restart_service: :changed

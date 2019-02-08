@@ -1,0 +1,30 @@
+#!/bin/sh
+# Darkify Slack on Mac OS or Linux.
+# https://gist.github.com/ryanpcmcquen/8a7ddc72460eca0dc1f2dc389674dde1
+
+if [ "`uname -s`" = "Darwin" ]; then
+    SLACK_INTEROP_JS="/Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js"
+else
+    SLACK_INTEROP_JS="/usr/lib/slack/resources/app.asar.unpacked/src/static/ssb-interop.js"
+fi
+
+# Thanks to: https://gist.github.com/DrewML/0acd2e389492e7d9d6be63386d75dd99#gistcomment-2358430
+if [ -z "`grep tt__customCss ${SLACK_INTEROP_JS}`" ]; then
+    # Backup original CSS for reverts:
+    cp ${SLACK_INTEROP_JS} ${SLACK_INTEROP_JS}.bak
+		css=`cat darkify_slack.css`
+
+    echo 'document.addEventListener("DOMContentLoaded",function(){let tt__customCss=`' \
+    	>> ${SLACK_INTEROP_JS}
+
+    echo "$css" >> ${SLACK_INTEROP_JS}
+
+    echo '`;$("<style></style>").appendTo("head").html(tt__customCss);});' \
+        >> ${SLACK_INTEROP_JS}
+
+    pkill -f Slack.app
+    echo "Dark theme applied to Slack."
+    open /Applications/Slack.app/
+else
+    echo "Dark theme already present on Slack."
+fi

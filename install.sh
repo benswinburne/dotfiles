@@ -101,12 +101,12 @@ composer global require flickerleap/phpmd
 
 yarn global add nodemon
 yarn global add serverless
-# yarn global add fusuma
 yarn global add eslint_d
 yarn global add package-size
-yarn global add fixjson
+yarn global add fixjson # JSON Linter and fixer. With Ale Vim
 yarn global add dynamodb-admin
-yarn global add htmlhint
+yarn global add htmlhint # HTML Hinter. With ALE Vim
+yarn global add write-good # Naive linter for English prose. With ALE Vim
 # yarn global add botpress
 # yarn global add svgr
 

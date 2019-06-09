@@ -8,6 +8,7 @@ tap "homebrew/dupes"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
 tap "wallix/awless"
+tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 
 # General programs
 cask "aerial"

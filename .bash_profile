@@ -71,6 +71,7 @@ function ..... { cd ../../../.. || return; }
 
 function sites      { cd ~/Sites || return;  }
 function octaive    { cd ~/Sites/octaive || return; }
+function work       { cd ~/Sites/octaive || return; }
 function playground { cd ~/Sites/playground || return; }
 function dotfiles   { cd ~/.dotfiles || return; }
 

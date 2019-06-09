@@ -109,6 +109,7 @@ set mouse=a
 " Set filetypes for unknown extensions
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.apib set filetype=apiblueprint
+autocmd BufNewFile,BufReadPost *.*\(vim\)\@<!rc set filetype=json
 
 set laststatus=2
 set encoding=utf-8
@@ -162,6 +163,10 @@ hi SignColumn guibg=NONE ctermbg=NONE
 " transparent line numbers
 hi LineNr guibg=NONE ctermbg=NONE
 hi def link jsObjectKey Label
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
 " highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 " match OverLength /\%>80v.\+/
 
@@ -303,7 +308,8 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
-let g:ale_echo_msg_format = '%linter%: %s'
+" let g:ale_echo_msg_format = '%linter%: %s'
+let g:ale_echo_msg_format = '%s [%severity%%/code%]'
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
 nnoremap <leader>af :ALEFix<cr>
@@ -316,17 +322,22 @@ let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = '~/.composer/vendor/bin/php-language-server.php'
 let g:ale_php_phpmd_ruleset = '~/.composer/vendor/flickerleap/phpmd/ruleset.xml'
 
+" let g:ale_linter_aliases = {'jsx': 'css'}
+
 let g:ale_linters = {
+\   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
-\   'javascript': ['eslint', 'flow', 'standard'],
+\   'javascript': ['eslint', 'flow', 'standard', 'stylelint'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
 \   '\.blade\.php$': ['htmlhint', 'prettier'],
 \   'html': ['htmlhint', 'prettier'],
 \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
+\   'markdown': ['write-good'],
 \}
 
 let g:ale_fixers = {
+\   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
 \   'javascript': ['prettier', 'eslint', 'standard'],
 \   'typescript': ['prettier', 'tslint'],
@@ -501,8 +512,8 @@ let g:lightline.active.right = [
 \ ]
 
 let g:lightline#ale#indicator_checking = '' " Linting/Loading Wheel etc
-let g:lightline#ale#indicator_warnings = "◆ "
-let g:lightline#ale#indicator_errors = "✗ "
+let g:lightline#ale#indicator_warnings = "⚠ "
+let g:lightline#ale#indicator_errors = "✖ "
 let g:lightline#ale#indicator_ok = ""
 
 " Supertab

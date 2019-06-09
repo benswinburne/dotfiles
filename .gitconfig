@@ -8,7 +8,6 @@
   pu = push -u origin
   d = diff
   dc = diff --cached
-  dat-d = "!echo Filthy"
 
   # branch
   b = branch

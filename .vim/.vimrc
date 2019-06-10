@@ -5,67 +5,87 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+
 " Themes
 Plug 'chriskempson/base16-vim'
+Plug 'sainnhe/vim-color-forest-night'
 
 " Editor
-Plug 'tpope/vim-obsession'
-Plug 'sirver/ultisnips'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-Plug 'djoshea/vim-autoread'
-Plug 'tpope/vim-rsi' " Readline style insertion
+Plug 'tpope/vim-obsession' " continuously updated session files
+Plug 'farmergreg/vim-lastplace' " reopen file last position
+Plug 'djoshea/vim-autoread' " automatically load file changes into buffer
+Plug 'tpope/vim-rsi' " readline style insertion
+Plug 'romainl/vim-cool' " search highlighting tweaks
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ap/vim-buftabline' " buffer list at top of window
+Plug 'editorconfig/editorconfig-vim'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
+Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis
+" Plug 'unblevable/quick-scope' " hl unique chars per word/line for f, F etc 
+" Plug 'ap/vim-css-color'
 
+" Tmux
+Plug 'benmills/vimux'
 Plug 'whatyouhide/vim-tmux-syntax'
 Plug 'christoomey/vim-tmux-navigator'
+" vim-tmux-clipboard
+" vim-tmux-resizer 
 
+" Searching
 Plug 'rking/ag.vim'
-Plug 'ervandew/supertab'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'godlygeek/tabular'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'benmills/vimux'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'w0rp/ale'
-Plug 'ap/vim-buftabline'
-Plug 'ap/vim-css-color'
 
-" Completion
-Plug 'maralla/completor.vim', { 'do': 'make js' }
+" Linting
+Plug 'w0rp/ale'
+
+" COC
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'wix/import-cost', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 
 " Lightline
 Plug 'itchyny/lightline.vim'
 Plug 'daviesjamie/vim-base16-lightline'
 Plug 'maximbaz/lightline-ale'
 
-" Nerdtree related
+" Nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'unkiwii/vim-nerdtree-sync'
 
 " Editing
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'suy/vim-context-commentstring'
-Plug 'tmhedberg/matchit'
-Plug 'Raimondi/delimitMate'
 
-" Language Specific
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx']}
-Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
+" Languages
 Plug 'leshill/vim-json', { 'for': ['json'] }
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
 Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
-Plug 'styled-components/vim-styled-components', { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx']}
+
+" Javascript / Typescript
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+Plug 'othree/javascript-libraries-syntax.vim',
+  \ { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'heavenshell/vim-jsdoc',
+  \ { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
+Plug 'styled-components/vim-styled-components',
+  \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx']}
+
+" PHP
 
 Plug 'StanAngeloff/php.vim'
 Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
@@ -80,6 +100,8 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Plug 'tmhedberg/matchit'
+" Plug 'sirver/ultisnips'
 " Plugin 'honza/vim-snippets'
 " Plug 'karlbright/qfdo.vim'
 " Plug 'sheerun/vim-polyglot'
@@ -91,6 +113,12 @@ Plug 'tpope/vim-fugitive'
 " Plug 'othree/es.next.syntax.vim'
 " Plug 'othree/jspc.vim'
 " Plug 'mxw/vim-jsx'
+" Plug 'maralla/completor.vim', { 'do': 'make js' }
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
+" Plug 'ervandew/supertab'
+" Plug 'godlygeek/tabular'
+
 call plug#end()
 
 " General
@@ -101,6 +129,8 @@ set noswapfile
 set hidden
 set clipboard=unnamed
 set nocompatible              " be iMproved, required
+set updatetime=300 " More frequent updates for, e.g. signs.
+set ts=4 sw=4 et
 
 " Mouse
 " ----------------------
@@ -110,6 +140,7 @@ set mouse=a
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.apib set filetype=apiblueprint
 autocmd BufNewFile,BufReadPost *.*\(vim\)\@<!rc set filetype=json
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 set laststatus=2
 set encoding=utf-8
@@ -139,34 +170,44 @@ set scrolloff=3
 " Remove the delay exiting insert mode
 set ttimeoutlen=0
 
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
 " Colors
 " ----------------------
 " https://codeyarns.com/2011/07/29/vim-chart-of-color-names/
-syntax enable " enable syntax processing
-let base16colorspace=256
-set background=dark
-:silent! colorscheme $VIM_COLORSCHEME
+"
+" This is only necessary if you use "set termguicolors".
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
 set t_Co=256
 set t_ut=
-hi CursorLine ctermbg=NONE
-" Needed for material but not eighties
-hi ColorColumn guibg=NONE ctermbg=19
-hi Normal guibg=NONE ctermbg=NONE
-" hi LineNr ctermfg=NONE ctermbg=NONE
-hi VertSplit ctermbg=NONE guibg=NONE
+
+let base16colorspace=256
+set background=dark
+" colorscheme forest-night
+" colorscheme base16-eighties
+:silent! colorscheme $VIM_COLORSCHEME
+
+syntax enable " enable syntax processing
+
+hi ColorColumn guibg=NONE ctermbg=19 " columns like line limit
+hi Normal guibg=NONE ctermbg=NONE " No background
+hi LineNr ctermfg=NONE ctermbg=NONE
+" hi VertSplit ctermbg=NONE guibg=NONE
 hi GitGutterAdd guibg=NONE ctermbg=NONE
 hi GitGutterChange guibg=NONE ctermbg=NONE
 hi GitGutterDelete guibg=NONE ctermbg=NONE
 hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
-" transparent gutter
-hi SignColumn guibg=NONE ctermbg=NONE
-" transparent line numbers
-hi LineNr guibg=NONE ctermbg=NONE
-hi def link jsObjectKey Label
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
+hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
+hi LineNr guibg=NONE ctermbg=NONE " transparent line numbers
+hi CursorLine ctermbg=NONE " transparent cursor line
+
+" hi Tag        ctermfg=04
+" hi xmlTag     ctermfg=04
+" hi xmlTagName ctermfg=04
+" hi xmlEndTag  ctermfg=04
 " highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 " match OverLength /\%>80v.\+/
 
@@ -196,6 +237,7 @@ set colorcolumn=81        " show line at 81 chars, stop before the line
 set noshowmode            " leave statusline to handle this
 
 " change cursor in different modes
+" ----------------------
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -207,6 +249,9 @@ set hlsearch            " highlight matches
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase,
                         " case-sensitive otherwise
+
+nnoremap <leader><space> :set hlsearch!<CR> " turn off search highlight
+nnoremap \ :Ag<SPACE> " bind \ (backward slash) to grep shortcut
 
 " Folding
 " ----------------------
@@ -220,9 +265,6 @@ set foldmethod=indent   " fold based on indent level
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
-
-" highlight last inserted text
-"nnoremap gV `[v`]
 
 " Window Management
 " ----------------------
@@ -240,14 +282,7 @@ set splitright
 " ----------------------
 let mapleader=","      " leader is comma
 
-" Switch between last two files
-map <leader><leader> <c-^>
-
-" Markdown preview
-map <leader>md :InstantMarkdownPreview<CR>
-
-" turn off search highlight
-nnoremap <leader><space> :set hlsearch!<CR>
+nnoremap <leader>rd :redraw!<CR> " Redraw the window (force)
 
 " toggle scrolloff between 999 and 0. 999 keeps line center screen
 nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
@@ -258,18 +293,14 @@ set pastetoggle=<leader>p
 " select text that was just pasted
 nnoremap <leader>v V`]
 
-" Close all buffers
-nmap qq :bd<cr>
-nnoremap <leader>bd :bufdo bd<CR>
+" Buffer navigation
+" ----------------------
+nmap qq :bd<cr> " close current buffer
+nnoremap <leader>bd :bufdo bd<CR> " close all buffers
+nnoremap <silent> <tab> :bnext<CR> " Use tab to move to next buffer
+nnoremap <silent> <s-tab> :bprevious<CR> " use shift-tab to move to prev buffer
+map <leader><leader> <c-^> " Switch between last two files
 
-" Redraw the window (force)
-nnoremap <leader>rd :redraw!<CR>
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag<SPACE>
 
 " Quickly edit/reload the vimrc file
 " ----------------------
@@ -282,7 +313,72 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 augroup END " }
 
+" Text wrapping
+" -------------------
+autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
+
+" Movement
+" -------------------
+" Unbind the cursor keys in insert, normal and visual modes.
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
+" Zoom
+" -------------------
+function! s:zoom()
+  if winnr('$') > 1
+    tab split
+  elseif len(filter(map(range(tabpagenr('$')), 'tabpagebuflist(v:val + 1)'),
+        \ 'index(v:val, '.bufnr('').') >= 0')) > 1
+    tabclose
+  endif
+endfunction
+nnoremap <silent> <leader>z :call <sid>zoom()<cr>
+
+" Coc
+" -------------------------------
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Close the preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" vim-javascript
+" ----------------------
+hi def link jsObjectKey Label " https://git.io/fjg3M
+
 " JSDoc
+" ----------------------
 nmap <leader>jd :JsDoc<cr>
 let g:jsdoc_enable_es6 = 1
 let g:jsdoc_input_description = 1
@@ -308,7 +404,6 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
-" let g:ale_echo_msg_format = '%linter%: %s'
 let g:ale_echo_msg_format = '%s [%severity%%/code%]'
 nnoremap <leader>an :ALENextWrap<cr>
 nnoremap <leader>ap :ALEPreviousWrap<cr>
@@ -318,9 +413,9 @@ let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 
-let g:ale_php_langserver_use_global = 1
-let g:ale_php_langserver_executable = '~/.composer/vendor/bin/php-language-server.php'
-let g:ale_php_phpmd_ruleset = '~/.composer/vendor/flickerleap/phpmd/ruleset.xml'
+" let g:ale_php_langserver_use_global = 1
+" let g:ale_php_langserver_executable = '~/.composer/vendor/bin/php-language-server.php'
+" let g:ale_php_phpmd_ruleset = '~/.composer/vendor/flickerleap/phpmd/ruleset.xml'
 
 " let g:ale_linter_aliases = {'jsx': 'css'}
 
@@ -330,11 +425,12 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'flow', 'standard', 'stylelint'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
-\   '\.blade\.php$': ['htmlhint', 'prettier'],
+\   'blade': ['htmlhint', 'prettier'],
 \   'html': ['htmlhint', 'prettier'],
-\   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
 \   'markdown': ['write-good'],
 \}
+
+" \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
 
 let g:ale_fixers = {
 \   'css': ['prettier', 'stylelint'],
@@ -345,12 +441,6 @@ let g:ale_fixers = {
 \   '\.blade\.php$': ['prettier'],
 \   'php': ['prettier'],
 \}
-
-" Tern
-" let g:tern_show_argument_hints = 'on_hold'
-" let g:tern_show_signature_in_pum = 1
-" autocmd FileType javascript,javascript.jsx setlocal omnifunc=tern#Complete
-" autocmd FileType javascript,javascript.jsx nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " Nerdtree
 " ----------------------
@@ -369,120 +459,14 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 map <leader>nt :NERDTreeToggle<CR>
 map <D-1> :NERDTreeToggle<CR>
 
-" Tags
-" ----------------------
-" nmap <leader>ct :TagbarToggle<CR>
-" map <silent> <leader>jd :CtrlPTag<cr><C-\>
-" let g:gutentags_trace = 1
-let g:gutentags_cache_dir = '/tmp/gutentags' " Where to store tag files
-let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js', '*.json', '*.xml',
-  \ '*.phar', '*.ini', '*.rst', '*.md',
-  \ '*vendor/*/test*', '*vendor/*/Test*',
-  \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-  \ '*var/cache*', '*var/log*']
-
 " fzf
 " ----------------------
 nmap <C-p> :Files .<CR>
-" nnoremap <C-S-p> :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
-
-" Select buffer
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
-
-" Jump to tags
-function! s:tags_sink(line)
-  let parts = split(a:line, '\t\zs')
-  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
-  execute 'silent e' parts[1][:-2]
-  let [magic, &magic] = [&magic, 0]
-  execute excmd
-  let &magic = magic
-endfunction
-
-function! s:tags()
-  if empty(tagfiles())
-    echohl WarningMsg
-    echom 'Preparing tags'
-    echohl None
-    call system('ctags -R')
-  endif
-
-  call fzf#run({
-  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-  \            '| grep -v -a ^!',
-  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
-  \ 'down':    '40%',
-  \ 'sink':    function('s:tags_sink')})
-endfunction
-
-command! Tags call s:tags()
-
-" Jump to tags in the current buffer
-
-function! s:align_lists(lists)
-  let maxes = {}
-  for list in a:lists
-    let i = 0
-    while i < len(list)
-      let maxes[i] = max([get(maxes, i, 0), len(list[i])])
-      let i += 1
-    endwhile
-  endfor
-  for list in a:lists
-    call map(list, "printf('%-'.maxes[v:key].'s', v:val)")
-  endfor
-  return a:lists
-endfunction
-
-function! s:btags_source()
-  let lines = map(split(system(printf(
-    \ 'ctags -f - --sort=no --excmd=number --language-force=%s %s',
-    \ &filetype, expand('%:S'))), "\n"), 'split(v:val, "\t")')
-  if v:shell_error
-    throw 'failed to extract tags'
-  endif
-  return map(s:align_lists(lines), 'join(v:val, "\t")')
-endfunction
-
-function! s:btags_sink(line)
-  execute split(a:line, "\t")[2]
-endfunction
-
-function! s:btags()
-  try
-    call fzf#run({
-    \ 'source':  s:btags_source(),
-    \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
-    \ 'down':    '40%',
-    \ 'sink':    function('s:btags_sink')})
-  catch
-    echohl WarningMsg
-    echom v:exception
-    echohl None
-  endtry
-endfunction
-
-command! BTags call s:btags()
 
 " Lightline
 " ----------------------
+" \  'colorscheme': 'forest_night',
 let g:lightline = {
 \  'colorscheme': 'base16',
 \ }
@@ -490,6 +474,10 @@ let g:lightline = {
 let g:lightline.tabline = {
 \   'left': [ ['tabs'] ],
 \   'right': [ ['close'] ],
+\ }
+
+let g:lightline.component_function = {
+\  'cocstatus': 'coc#status'
 \ }
 
 let g:lightline.component_expand = {
@@ -508,7 +496,8 @@ let g:lightline.component_type = {
 let g:lightline.active = {}
 let g:lightline.active.right = [
 \ ['lineinfo'], ['percent'], ['filetype'],
-\   [ 'readonly', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
+\   [ 'readonly', 'cocstatus',
+\       'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
 \ ]
 
 let g:lightline#ale#indicator_checking = '' " Linting/Loading Wheel etc
@@ -516,84 +505,34 @@ let g:lightline#ale#indicator_warnings = "⚠ "
 let g:lightline#ale#indicator_errors = "✖ "
 let g:lightline#ale#indicator_ok = ""
 
-" Supertab
-" --------
-let g:SuperTabDefaultCompletionType = "<c-n>" " Cycle down the list
-let g:SuperTabCrMapping = 1 "
-
-" UltiSnips
-" --------
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsExpandTrigger = "<c-o>"
-
-let g:ulti_expand_or_jump_res = 0
-function! ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-      return pumvisible() ? "\<C-y>" : "\<CR>"
-    endif
-endfunction
-
-inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
-
-" map <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
-" imap <buffer> <tab> <Plug>CompletorCppJumpToPlaceholder
-
 " Editorconfig
-" ------------
+" -------------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
-" Text wrapping
-" -------------------
-autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-autocmd BufRead,BufNewFile *.txt setlocal textwidth=80
-
-" Movement
-" -------------------
-" Unbind the cursor keys in insert, normal and visual modes.
-for prefix in ['i', 'n', 'v']
-  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-    exe prefix . "noremap " . key . " <Nop>"
-  endfor
-endfor
-
-" Use tab and shift tab to switch between buffers
-nnoremap <silent> <tab> :bnext<CR>
-nnoremap <silent> <s-tab> :bprevious<CR>
 
 " vim-bookmarks
 " -------------------
 " Prevent clashes with keybindings when in NERDTree
 let g:bookmark_no_default_key_mappings = 1
+
 function! BookmarkMapKeys()
   nmap mm :BookmarkToggle<CR>
-  nmap mi :BookmarkAnnotate<CR>
   nmap mn :BookmarkNext<CR>
   nmap mp :BookmarkPrev<CR>
-  nmap ma :BookmarkShowAll<CR>
-  nmap mc :BookmarkClear<CR>
   nmap mx :BookmarkClearAll<CR>
-  nmap mkk :BookmarkMoveUp
-  nmap mjj :BookmarkMoveDown
 endfunction
+
 function! BookmarkUnmapKeys()
   unmap mm
-  unmap mi
   unmap mn
   unmap mp
-  unmap ma
-  unmap mc
   unmap mx
-  unmap mkk
-  unmap mjj
 endfunction
+
 autocmd BufEnter * :call BookmarkMapKeys()
 autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
-" Things to do
-" -------------------
-" make vim emmet work properly
-" https://stackoverflow.com/a/3476411/769237
+" vim-indent-guides
+" https://github.com/nathanaelkane/vim-indent-guides
+" -----------------
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_guide_size = 1

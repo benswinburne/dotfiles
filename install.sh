@@ -109,6 +109,8 @@ yarn global add htmlhint # HTML Hinter. With ALE Vim
 yarn global add write-good # Naive linter for English prose. With ALE Vim
 # yarn global add botpress
 # yarn global add svgr
+yarn global add dockerfile-language-server-nodejs
+yarn global add bash-language-server
 
 # AWS
 # ----------------

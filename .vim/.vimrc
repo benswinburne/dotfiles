@@ -12,10 +12,12 @@ Plug 'sainnhe/vim-color-forest-night'
 
 " Editor
 Plug 'tpope/vim-obsession' " continuously updated session files
+Plug 'dhruvasagar/vim-prosession' " allows switching between multiple sessions
 Plug 'farmergreg/vim-lastplace' " reopen file last position
 Plug 'djoshea/vim-autoread' " automatically load file changes into buffer
 Plug 'tpope/vim-rsi' " readline style insertion
 Plug 'romainl/vim-cool' " search highlighting tweaks
+" Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-buftabline' " buffer list at top of window
 Plug 'editorconfig/editorconfig-vim'
@@ -27,6 +29,7 @@ Plug 'suy/vim-context-commentstring'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis
 " Plug 'unblevable/quick-scope' " hl unique chars per word/line for f, F etc 
 " Plug 'ap/vim-css-color'
+Plug 'AndrewRadev/switch.vim'
 
 " Tmux
 Plug 'benmills/vimux'
@@ -43,14 +46,20 @@ Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 " Linting
 Plug 'w0rp/ale'
 
+" prosession
+" ---------------
+" let g:prosession_default_session = 1
+
 " COC
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/jsonc.vim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'wix/import-cost', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 
@@ -73,20 +82,25 @@ Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
 Plug 'chr4/nginx.vim', { 'for': ['conf'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 
-" Javascript / Typescript
-Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-Plug 'othree/javascript-libraries-syntax.vim',
-  \ { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+" Node
 Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'heavenshell/vim-jsdoc',
   \ { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
+
+" Typescript
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
+" Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+
+" Javascript
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+" Plug 'othree/javascript-libraries-syntax.vim',
+"   \ { 'for': ['javascript', 'jsx', 'javascript.jsx']}
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 Plug 'styled-components/vim-styled-components',
   \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx']}
 
 " PHP
-
 Plug 'StanAngeloff/php.vim'
 Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php'] }
@@ -99,6 +113,12 @@ Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
+" Docker
+Plug 'honza/dockerfile.vim', { 'for': ['dockerfile'] }
+
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 " Plug 'tmhedberg/matchit'
 " Plug 'sirver/ultisnips'
@@ -250,8 +270,10 @@ set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase,
                         " case-sensitive otherwise
 
-nnoremap <leader><space> :set hlsearch!<CR> " turn off search highlight
-nnoremap \ :Ag<SPACE> " bind \ (backward slash) to grep shortcut
+" turn off search highlight
+nnoremap <leader><space> :set hlsearch!<CR>
+" bind \ (backward slash) to grep shortcut
+nnoremap \ :Ag<SPACE>
 
 " Folding
 " ----------------------
@@ -339,6 +361,18 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<cr>
 
+" vim-jsx-pretty
+" -------------------------------
+" let g:vim_jsx_pretty_colorful_config = 1
+
+" vim-gitgutter
+"--------------------------------
+if exists('&signcolumn')  " Vim 7.4.2201
+  set signcolumn=yes
+else
+  let g:gitgutter_sign_column_always = 1
+endif
+
 " Coc
 " -------------------------------
 
@@ -368,14 +402,26 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Close the preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+call coc#config('diagnostic.displayByAle', 1)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
 " vim-javascript
 " ----------------------
-hi def link jsObjectKey Label " https://git.io/fjg3M
+" https://git.io/fjg3M
+hi def link jsObjectKey Label
 
 " JSDoc
 " ----------------------
@@ -389,7 +435,7 @@ let g:jsdoc_allow_input_prompt = 1
 map <leader>X :VimuxPromptCommand<CR>
 map <leader>x :VimuxRunLastCommand<CR>
 map <leader>t :call VimuxRunCommand("!!")<CR>
-map <leader>r :!refchrome<CR>
+" map <leader>r :!refchrome<CR>
 
 " Multiple cursors
 " ----------------------
@@ -402,12 +448,13 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%s [%severity%%/code%]'
-nnoremap <leader>an :ALENextWrap<cr>
-nnoremap <leader>ap :ALEPreviousWrap<cr>
 nnoremap <leader>af :ALEFix<cr>
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
@@ -496,7 +543,7 @@ let g:lightline.component_type = {
 let g:lightline.active = {}
 let g:lightline.active.right = [
 \ ['lineinfo'], ['percent'], ['filetype'],
-\   [ 'readonly', 'cocstatus',
+\   [ 'readonly',
 \       'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
 \ ]
 

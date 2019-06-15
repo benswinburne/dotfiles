@@ -85,6 +85,8 @@ function mkd      { mkdir -p "$@" && cd "$@" || return; }
 # function grep     { command grep --color=auto "$@" ; }
 # function tunnel   { ssh -D 8080 -C -N $argv ; }
 
+function restartaudio { sudo pkill coreaudiod; }
+
 # Homebrew
 function fix-brew { brew update; brew cleanup; brew cask cleanup; brew prune; }
 

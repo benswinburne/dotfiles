@@ -22,6 +22,7 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # NodeJS
 export PATH=${HOME}/.npm-packages/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
+export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
 
 __ORIG_PATH=$PATH
 function cd {
@@ -151,3 +152,9 @@ alias refchrome="osascript -e 'tell application \"Google Chrome\" to tell the ac
 # WTF
 WTF_OWM_API_KEY=$(cat ~/Dropbox/.wtf/weather)
 export WTF_OWM_API_KEY
+
+# Typescript
+# https://github.com/Realytics/fork-ts-checker-webpack-plugin/issues/236
+# https://github.com/facebook/create-react-app/issues/6792
+# https://github.com/microsoft/TypeScript/issues/31048
+export TSC_WATCHFILE='UseFsEventsWithFallbackDynamicPolling'

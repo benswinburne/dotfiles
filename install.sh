@@ -91,6 +91,18 @@ composer global require phpcompatibility/php-compatibility
 composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
 composer global require flickerleap/phpmd
 
+# Certificate
+# https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
+brew install mkcert
+mkdir -p ~/.localcert
+pushd . || return
+cd ~/.localcert
+mkcert localhost 127.0.0.1 0.0.0.0 *.eu.ngrok.io *.ngrok.io
+mkcert -install
+mv localhost+4.pem localhost.pem
+mv localhost+4-key.pem localhost-key.pem
+popd || return
+
 # FZF
 /usr/local/opt/fzf/install \
   --no-update-rc \
@@ -99,8 +111,6 @@ composer global require flickerleap/phpmd
   --no-fish \
   --no-zsh
 
-yarn global add nodemon
-yarn global add serverless
 yarn global add eslint_d
 yarn global add package-size
 yarn global add fixjson # JSON Linter and fixer. With Ale Vim
@@ -111,6 +121,12 @@ yarn global add write-good # Naive linter for English prose. With ALE Vim
 # yarn global add svgr
 yarn global add dockerfile-language-server-nodejs
 yarn global add bash-language-server
+
+yarn global add aws-cdk \
+  @nestjs/cli \
+  english-dictionary-cli \
+  zmq \
+  node-gyp
 
 # AWS
 # ----------------
@@ -152,6 +168,7 @@ ln -sf ~/.dotfiles/.ctags ~/.ctags
 ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml
 ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
+ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
 # ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 
 mkdir -p ~/Dropbox/.ssh

@@ -9,6 +9,7 @@ tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
 tap "wallix/awless"
 tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
+tap "teamookla/speedtest"
 
 # General programs
 cask "aerial"
@@ -18,8 +19,9 @@ cask "dropbox"
 cask "google-chrome"
 cask "firefox"
 cask "slack"
-cask "spectacle"
+cask "rectangle" # window management app
 cask "spotify"
+cask "muzzle"
 cask "sublime-text"
 cask "transmission"
 cask "gimp"
@@ -31,8 +33,8 @@ cask "qlstephen" # preview textfiles without extensions
 cask "qlmarkdown" # preview markdown
 cask "quicklook-json" # preview json
 mas "Clocker", id: 1056643111
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
+# mas "GarageBand", id: 682658836
+# mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
@@ -48,9 +50,14 @@ cask "tableplus"
 cask "botframework-emulator"
 brew "vim"
 cask "visual-studio-code"
-cask "docker"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "tidy-html5"
+brew "mkcert"
+brew "nss" # for mkcert + firefox
+cask "docker"
+brew "docker-credential-helper-ecr"
+brew "lazydocker" # docker cli
+brew "dive" # docker layer cli
 
 # PHP
 brew "php", restart_service: :changed
@@ -88,6 +95,7 @@ brew "watch"
 cask "ngrok"
 brew "yamllint"
 brew "http-server"
+brew "speedtest"
 
 # Aws
 brew "awscli"

@@ -19,9 +19,11 @@ if application "Spotify" is running then
 
     try
       if shrtArtist is not equal to "" then
-        return "♫  " & shrtName & " - " & shrtArtist
+        # return "♫  " & shrtName & " - " & shrtArtist
+        return shrtName & " - " & shrtArtist
       else
-        return "♫  " & shrtName
+        # return "♫  " & shrtName
+        return shrtName
       end if
     on error err
     end try

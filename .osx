@@ -392,3 +392,11 @@ for app in "Activity Monitor" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
+
+# disable photoanalysisd
+# https://www.reddit.com/r/MacOS/comments/5887s9/photoanalysisd_macos_sierras_most_contentious_new/
+launchctl disable gui/$UID/com.apple.photoanalysisd
+launchctl kill -TERM gui/$UID/com.apple.photoanalysisd
+
+# disable spotlight indexing
+sudo mdutil -a -i off

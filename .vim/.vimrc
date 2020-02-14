@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/vim-color-forest-night'
+Plug 'mhartington/oceanic-next'
 
 " Editor
 Plug 'tpope/vim-obsession' " continuously updated session files
@@ -17,7 +18,6 @@ Plug 'farmergreg/vim-lastplace' " reopen file last position
 Plug 'djoshea/vim-autoread' " automatically load file changes into buffer
 Plug 'tpope/vim-rsi' " readline style insertion
 Plug 'romainl/vim-cool' " search highlighting tweaks
-" Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-buftabline' " buffer list at top of window
 Plug 'editorconfig/editorconfig-vim'
@@ -27,9 +27,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis
-" Plug 'unblevable/quick-scope' " hl unique chars per word/line for f, F etc 
-" Plug 'ap/vim-css-color'
-Plug 'AndrewRadev/switch.vim'
+Plug 'ap/vim-css-color' " colourises hex/rgb etc
+Plug 'AndrewRadev/switch.vim' " toggles for booleans etc
+Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab'
+Plug 'Shougo/echodoc.vim'
 
 " Tmux
 Plug 'benmills/vimux'
@@ -59,7 +60,8 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'wix/import-cost', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 
@@ -77,34 +79,41 @@ Plug 'unkiwii/vim-nerdtree-sync'
 " Editing
 
 " Languages
-Plug 'leshill/vim-json', { 'for': ['json'] }
-Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
-Plug 'chr4/nginx.vim', { 'for': ['conf'] }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+"
+Plug 'sheerun/vim-polyglot'
+" Plug 'leshill/vim-json', { 'for': ['json'] }
+" Plug 'kylef/apiblueprint.vim', { 'for': ['apib', 'apiblueprint'] }
+" Plug 'chr4/nginx.vim', { 'for': ['conf'] }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+" Plug 'groenewege/vim-less', { 'for': ['less'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 
 " Node
 Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'heavenshell/vim-jsdoc',
-  \ { 'for': ['javascript', 'jsx', 'javascript.jsx'], 'on': 'JsDoc' }
+" Plug 'heavenshell/vim-jsdoc',
+"   \ { 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx'], 'on': 'JsDoc' }
 
 " Typescript
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
-" Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+" Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript'] }
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
 
 " Javascript
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsxx'] }
+" Plug 'othree/yajs.vim', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 " Plug 'othree/javascript-libraries-syntax.vim',
 "   \ { 'for': ['javascript', 'jsx', 'javascript.jsx']}
-" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+" Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx'] }
+" Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
 Plug 'styled-components/vim-styled-components',
-  \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx']}
+  \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx']}
 
 " PHP
-Plug 'StanAngeloff/php.vim'
-Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
+" Plug 'StanAngeloff/php.vim'
+" Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php'] }
-Plug 'jwalton512/vim-blade'
+" Plug 'jwalton512/vim-blade'
+" Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -115,16 +124,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Docker
-Plug 'honza/dockerfile.vim', { 'for': ['dockerfile'] }
+" Plug 'honza/dockerfile.vim', { 'for': ['dockerfile'] }
 
 " Terraform
-Plug 'hashivim/vim-terraform'
+" Plug 'hashivim/vim-terraform'
 
 " Plug 'tmhedberg/matchit'
 " Plug 'sirver/ultisnips'
 " Plugin 'honza/vim-snippets'
 " Plug 'karlbright/qfdo.vim'
-" Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim', { 'for': ['blade.php', 'html', 'css', 'javascript.jsx'] }
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'js', 'jsx', 'javascript.jsx']}
@@ -138,6 +146,8 @@ Plug 'hashivim/vim-terraform'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'ervandew/supertab'
 " Plug 'godlygeek/tabular'
+" Plug 'unblevable/quick-scope' " hl unique chars per word/line for f, F etc 
+" Plug 'pboettch/vim-highlight-cursor-words'
 
 call plug#end()
 
@@ -193,6 +203,10 @@ set ttimeoutlen=0
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
+" stop preview on autocomplete
+" https://github.com/neoclide/coc.nvim/issues/377
+set completeopt-=preview
+
 " Colors
 " ----------------------
 " https://codeyarns.com/2011/07/29/vim-chart-of-color-names/
@@ -200,7 +214,10 @@ set shortmess+=c
 " This is only necessary if you use "set termguicolors".
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 set t_Co=256
 set t_ut=
 
@@ -212,24 +229,16 @@ set background=dark
 
 syntax enable " enable syntax processing
 
-hi ColorColumn guibg=NONE ctermbg=19 " columns like line limit
-hi Normal guibg=NONE ctermbg=NONE " No background
-hi LineNr ctermfg=NONE ctermbg=NONE
+" hi ColorColumn guibg=NONE ctermbg=19 " columns like line limit
+" hi Normal guibg=NONE ctermbg=NONE " No background
 " hi VertSplit ctermbg=NONE guibg=NONE
 hi GitGutterAdd guibg=NONE ctermbg=NONE
 hi GitGutterChange guibg=NONE ctermbg=NONE
 hi GitGutterDelete guibg=NONE ctermbg=NONE
 hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
-hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
+" hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
 hi LineNr guibg=NONE ctermbg=NONE " transparent line numbers
-hi CursorLine ctermbg=NONE " transparent cursor line
-
-" hi Tag        ctermfg=04
-" hi xmlTag     ctermfg=04
-" hi xmlTagName ctermfg=04
-" hi xmlEndTag  ctermfg=04
-" highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-" match OverLength /\%>80v.\+/
+" hi CursorLine ctermbg=NONE " transparent cursor line
 
 " Spaces & Tabs
 " ----------------------
@@ -361,9 +370,10 @@ function! s:zoom()
 endfunction
 nnoremap <silent> <leader>z :call <sid>zoom()<cr>
 
-" vim-jsx-pretty
+" vim-jsx / vim-jsx-pretty
 " -------------------------------
 " let g:vim_jsx_pretty_colorful_config = 1
+let g:jsx_ext_required = 1
 
 " vim-gitgutter
 "--------------------------------
@@ -372,12 +382,20 @@ if exists('&signcolumn')  " Vim 7.4.2201
 else
   let g:gitgutter_sign_column_always = 1
 endif
+" let g:gitgutter_sign_allow_clobber = 1
 
 " Coc
 " -------------------------------
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+inoremap <silent><expr> <C-o>
   \ pumvisible() ? coc#_select_confirm() :
   \ coc#expandableOrJumpable() ?
   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -453,28 +471,27 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%s [%severity%%/code%]'
 nnoremap <leader>af :ALEFix<cr>
+nnoremap <leader>ad :ALEDetail<cr>
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-
-" let g:ale_php_langserver_use_global = 1
-" let g:ale_php_langserver_executable = '~/.composer/vendor/bin/php-language-server.php'
-" let g:ale_php_phpmd_ruleset = '~/.composer/vendor/flickerleap/phpmd/ruleset.xml'
-
-" let g:ale_linter_aliases = {'jsx': 'css'}
+let g:ale_php_phpstan_executable = './vendor/bin/phpstan'
 
 let g:ale_linters = {
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
-\   'javascript': ['eslint', 'flow', 'standard', 'stylelint'],
+\   'less': ['prettier', 'stylelint'],
+\   'javascript': ['eslint', 'stylelint'],
+\   'jsx': ['eslint', 'stylelint'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
 \   'blade': ['htmlhint', 'prettier'],
 \   'html': ['htmlhint', 'prettier'],
 \   'markdown': ['write-good'],
+\   'php': ['phpstan'],
 \}
 
 " \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
@@ -482,12 +499,23 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
+\   'less': ['prettier', 'stylelint'],
 \   'javascript': ['prettier', 'eslint', 'standard'],
-\   'typescript': ['prettier', 'tslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint'],
 \   'json': ['fixjson'],
-\   '\.blade\.php$': ['prettier'],
-\   'php': ['prettier'],
+\   'blade': ['prettier'],
+\   'yaml': ['prettier'],
+\   'html': ['tidy', 'prettier'],
+\   'php': ['php_cs_fixer'],
 \}
+
+let g:ale_linter_aliases = {
+\ 'javascript': ['css'],
+\ 'typescriptreact': ['typescript'],
+\ 'jsx': ['css']
+\}
+" \   'php': ['prettier'],
 
 " Nerdtree
 " ----------------------
@@ -523,9 +551,9 @@ let g:lightline.tabline = {
 \   'right': [ ['close'] ],
 \ }
 
-let g:lightline.component_function = {
-\  'cocstatus': 'coc#status'
-\ }
+" let g:lightline.component_function = {
+" \  'cocstatus': 'coc#status'
+" \ }
 
 let g:lightline.component_expand = {
 \  'linter_checking': 'lightline#ale#checking',
@@ -583,3 +611,22 @@ autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 " -----------------
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_guide_size = 1
+
+let g:echodoc_enable_at_startup = 1
+
+
+let g:phpcd_autoload_path = 'vendor/autoload.php'
+
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+" let g:context#commentstring#table['typescriptreact'] = {
+" \ 'jsComment' : '// %s',
+" \ 'jsImport' : '// %s',
+" \ 'jsxStatment' : '// %s',
+" \ 'jsxRegion' : '{/*%s*/}',
+" \ 'jsxTag' : '{/*%s*/}',
+" \}

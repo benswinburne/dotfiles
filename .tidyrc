@@ -1,0 +1,10 @@
+/* vim: set filetype=ini : */
+
+indent: auto
+indent-spaces: 2
+quiet: yes
+tidy-mark: no
+
+wrap: 80
+wrap-php: no
+# wrap-sections: no

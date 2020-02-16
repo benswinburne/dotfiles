@@ -397,6 +397,7 @@ done
 # https://www.reddit.com/r/MacOS/comments/5887s9/photoanalysisd_macos_sierras_most_contentious_new/
 launchctl disable gui/$UID/com.apple.photoanalysisd
 launchctl kill -TERM gui/$UID/com.apple.photoanalysisd
+defaults write com.apple.iPhoto PKFaceDetectionEnabled 0
 
 # disable spotlight indexing
 sudo mdutil -a -i off

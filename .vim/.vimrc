@@ -630,3 +630,6 @@ augroup END
 " \ 'jsxRegion' : '{/*%s*/}',
 " \ 'jsxTag' : '{/*%s*/}',
 " \}
+
+autocmd BufEnter *.{js,ts,jsx,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,ts,jsx,tsx} :syntax sync clear

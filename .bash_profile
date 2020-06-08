@@ -7,11 +7,14 @@ BREW_PREFIX=$(brew --prefix)
 source ~/.dotfiles/bash/colours
 
 # PHP
-export PATH=~/.composer/vendor/bin:$PATH
+# export PATH=~/.composer/vendor/bin:$PATH
 
 function tinker  { php artisan tinker; }
 function artisan { php artisan "$@"; }
 function mrs     { php artisan migrate:refresh --seed; }
+function phpunit { vendor/bin/phpunit "$@"; }
+function phpunit:watch { vendor/bin/phpunit-watcher watch "$@"; }
+function pest { vendor/bin/pest "$@"; }
 
 # Go
 export GOPATH=$HOME/go
@@ -33,6 +36,15 @@ function cd {
 
   command cd "$@";
 }
+
+function bundlephobia { bundle-phobia "$@"; }
+
+# function tinker  { php artisan tinker; }
+function ace { node ace "$@"; }
+# function mrs {
+#   ace migration:rollback --batch 0;
+#   ace migration:run;
+# }
 
 # Add Python bin directories to path
 python3.7 -m site &> /dev/null && PATH="$PATH:$(python3.7 -m site --user-base)/bin"
@@ -158,3 +170,7 @@ export WTF_OWM_API_KEY
 # https://github.com/facebook/create-react-app/issues/6792
 # https://github.com/microsoft/TypeScript/issues/31048
 export TSC_WATCHFILE='UseFsEventsWithFallbackDynamicPolling'
+
+export PULUMI_CONFIG_PASSPHRASE="pulumi"
+
+function covid { curl -s -L http://covid19.trackercli.com/"${@:-uk}"; }

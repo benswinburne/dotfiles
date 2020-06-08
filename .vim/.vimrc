@@ -21,13 +21,13 @@ Plug 'romainl/vim-cool' " search highlighting tweaks
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-buftabline' " buffer list at top of window
 Plug 'editorconfig/editorconfig-vim'
-Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'MattesGroeger/vim-bookmarks'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis
-Plug 'ap/vim-css-color' " colourises hex/rgb etc
+" Plug 'ap/vim-css-color' " colourises hex/rgb etc
 Plug 'AndrewRadev/switch.vim' " toggles for booleans etc
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab'
 Plug 'Shougo/echodoc.vim'
@@ -52,29 +52,36 @@ Plug 'w0rp/ale'
 " let g:prosession_default_session = 1
 
 " COC
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/jsonc.vim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'wix/import-cost', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
-
+"
+" maybe use this instead of plug for coc stuff?
+" let g:coc_global_extensions = ['coc-extension1', 'coc-extension2', 'coc-extension3', 'coc-extension4']
+"
 " Lightline
 Plug 'itchyny/lightline.vim'
 Plug 'daviesjamie/vim-base16-lightline'
 Plug 'maximbaz/lightline-ale'
 
 " Nerdtree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'unkiwii/vim-nerdtree-sync'
+" Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'unkiwii/vim-nerdtree-sync'
 
 " Editing
 
@@ -90,6 +97,7 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 
 " Node
 Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
+Plug 'watzon/vim-edge-template'
 " Plug 'heavenshell/vim-jsdoc',
 "   \ { 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx'], 'on': 'JsDoc' }
 
@@ -105,13 +113,14 @@ Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
 "   \ { 'for': ['javascript', 'jsx', 'javascript.jsx']}
 " Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx'] }
 " Plug 'maxmellon/vim-jsx-pretty', { 'for': ['jsx', 'javascript.jsx'] }
-Plug 'styled-components/vim-styled-components',
-  \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx']}
+" Plug 'styled-components/vim-styled-components',
+"   \ { 'branch': 'main', 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript.tsx']}
 
 " PHP
 " Plug 'StanAngeloff/php.vim'
 " Plug '2072/vim-syntax-for-PHP', { 'for': ['php'] }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': ['php'] }
+Plug 'arnaud-lb/vim-php-namespace'
 " Plug 'jwalton512/vim-blade'
 " Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
@@ -156,8 +165,8 @@ call plug#end()
 " disable auto backups and swap files
 set nobackup
 set noswapfile
-set hidden
-set clipboard=unnamed
+set hidden " Automatically set buffers as 'hidden' when navigating away
+set clipboard=unnamed " unnunamedplus
 set nocompatible              " be iMproved, required
 set updatetime=300 " More frequent updates for, e.g. signs.
 set ts=4 sw=4 et
@@ -175,6 +184,9 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 set laststatus=2
 set encoding=utf-8
 set backspace=2
+
+set nojoinspaces " Don't insert multiple spaces when joining lines
+set autoread " If a file is changed outside of vim, automatically reload it without asking
 
 " Trim whitespace
 autocmd BufWritePre * :%s/\s\+$//e
@@ -418,6 +430,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
+" restart when tsserver gets wonky
+nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+
+" https://github.com/marlonfan/coc-phpls/issues/46
+nmap <leader>ri :CocCommand intelephense.index.workspace<CR>
 
 " Highlight symbol under cursor on CursorHold
 " autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -457,8 +474,8 @@ map <leader>t :call VimuxRunCommand("!!")<CR>
 
 " Multiple cursors
 " ----------------------
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 1
+" let g:multi_cursor_exit_from_insert_mode = 0
+" let g:multi_cursor_exit_from_visual_mode = 1
 
 " Ale
 " ----------------------
@@ -491,7 +508,7 @@ let g:ale_linters = {
 \   'blade': ['htmlhint', 'prettier'],
 \   'html': ['htmlhint', 'prettier'],
 \   'markdown': ['write-good'],
-\   'php': ['phpstan'],
+\   'php': ['php'],
 \}
 
 " \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
@@ -507,7 +524,7 @@ let g:ale_fixers = {
 \   'blade': ['prettier'],
 \   'yaml': ['prettier'],
 \   'html': ['tidy', 'prettier'],
-\   'php': ['php_cs_fixer'],
+\   'php': ['prettier'],
 \}
 
 let g:ale_linter_aliases = {
@@ -520,19 +537,30 @@ let g:ale_linter_aliases = {
 " Nerdtree
 " ----------------------
 " How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
-  \ && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+"   \ && b:NERDTree.isTabTree()) | q | endif
 
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeChDirMode=2
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
+" let NERDTreeShowHidden=1
+" let NERDTreeMinimalUI = 1
+" let NERDTreeAutoDeleteBuffer = 1
+" let g:NERDTreeChDirMode=2
+" let g:NERDTreeFileExtensionHighlightFullName = 1
+" let g:NERDTreeExactMatchHighlightFullName = 1
+" let g:NERDTreePatternMatchHighlightFullName = 1
 
-map <leader>nt :NERDTreeToggle<CR>
+" let g:explorer.file.showHiddenFiles
+
+" map <leader>nt :NERDTreeToggle<CR>
+nmap <leader>nt :CocCommand explorer<CR>
 map <D-1> :NERDTreeToggle<CR>
+
+" explorer.vim
+" let g:coc_explorer = {
+" \   "explorer.icon.enableNerdfont": v:true,
+" \   "explorer.file.showHiddenFiles": v:true,
+" \ }
+
+" let g:coc_user_config = g:coc_explorer
 
 " fzf
 " ----------------------
@@ -584,27 +612,31 @@ let g:lightline#ale#indicator_ok = ""
 " -------------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+nmap <silent> mp <Plug>(coc-bookmark-next)
+nmap <silent> mp <Plug>(coc-bookmark-prev)
+nmap <silent> mm <Plug>(coc-bookmark-toggle)
+
 " vim-bookmarks
 " -------------------
 " Prevent clashes with keybindings when in NERDTree
-let g:bookmark_no_default_key_mappings = 1
+" let g:bookmark_no_default_key_mappings = 1
 
-function! BookmarkMapKeys()
-  nmap mm :BookmarkToggle<CR>
-  nmap mn :BookmarkNext<CR>
-  nmap mp :BookmarkPrev<CR>
-  nmap mx :BookmarkClearAll<CR>
-endfunction
+" function! BookmarkMapKeys()
+"   nmap mm :BookmarkToggle<CR>
+"   nmap mn :BookmarkNext<CR>
+"   nmap mp :BookmarkPrev<CR>
+"   nmap mx :BookmarkClearAll<CR>
+" endfunction
 
-function! BookmarkUnmapKeys()
-  unmap mm
-  unmap mn
-  unmap mp
-  unmap mx
-endfunction
+" function! BookmarkUnmapKeys()
+"   unmap mm
+"   unmap mn
+"   unmap mp
+"   unmap mx
+" endfunction
 
-autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+" autocmd BufEnter * :call BookmarkMapKeys()
+" autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 " vim-indent-guides
 " https://github.com/nathanaelkane/vim-indent-guides
@@ -631,5 +663,23 @@ augroup END
 " \ 'jsxTag' : '{/*%s*/}',
 " \}
 
+" This prevents syntax hilighting breaking on templatte strings
+" when part of bigger files. Can slow vim down quite a bit though
 autocmd BufEnter *.{js,ts,jsx,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,ts,jsx,tsx} :syntax sync clear
+
+" nmap <silent> <C-c> <Plug>(coc-cursors-position)
+" nmap <silent> <C-d> <Plug>(coc-cursors-word)
+" xmap <silent> <C-d> <Plug>(coc-cursors-range)
+" " use normal command like `<leader>xi(`
+" nmap <leader>x  <Plug>(coc-cursors-operator)
+" nmap <silent> <C-d> <Plug>(coc-cursors-word)*
+" xmap <silent> <C-d> y/\V<C-r>=escape(@",'/\')<CR><CR>gN<Plug>(coc-cursors-range)gn
+
+" nmap <expr> <silent> <C-d> <SID>select_current_word()
+" function! s:select_current_word()
+"   if !get(g:, 'coc_cursors_activated', 0)
+"     return "\<Plug>(coc-cursors-word)"
+"   endif
+"   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+" endfunc

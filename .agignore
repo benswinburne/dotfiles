@@ -1,1 +1,4 @@
 yarn.lock
+coverage/**
+db/*Parser.js
+*.map

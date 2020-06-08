@@ -12,6 +12,7 @@ tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 tap "teamookla/speedtest"
 
 # General programs
+cask "bitwarden"
 cask "aerial"
 cask "alfred"
 cask "keepingyouawake"
@@ -21,17 +22,19 @@ cask "firefox"
 cask "slack"
 cask "rectangle" # window management app
 cask "spotify"
-cask "muzzle"
+cask "muzzle" # auto disable notifications
+cask "fanny" # fan/cpu monitoring widget
 cask "sublime-text"
 cask "transmission"
-cask "gimp"
-cask "vectr" # graphics
+# cask "gimp"
+# cask "vectr" # graphics
 cask "vlc"
 cask "flux"
 cask "iterm2"
 cask "qlstephen" # preview textfiles without extensions
-cask "qlmarkdown" # preview markdown
+# cask "qlmarkdown" # preview markdown
 cask "quicklook-json" # preview json
+
 mas "Clocker", id: 1056643111
 # mas "GarageBand", id: 682658836
 # mas "iMovie", id: 408981434
@@ -39,6 +42,7 @@ mas "Keynote", id: 409183694
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "ColorSlurp", id: 1287239339
 
 # Dev Stuff
 brew "bash"
@@ -146,5 +150,6 @@ brew "zeromq" # ???
 cask "flash-npapi" # ???
 
 # Fonts
-cask "font-hack-nerd-font"
+# cask "font-hack-nerd-font"
+cask "font-meslo-nerd-font"
 

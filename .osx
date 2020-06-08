@@ -322,8 +322,8 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 # ---------
 
 # Set up my preferred keyboard shortcuts
-ln -sf ~/.dotfiles/spectacle.json \
-	~/Library/Application\ Support/Spectacle/Shortcuts.json
+# ln -sf ~/.dotfiles/spectacle.json \
+# 	~/Library/Application\ Support/Spectacle/Shortcuts.json
 
 
 # Transmission
@@ -386,7 +386,7 @@ for app in "Activity Monitor" \
 	"Google Chrome" \
 	"Messages" \
 	"Photos" \
-	"Spectacle" \
+	"Rectangle" \
 	"SystemUIServer" \
 	"Transmission" \
 	"iCal"; do
@@ -400,4 +400,5 @@ launchctl kill -TERM gui/$UID/com.apple.photoanalysisd
 defaults write com.apple.iPhoto PKFaceDetectionEnabled 0
 
 # disable spotlight indexing
-sudo mdutil -a -i off
+# can't turn this off because alfred shares the index. bugger
+# sudo mdutil -a -i off

@@ -1,5 +1,35 @@
 {
-  "suggest.echodocSupport": true,
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": false
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.keyMappings": {
+    "<cr>": [
+      "expanded?",
+      "collapse",
+      "expand"
+    ],
+    "m": [
+      "actionMenu"
+    ],
+    "<C-o>": [
+      "cd"
+    ]
+  },
+  "git.enableGlobalStatus": false,
+  "explorer.position": "right",
+  "explorer.autoCollapseChildren": false,
+  "explorer.file.tabCD": false,
+  "explorer.previewAction.onHover": false,
+  "explorer.width": 40,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
   "typescript.suggestionActions.enabled": false,
   "typescript.suggest.enabled": false,
   "typescript.validate.enable": false,
@@ -8,21 +38,22 @@
   "diagnostic.displayByAle": true,
   "snippets.loadFromExtensions": true,
   "snippets.extends": {
-    "javascriptreact": ["javascript"],
-    "typescriptreact": ["javascript"],
-    "typescript": ["javascript"]
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
   },
+  "_coc.preferences.hoverTarget": "float",
+  "suggest.timeout": 500,
+  "suggest.echodocSupport": true,
   "suggest.noselect": false,
   "suggest.maxCompleteItemCount": 30,
   "languageserver": {
-    /* "intelephense": { */
-    /*   "command": "intelephense", */
-    /*   "args": ["--stdio"], */
-    /*   "filetypes": ["php"], */
-    /*   "initializationOptions": { */
-    /*     "storagePath": "/tmp/intelephense" */
-    /*   } */
-    /* }, */
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": [
@@ -32,5 +63,8 @@
         "--stdio"
       ]
     }
-  }
+  },
+  "tsserver.formatOnType": false,
+  "tsserver.disableAutomaticTypeAcquisition": true,
+  "typescript.format.enabled": false
 }

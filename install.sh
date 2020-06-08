@@ -54,6 +54,8 @@ dockutil --remove 'Numbers' --allhomes
 dockutil --remove 'Keynote' --allhomes
 dockutil --remove 'Pages' --allhomes
 dockutil --remove 'News' --allhomes
+dockutil --remove 'TV' --allhomes
+dockutil --remove 'Podcasts' --allhomes
 dockutil --add /Applications/Google\ Chrome.app --position 1
 dockutil --add /Applications/iTerm.app --position 2
 dockutil --add /Applications/Slack.app --position 4
@@ -127,6 +129,8 @@ yarn global add aws-cdk \
   english-dictionary-cli \
   zmq \
   node-gyp
+
+# https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md
 
 # AWS
 # ----------------
@@ -213,7 +217,7 @@ ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-comple
 	"$(brew --prefix)/etc/bash_completion.d/docker-compose"
 
 # ECR Credentials
-go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
+# go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
 mkdir -p ~/.docker/
 ln -s ~/Dropbox/.docker/config.json ~/.docker/config.json
 
@@ -247,6 +251,10 @@ build/Release/mysides add Torrents \
 	"file:///Users/$(whoami)/Downloads/Torrents/Complete/"
 popd || return
 rm -rf /tmp/mysides
+
+# Disable crash reporting service
+launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
 
 # Clean up
 brew update

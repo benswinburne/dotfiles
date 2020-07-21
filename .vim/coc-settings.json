@@ -33,6 +33,7 @@
   "typescript.suggestionActions.enabled": false,
   "typescript.suggest.enabled": false,
   "typescript.validate.enable": false,
+  "typescript.format.enabled": false,
   "javascript.suggest.enabled": false,
   "javascript.validate.enable": false,
   "diagnostic.displayByAle": true,
@@ -66,5 +67,9 @@
   },
   "tsserver.formatOnType": false,
   "tsserver.disableAutomaticTypeAcquisition": true,
-  "typescript.format.enabled": false
+  "tsserver.watchOptions": {
+    "watchFile": "useFsEvents",
+    "fallbackPolling": "dynamicPriorityPolling"
+  },
+  "intelephense.licenceKey": "~/Dropbox/.private/intelephense.txt"
 }

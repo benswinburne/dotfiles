@@ -31,6 +31,7 @@ Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis
 Plug 'AndrewRadev/switch.vim' " toggles for booleans etc
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab'
 Plug 'Shougo/echodoc.vim'
+Plug 'junegunn/goyo.vim'
 
 " Tmux
 Plug 'benmills/vimux'
@@ -566,6 +567,11 @@ map <D-1> :NERDTreeToggle<CR>
 " ----------------------
 nmap <C-p> :Files .<CR>
 nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
+
+" Goyo
+" ----------------------
+nmap <leader>Z :Goyo<cr>
+
 
 " Lightline
 " ----------------------

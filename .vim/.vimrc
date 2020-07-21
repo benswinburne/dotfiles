@@ -345,6 +345,7 @@ nnoremap <silent> <tab> :bnext<CR> " Use tab to move to next buffer
 nnoremap <silent> <s-tab> :bprevious<CR> " use shift-tab to move to prev buffer
 map <leader><leader> <c-^> " Switch between last two files
 
+nnoremap <leader>fp :cd %:p:h<CR> " set pwd to that of current file/buffer
 
 " Quickly edit/reload the vimrc file
 " ----------------------
@@ -518,7 +519,7 @@ let g:ale_fixers = {
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
 \   'less': ['prettier', 'stylelint'],
-\   'javascript': ['prettier', 'eslint', 'standard'],
+\   'javascript': ['prettier', 'eslint'],
 \   'typescript': ['prettier', 'eslint'],
 \   'typescriptreact': ['prettier', 'eslint'],
 \   'json': ['fixjson'],
@@ -618,7 +619,7 @@ let g:lightline#ale#indicator_ok = ""
 " -------------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-nmap <silent> mp <Plug>(coc-bookmark-next)
+nmap <silent> mn <Plug>(coc-bookmark-next)
 nmap <silent> mp <Plug>(coc-bookmark-prev)
 nmap <silent> mm <Plug>(coc-bookmark-toggle)
 

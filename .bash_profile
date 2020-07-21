@@ -55,6 +55,7 @@ shopt -s nocaseglob					# Case-insensitive globbing (used in pathname expansion)
 shopt -s histappend					# Append to the Bash history file, rather than overwriting it
 shopt -s cdspell						# Autocorrect typos in path names when using `cd`
 
+set -o vi
 EDITOR=$(command -v vim)  # Set up Editor
 export EDITOR
 

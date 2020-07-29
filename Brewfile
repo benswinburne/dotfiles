@@ -4,11 +4,9 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/dupes"
 tap "homebrew/services"
 tap "universal-ctags/universal-ctags"
 tap "wallix/awless"
-tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 tap "teamookla/speedtest"
 
 # General programs
@@ -26,6 +24,7 @@ cask "muzzle" # auto disable notifications
 cask "fanny" # fan/cpu monitoring widget
 cask "sublime-text"
 cask "transmission"
+cask "discord"
 # cask "gimp"
 # cask "vectr" # graphics
 cask "vlc"
@@ -48,20 +47,22 @@ mas "ColorSlurp", id: 1287239339
 brew "bash"
 brew "coreutils"
 cask "postman"
-# cask "sequel-pro"
-cask "homebrew/cask-versions/sequel-pro-nightly"
 cask "tableplus"
-cask "botframework-emulator"
 brew "vim"
 cask "visual-studio-code"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "tidy-html5"
 brew "mkcert"
 brew "nss" # for mkcert + firefox
+
 cask "docker"
 brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
+
+# brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+# cask "sequel-pro"
+# cask "homebrew/cask-versions/sequel-pro-nightly"
+# cask "botframework-emulator"
 
 # PHP
 brew "php", restart_service: :changed
@@ -100,6 +101,8 @@ cask "ngrok"
 brew "yamllint"
 brew "http-server"
 brew "speedtest"
+brew "bat"
+brew "exa"
 
 # Aws
 brew "awscli"

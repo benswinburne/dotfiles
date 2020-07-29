@@ -21,18 +21,22 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 # HOMEBREW_NO_AUTO_UPDATE=1
+read -p "Homebrew Bundle (any key)"
 brew bundle
 brew bundle cleanup --force
 # HOMEBREW_NO_AUTO_UPDATE=0
 
+read -p "Mac Defaults (any key)"
 # Sensible Mac Defaults
 echo "Configuring MacOS defaults"
 ./.osx
 echo "Finished MacOS defaults"
 
+read -p "Sign into app store (any key)"
 # https://github.com/mas-cli/mas/issues/164
-# mas signin ben.swinburne@gmail.com
+mas signin ben.swinburne@gmail.com
 
+read -p "Dock Cleanup (any key)"
 # Clean up the default dock programs
 dockutil --remove 'System Preferences' --allhomes
 dockutil --remove 'iTunes' --allhomes
@@ -63,36 +67,41 @@ dockutil --add /Applications/Slack.app --position 4
 # Bye itunes (hopefully?!)
 sudo chmod -x /Applications/iTunes.app
 
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
 #(cd /System/Library/CoreServices/; sudo mv Search.bundle/ Search2.bundle)
-sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-/usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
-  "Set AppleSymbolicHotKeys:64:enabled false"
+# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
+#   "Set AppleSymbolicHotKeys:64:enabled false"
 
+read -p "Restart Mac services (any key)"
 killall Dock
 killall Finder
 killall SystemUIServer
 
+read -p "Open some apps for the first time (any key)"
 open /Applications/Clocker.app/
 open /Applications/Noizio.app/
 open /Applications/Docker.app/
 
-pip install howdoi --user
+read -p "Pip installations"
+# pip install howdoi --user
 pip install cfn-lint --user # cfn linting
 pip install websocket-client
 
+read -p "PHP setup time (any key)"
 # PHP
 echo '' | pecl install xdebug
 echo '' | pecl install memcached
 composer global require phpstan/phpstan
 composer global require phpunit/phpunit
 composer global require jetbrains/phpstorm-stubs:dev-master # needed for langserv
-composer global require felixfbecker/language-server
+# composer global require felixfbecker/language-server
 composer global require dealerdirect/phpcodesniffer-composer-installer
 composer global require phpcompatibility/php-compatibility
 composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
 composer global require flickerleap/phpmd
 
+read -p "Certificate setup (any key)"
 # Certificate
 # https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
 brew install mkcert
@@ -113,6 +122,7 @@ popd || return
   --no-fish \
   --no-zsh
 
+read -p "Yarn global packages"
 # yarn global add write-good # Naive linter for English prose. With ALE Vim
 # yarn global add botpress
 # yarn global add svgr
@@ -164,8 +174,8 @@ composer global require tightenco/lambo
 
 # MySQL
 # ---------------
-mysql_secure_installation
-mysql_upgrade -u root
+# mysql_secure_installation
+# mysql_upgrade -u root
 
 # Symlink all the things
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
@@ -174,11 +184,11 @@ ln -sf ~/.dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
-ln -sf ~/.dotfiles/.osx ~/.osx
+# ln -sf ~/.dotfiles/.osx ~/.osx
 ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
 ln -sf ~/.dotfiles/.agignore ~/.agignore
-ln -sf ~/.dotfiles/.ctags ~/.ctags
+# ln -sf ~/.dotfiles/.ctags ~/.ctags
 ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml
 ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
@@ -231,10 +241,6 @@ ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-comple
 mkdir -p ~/.docker/
 ln -s ~/Dropbox/.docker/config.json ~/.docker/config.json
 
-
-# WTF
-ln -s ~/.dotfiles/.wtf ~/.wtf
-
 # Default applications
 sudo touch /usr/local/outset/login-every/duti.sh
 sudo chmod +x /usr/local/outset/login-every/duti.sh
@@ -263,8 +269,8 @@ popd || return
 rm -rf /tmp/mysides
 
 # Disable crash reporting service
-launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
 
 # Clean up
 brew update

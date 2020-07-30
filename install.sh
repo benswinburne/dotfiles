@@ -32,14 +32,14 @@ echo "Configuring MacOS defaults"
 ./.osx
 echo "Finished MacOS defaults"
 
-read -p "Sign into app store (any key)"
+# read -p "Sign into app store (any key)"
 # https://github.com/mas-cli/mas/issues/164
-mas signin ben.swinburne@gmail.com
+# mas signin ben.swinburne@gmail.com
 
 read -p "Dock Cleanup (any key)"
 # Clean up the default dock programs
 dockutil --remove 'System Preferences' --allhomes
-dockutil --remove 'iTunes' --allhomes
+dockutil --remove 'Music' --allhomes
 dockutil --remove 'iBooks' --allhomes
 dockutil --remove 'App Store' --allhomes
 dockutil --remove 'Photos' --allhomes
@@ -83,23 +83,26 @@ open /Applications/Clocker.app/
 open /Applications/Noizio.app/
 open /Applications/Docker.app/
 
-read -p "Pip installations"
+# read -p "Pip installations"
 # pip install howdoi --user
-pip install cfn-lint --user # cfn linting
-pip install websocket-client
+# pip install cfn-lint --user # cfn linting
+# pip install websocket-client
 
-read -p "PHP setup time (any key)"
-# PHP
+read -p "PHP Setup (any key)"
+
 echo '' | pecl install xdebug
 echo '' | pecl install memcached
+
 composer global require phpstan/phpstan
 composer global require phpunit/phpunit
-composer global require jetbrains/phpstorm-stubs:dev-master # needed for langserv
+composer global require \
+  dealerdirect/phpcodesniffer-composer-installer \
+  phpcompatibility/php-compatibility \
+  flickerleap/phpmd
+
+# composer global require jetbrains/phpstorm-stubs:dev-master # needed for langserv
 # composer global require felixfbecker/language-server
-composer global require dealerdirect/phpcodesniffer-composer-installer
-composer global require phpcompatibility/php-compatibility
-composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
-composer global require flickerleap/phpmd
+# composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
 
 read -p "Certificate setup (any key)"
 # Certificate
@@ -152,15 +155,15 @@ yarn global add bundle-phobia-cli \
 
 # https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md
 
+read -p "Symlinks (any key)"
+
 # AWS
 # ----------------
 mkdir -p ~/Dropbox/.aws
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
 
-# Tmux
-# ----------------
-git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
-~/.tmux/plugins/tpm/bin/install_plugins
+
+read -p "Valet (any key)"
 
 # Laravel & Valet
 # ----------------
@@ -218,6 +221,8 @@ source ~/.bash_profile
 # popd || return
 
 # Vim
+read -p "Vim Plugins (any key)"
+
 # brew install vim
 # brew ls --versions vim && brew upgrade vim || brew install vim
 # brew unlink vim && brew link vim
@@ -225,6 +230,15 @@ ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 # vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 vim '+PlugUpdate' '+qall'
+
+read -p "Tmux Plugins (any key)"
+
+# Tmux
+# ----------------
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+
+read -p "Docker (any key)"
 
 # Docker
 # ------
@@ -241,11 +255,15 @@ ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-comple
 mkdir -p ~/.docker/
 ln -s ~/Dropbox/.docker/config.json ~/.docker/config.json
 
+read -p "Default Applications (any key)"
+
 # Default applications
 sudo touch /usr/local/outset/login-every/duti.sh
 sudo chmod +x /usr/local/outset/login-every/duti.sh
 echo "duti ~/.dotfiles/duti/" | sudo tee /usr/local/outset/login-every/duti.sh
 duti ~/.dotfiles/duti/
+
+echo "Setting remote URL for this dotfiles repo"
 
 # This repo
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
@@ -256,9 +274,11 @@ mkdir -p ~/Sites/octaive
 mkdir -p ~/Downloads/Torrents/Complete
 mkdir -p ~/Downloads/Torrents/.pending
 
+read -p "Finder Shortcuts (any key)"
+
 # Finder shortcuts
 pushd . || return
-git clone mosen/mysides /tmp/mysides
+git clone git@github.com:mosen/mysides.git /tmp/mysides
 cd /tmp/mysides || return
 make build
 build/Release/mysides add Sites \
@@ -275,11 +295,10 @@ rm -rf /tmp/mysides
 # Clean up
 brew update
 brew cleanup
-brew prune
 
 printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
 
 # Add the new shell to the list of allowed shells
 # sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 # Change to the new shell
-# chsh -s /usr/local/bin/bash
+chsh -s /usr/local/bin/bash

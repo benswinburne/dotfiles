@@ -135,12 +135,6 @@ export PS2="\\[$ORANGE\\]→ \\[$RESET\\]"
 # shellcheck source=/dev/null
 [ -f "$BREW_PREFIX/etc/bash_completion" ] && . "$BREW_PREFIX/etc/bash_completion"
 
-# Lynx configuration
-# alias lynx="lynx -cfg=~/.lynx.conf \$1"
-
-# Replace cat with a syntax highlighted one
-#alias cat='pygmentize -g $1'
-
 # Use Hub https://hub.github.com/
 alias git='hub'
 
@@ -153,9 +147,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.map -g ""'
 # Itunes stuff
 alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"
 alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
-
-# Refresh chrome
-alias refchrome="osascript -e 'tell application \"Google Chrome\" to tell the active tab of its first window to reload'"
 
 
 # Load rupa's z if installed
@@ -174,4 +165,6 @@ export TSC_WATCHFILE='UseFsEventsWithFallbackDynamicPolling'
 
 export PULUMI_CONFIG_PASSPHRASE="pulumi"
 
-function covid { curl -s -L http://covid19.trackercli.com/"${@:-uk}"; }
+function covid { curl -s -L http://covid19.trackercli.com/"${*:-uk}"; }
+
+export BASH_SILENCE_DEPRECATION_WARNING=1

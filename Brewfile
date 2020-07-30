@@ -5,7 +5,6 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "universal-ctags/universal-ctags"
 tap "wallix/awless"
 tap "teamookla/speedtest"
 
@@ -30,18 +29,9 @@ cask "discord"
 cask "vlc"
 cask "flux"
 cask "iterm2"
-cask "qlstephen" # preview textfiles without extensions
+# cask "qlstephen" # preview textfiles without extensions
 # cask "qlmarkdown" # preview markdown
-cask "quicklook-json" # preview json
-
-mas "Clocker", id: 1056643111
-# mas "GarageBand", id: 682658836
-# mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Noizio", id: 928871589
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "ColorSlurp", id: 1287239339
+# cask "quicklook-json" # preview json
 
 # Dev Stuff
 brew "bash"
@@ -59,7 +49,6 @@ brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
 
-# brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 # cask "sequel-pro"
 # cask "homebrew/cask-versions/sequel-pro-nightly"
 # cask "botframework-emulator"
@@ -122,17 +111,17 @@ brew "goaccess" # Http log viewer
 
 # Java
 cask "java"
-cask "java8"
+# cask "java8"
 
 # Node related
 brew "node"
-brew "node@8", link: true
-brew "yarn", args: ["without-node"]
+# brew "node@8", link: true
+brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
 
 # Python
 brew "python"
-brew "python@2"
+# brew "python@2"
 
 # Go
 brew "go"
@@ -148,11 +137,25 @@ brew "nginx", restart_service: :changed
 # Uncategorised
 # -------------
 #
-brew "weechat", args: ["with-aspell", "with-lua", "with-perl", "with-python@2"]
+# brew "weechat", args: ["with-aspell", "with-lua", "with-perl", "with-python@2"]
 brew "zeromq" # ???
-cask "flash-npapi" # ???
+cask "flash-npapi" # Flashplayer
 
 # Fonts
 # cask "font-hack-nerd-font"
-cask "font-meslo-nerd-font"
+# cask "font-meslo-nerd-font"
+cask "font-meslo-for-powerline"
+cask "font-menlo-for-powerline"
+
+
+# This is at the bottom because if this exits because it's not signed in
+# then brew bundle exits without installing anything below
+mas "Clocker", id: 1056643111
+mas "Keynote", id: 409183694
+mas "Noizio", id: 928871589
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+# mas "ColorSlurp", id: 1287239339
+# mas "GarageBand", id: 682658836
+# mas "iMovie", id: 408981434
 

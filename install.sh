@@ -229,7 +229,8 @@ read -p "Vim Plugins (any key)"
 ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
 # vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-vim '+PlugUpdate' '+qall'
+# vim '+PlugUpdate' '+qall'
+vim -u ~/.vim/.vimrc.plug '+PlugUpdate' '+qall'
 
 read -p "Tmux Plugins (any key)"
 

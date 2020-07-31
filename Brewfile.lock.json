@@ -14,7 +14,7 @@
         "revision": "aeb6104e3fb05eb3d623476138867d0516c48710"
       },
       "homebrew/core": {
-        "revision": "0228d1c1c31dc110b910bba0b6ecac286a78e659"
+        "revision": "809c1d572af10d7d2b31f87c5865f425f6247741"
       },
       "homebrew/services": {
         "revision": "e68b1b8a05ee097338d2b21a0edbe1dda905c61e"
@@ -190,6 +190,18 @@
         "version": "2015-12-04",
         "options": {
           "full_name": "font-meslo-for-powerline"
+        }
+      },
+      "spark": {
+        "version": "latest",
+        "options": {
+          "full_name": "spark"
+        }
+      },
+      "font-menlo-for-powerline": {
+        "version": "latest",
+        "options": {
+          "full_name": "font-menlo-for-powerline"
         }
       }
     },
@@ -392,22 +404,22 @@
         }
       },
       "php": {
-        "version": "7.4.8",
+        "version": "7.4.8_1",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/php-7.4.8.catalina.bottle.tar.gz",
-              "sha256": "da81ec7dbe2ab2d9cbfcb5fcfa5f8e4fa0258f1947c52a13967c52dc6bab7f8f"
+              "url": "https://homebrew.bintray.com/bottles/php-7.4.8_1.catalina.bottle.tar.gz",
+              "sha256": "ec3af8e7bcfda01b5b0370cd33e97b12ce0988c2743e2437be4efc7d15a15f74"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/php-7.4.8.mojave.bottle.tar.gz",
-              "sha256": "c5dab2822c4d18b48379a1351854020dc81a52c94e400a7129f68220daa59fca"
+              "url": "https://homebrew.bintray.com/bottles/php-7.4.8_1.mojave.bottle.tar.gz",
+              "sha256": "fb211d4a9cf8fddb20c0c40b0934c09db7c0d5514bd5cb4d7692b115fec4b9e2"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/php-7.4.8.high_sierra.bottle.tar.gz",
-              "sha256": "d6525030277bf523c2e80a8ae5d8a5b3f0ce84a7679ec79c1fb89f4109c0f2f7"
+              "url": "https://homebrew.bintray.com/bottles/php-7.4.8_1.high_sierra.bottle.tar.gz",
+              "sha256": "d3c4639e3b5d8ba7e33c73a5e52cf3e3825fd0c7e3a647af6364e8ddeb25d90d"
             }
           }
         },
@@ -1416,7 +1428,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.4.9",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "0228d1c1c31dc110b910bba0b6ecac286a78e659",
+        "Homebrew/homebrew-core": "809c1d572af10d7d2b31f87c5865f425f6247741",
         "CLT": "1103.0.32.29",
         "Xcode": "11.4.1",
         "macOS": "10.15.4"

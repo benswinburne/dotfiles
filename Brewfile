@@ -29,6 +29,7 @@ cask "discord"
 cask "vlc"
 cask "flux"
 cask "iterm2"
+cask "private-internet-access"
 # cask "qlstephen" # preview textfiles without extensions
 # cask "qlmarkdown" # preview markdown
 # cask "quicklook-json" # preview json
@@ -155,6 +156,7 @@ mas "Keynote", id: 409183694
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Spark", id: 997102246
 # mas "ColorSlurp", id: 1287239339
 # mas "GarageBand", id: 682658836
 # mas "iMovie", id: 408981434

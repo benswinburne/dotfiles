@@ -145,8 +145,9 @@ cask "flash-npapi" # Flashplayer
 # Fonts
 # cask "font-hack-nerd-font"
 # cask "font-meslo-nerd-font"
-cask "font-meslo-for-powerline"
-cask "font-menlo-for-powerline"
+# cask "font-meslo-for-powerline"
+# cask "font-menlo-for-powerline"
+cask "font-meslo-lg-nerd-font"
 
 
 # This is at the bottom because if this exits because it's not signed in

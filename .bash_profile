@@ -9,6 +9,8 @@ source ~/.dotfiles/bash/colours
 # PHP
 # export PATH=~/.composer/vendor/bin:$PATH
 
+export COMPOSER_MEMORY_LIMIT=-1
+
 function tinker  { php artisan tinker; }
 function artisan { php artisan "$@"; }
 function mrs     { php artisan migrate:refresh --seed; }

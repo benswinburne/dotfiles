@@ -30,6 +30,7 @@ cask "vlc"
 cask "flux"
 cask "iterm2"
 cask "private-internet-access"
+cask "handbrake"
 # cask "qlstephen" # preview textfiles without extensions
 # cask "qlmarkdown" # preview markdown
 # cask "quicklook-json" # preview json
@@ -49,6 +50,7 @@ cask "docker"
 brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
+brew "pulumi"
 
 # cask "sequel-pro"
 # cask "homebrew/cask-versions/sequel-pro-nightly"

@@ -511,8 +511,8 @@ augroup END
 
 " This prevents syntax hilighting breaking on templatte strings
 " when part of bigger files. Can slow vim down quite a bit though
-autocmd BufEnter *.{js,ts,jsx,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,ts,jsx,tsx} :syntax sync clear
+autocmd BufEnter *.{js,ts,jsx,tsx,scss} :syntax sync fromstart
+autocmd BufLeave *.{js,ts,jsx,tsx,scss} :syntax sync clear
 
 " nmap <silent> <C-c> <Plug>(coc-cursors-position)
 " nmap <silent> <C-d> <Plug>(coc-cursors-word)

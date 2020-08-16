@@ -302,4 +302,5 @@ printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
 # Add the new shell to the list of allowed shells
 # sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 # Change to the new shell
-chsh -s /usr/local/bin/bash
+_USER=$(whoami)
+sudo chsh -s /usr/local/bin/bash $_USER

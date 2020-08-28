@@ -47,10 +47,13 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 
 # Set language and text formats
-defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+defaults write NSGlobalDomain AppleLanguages -array "en"
+defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=GBP"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write com.apple.TextInputMenu visible -bool false # disables the input menu in the menu bar
+# https://gist.github.com/talkingmoose/861588c136f5946d6961e41c51f2cb93
+# https://github.com/mathiasbynens/custom.keylayout/issues/7
 
 # Save screenshots to the desktop
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
@@ -93,9 +96,10 @@ sudo pmset -a hibernatemode 0
 # ----------------
 
 # Enable tap to click (Trackpad) for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true # trackpad
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true # bluetooth trackpad
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton # right click
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 # tap to click at login screen
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -116,6 +120,8 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 
 # Screensaver
 # -----------
+
+echo "Configuring Screensaver"
 
 # Lock screen using bottom left hotcorner
 defaults write com.apple.dock wvous-bl-corner -int 10
@@ -281,6 +287,8 @@ sudo mdutil -E / > /dev/null
 # TextEdit & Misc
 # ---------------
 
+echo "Configuring TextEdit & Misc"
+
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
 # Open and save files as UTF-8 in TextEdit
@@ -296,6 +304,8 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Updates
 # -------
+
+echo "Configuring Automatic Updates"
 
 # Enable the automatic update check
 defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
@@ -318,76 +328,82 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Allow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 
-# Spectacle
-# ---------
-
-# Set up my preferred keyboard shortcuts
-# ln -sf ~/.dotfiles/spectacle.json \
-# 	~/Library/Application\ Support/Spectacle/Shortcuts.json
-
-
 # Transmission
 # ------------
 
-# Use `~/Downloads/Torrents/.incomplete` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents/.incomplete"
+# # Use `~/Downloads/Torrents/.incomplete` to store incomplete downloads
+# defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
+# defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents/.incomplete"
 
-# Use `~/Downloads` to store completed downloads
-defaults write org.m0k.transmission DownloadLocationConstant -bool true
-defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/Torrents"
+# # Use `~/Downloads` to store completed downloads
+# defaults write org.m0k.transmission DownloadLocationConstant -bool true
+# defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/Torrents"
 
-# Don’t prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-defaults write org.m0k.transmission MagnetOpenAsk -bool false
+# # Don’t prompt for confirmation before downloading
+# defaults write org.m0k.transmission DownloadAsk -bool false
+# defaults write org.m0k.transmission MagnetOpenAsk -bool false
 
-# Don’t prompt for confirmation before removing non-downloading active transfers
-defaults write org.m0k.transmission CheckRemoveDownloading -bool true
+# # Don’t prompt for confirmation before removing non-downloading active transfers
+# defaults write org.m0k.transmission CheckRemoveDownloading -bool true
 
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+# # Trash original torrent files
+# defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
+# # Hide the donate message
+# defaults write org.m0k.transmission WarningDonate -bool false
+# # Hide the legal disclaimer
+# defaults write org.m0k.transmission WarningLegal -bool false
 
-# IP block list.
-# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
-defaults write org.m0k.transmission BlocklistNew -bool true
-defaults write org.m0k.transmission BlocklistURL -string "https://github.com/sahsu/transmission-blocklist/releases/latest/download/blocklist.gz"
-defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
+# # IP block list.
+# # Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
+# defaults write org.m0k.transmission BlocklistNew -bool true
+# defaults write org.m0k.transmission BlocklistURL -string "https://github.com/sahsu/transmission-blocklist/releases/latest/download/blocklist.gz"
+# defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
-# Randomize port on launch
-defaults write org.m0k.transmission RandomPort -bool true
+# # Randomize port on launch
+# defaults write org.m0k.transmission RandomPort -bool true
 
-# Ratio Checks
-defaults write org.m0k.transmission RatioCheck -int 1
-defaults write org.m0k.transmission RatioLimit -string "0.01"
-defaults write org.m0k.transmission CheckUpload -int 1
-defaults write org.m0k.transmission UploadLimit -int 5
-defaults write org.m0k.transmission RemoveWhenFinishSeeding -int 1
+# # Ratio Checks
+# defaults write org.m0k.transmission RatioCheck -int 1
+# defaults write org.m0k.transmission RatioLimit -string "0.01"
+# defaults write org.m0k.transmission CheckUpload -int 1
+# defaults write org.m0k.transmission UploadLimit -int 5
+# defaults write org.m0k.transmission RemoveWhenFinishSeeding -int 1
 
 # Iterm
 # -----
-defaults write com.googlecode.iterm2 PrefsCustomFolder "${HOME}/.dotfiles/iterm"
-defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
-defaults write com.googlecode.iterm2 UseLionStyleFullscreen -int 0
-# defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.dotfiles/iterm"
+# defaults write com.googlecode.iterm2 PrefsCustomFolder "${HOME}/.dotfiles/iterm"
+# defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+# defaults write com.googlecode.iterm2 UseLionStyleFullscreen -int 0
+
+# Preference Files
+echo "Symlinking preferences"
+# https://github.com/asmeurer/prefsync ?
+ln -sf ~/.dotfiles/Preferences/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
+ln -sf ~/.dotfiles/Preferences/com.apple.Siri.plist ~/Library/Preferences/com.apple.Siri.plist
+ln -sf ~/.dotfiles/Preferences/org.herf.Flux.plist ~/Library/Preferences/org.herf.Flux.plist
+ln -sf ~/.dotfiles/Preferences/org.m0k.transmission.plist ~/Library/Preferences/org.m0k.transmission.plist
+ln -sf ~/.dotfiles/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+
+# Rectangle
+# defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 
 # Kill affected applications
 # --------------------------
 
+echo "Killing affected applications"
 for app in "Activity Monitor" \
 	"Calendar" \
 	"cfprefsd" \
 	"Dock" \
+	"Rectangle" \
 	"Finder" \
 	"Google Chrome" \
 	"Messages" \
 	"Photos" \
 	"Rectangle" \
 	"SystemUIServer" \
+	"VLC" \
 	"Transmission" \
 	"iCal"; do
 	killall "${app}" &> /dev/null

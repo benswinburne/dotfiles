@@ -12,7 +12,10 @@ sudo -v
 # Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-xcode-select --install
+# xcode-select --install
+mas install 497799835 # because the command line tools never works with node
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept
 
  # install homebrew if it's missing
 if ! command -v brew >/dev/null 2>&1; then
@@ -21,29 +24,26 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 # HOMEBREW_NO_AUTO_UPDATE=1
-read -p "Homebrew Bundle (any key)"
+read -pr "Homebrew Bundle (any key)"
 brew bundle
 brew bundle cleanup --force
 # HOMEBREW_NO_AUTO_UPDATE=0
 
-read -p "Mac Defaults (any key)"
 # Sensible Mac Defaults
+read -pr "Mac Defaults (any key)"
 echo "Configuring MacOS defaults"
 ./.osx
 echo "Finished MacOS defaults"
 
-# read -p "Sign into app store (any key)"
-# https://github.com/mas-cli/mas/issues/164
-# mas signin ben.swinburne@gmail.com
-
-read -p "Dock Cleanup (any key)"
 # Clean up the default dock programs
+read -pr "Dock Cleanup (any key)"
 dockutil --remove 'System Preferences' --allhomes
 dockutil --remove 'Music' --allhomes
 dockutil --remove 'iBooks' --allhomes
 dockutil --remove 'App Store' --allhomes
 dockutil --remove 'Photos' --allhomes
 dockutil --remove 'Maps' --allhomes
+dockutil --remove 'Messages' --allhomes
 dockutil --remove 'Reminders' --allhomes
 dockutil --remove 'Contacts' --allhomes
 dockutil --remove 'Calendar' --allhomes
@@ -65,7 +65,7 @@ dockutil --add /Applications/iTerm.app --position 2
 dockutil --add /Applications/Slack.app --position 4
 
 # Bye itunes (hopefully?!)
-sudo chmod -x /Applications/iTunes.app
+# sudo chmod -x /Applications/Music.app
 
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
 #(cd /System/Library/CoreServices/; sudo mv Search.bundle/ Search2.bundle)
@@ -73,44 +73,49 @@ sudo chmod -x /Applications/iTunes.app
 # /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
 #   "Set AppleSymbolicHotKeys:64:enabled false"
 
-read -p "Restart Mac services (any key)"
+read -pr "Restart Mac services (any key)"
 killall Dock
 killall Finder
 killall SystemUIServer
 
-read -p "Open some apps for the first time (any key)"
+# read -p "Open some apps for the first time (any key)"
 open /Applications/Clocker.app/
 open /Applications/Noizio.app/
 open /Applications/Docker.app/
+open /Applications/Flux.app/
+open /Applications/KeepingYouAwake.app/
+open /Applications/Dropbox.app/
+open /Applications/Alfred\ 4.app/
+open /Applications/Docker.app/
+open /Applications/Muzzle.app/
+open /Applications/Rectangle.app/
+
+read -pr "Wait for dropbox"
 
 # read -p "Pip installations"
-# pip install howdoi --user
-# pip install cfn-lint --user # cfn linting
-# pip install websocket-client
+# # pip install howdoi --user
+# # pip install cfn-lint --user # cfn linting
+# # pip install websocket-client
 
-read -p "PHP Setup (any key)"
+read -pr "PHP Setup (any key)"
 
 echo '' | pecl install xdebug
 echo '' | pecl install memcached
 
-composer global require phpstan/phpstan
-composer global require phpunit/phpunit
 composer global require \
+  phpstan/phpstan \
+  phpunit/phpunit \
   dealerdirect/phpcodesniffer-composer-installer \
   phpcompatibility/php-compatibility \
   flickerleap/phpmd
 
-# composer global require jetbrains/phpstorm-stubs:dev-master # needed for langserv
-# composer global require felixfbecker/language-server
-# composer run-script --working-dir=vendor/felixfbecker/language-server parse-stubs
-
-read -p "Certificate setup (any key)"
+read -pr "Certificate setup (any key)"
 # Certificate
 # https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
 brew install mkcert
 mkdir -p ~/.localcert
 pushd . || return
-cd ~/.localcert
+cd ~/.localcert || return
 mkcert localhost 127.0.0.1 0.0.0.0 *.eu.ngrok.io *.ngrok.io
 mkcert -install
 mv localhost+4.pem localhost.pem
@@ -118,6 +123,7 @@ mv localhost+4-key.pem localhost-key.pem
 popd || return
 
 # FZF
+read -pr "FZF Setup"
 /usr/local/opt/fzf/install \
   --no-update-rc \
   --completion \
@@ -125,16 +131,13 @@ popd || return
   --no-fish \
   --no-zsh
 
-read -p "Yarn global packages"
-# yarn global add write-good # Naive linter for English prose. With ALE Vim
-# yarn global add botpress
-# yarn global add svgr
+read -pr "Yarn global packages"
 yarn global add bundle-phobia-cli \
   eslint_d \
   package-size \
-  fixjson \ # JSON Linter and fixer. With Ale Vim
+  fixjson \
   dynamodb-admin \
-  htmlhint \ # HTML Hinter. With ALE Vim \
+  htmlhint \
   dockerfile-language-server-nodejs \
   bash-language-server \
   bitly-cli-client \
@@ -145,28 +148,19 @@ yarn global add bundle-phobia-cli \
   hs \
   intelephense \
   package-size \
-  remotedebug-ios-webkiit-adapter \
+  remotedebug-ios-webkit-adapter \
   yahoo-stocks-cli \
   yalc \
   aws-cdk \
-  english-dictionary-cli \
-  zmq \
+  zeromq \
   node-gyp
 
+# english-dictionary-cli \
+#zmq
 # https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md
 
-read -p "Symlinks (any key)"
-
-# AWS
-# ----------------
-mkdir -p ~/Dropbox/.aws
-if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
-
-
-read -p "Valet (any key)"
-
 # Laravel & Valet
-# ----------------
+read -pr "Valet (any key)"
 mkdir -p ~/Sites
 composer global require laravel/valet
 export PATH=~/.composer/vendor/bin:$PATH
@@ -177,35 +171,40 @@ composer global require tightenco/lambo
 
 # MySQL
 # ---------------
+sudo /usr/local/opt/mysql/bin/mysql.server stop
 # mysql_secure_installation
 # mysql_upgrade -u root
 
 # Symlink all the things
+read -pr "Symlinks (any key)"
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
 ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
 ln -sf ~/.dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
-# ln -sf ~/.dotfiles/.osx ~/.osx
 ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
 ln -sf ~/.dotfiles/.agignore ~/.agignore
-# ln -sf ~/.dotfiles/.ctags ~/.ctags
 ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml
 ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
-# ln -s ~/.dotfiles/vlc/vlcrc ~/Library/Preferences/org.videolan.vlc/vlcrc
 
+# AWS
+# ----------------
+mkdir -p ~/Dropbox/.aws
+if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
+
+# SSH
+read -p "Vim Plugins (any key)"
 mkdir -p ~/Dropbox/.ssh
 if ! [ -L ~/.ssh ]; then rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh; fi
 if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
-sudo find ~/.ssh -type f -exec chmod 600 -- {} +
+sudo find ~/.ssh/* -type f -exec chmod 0600 {} \;
 
 # Fonts
-# ln -s `ls -d ~/.dotfiles`/fonts/* ~/Library/Fonts
-cp ~/.dotfiles/fonts/* ~/Library/Fonts/.
+# cp ~/.dotfiles/fonts/* ~/Library/Fonts/.
 
 source ~/.bash_profile
 
@@ -221,42 +220,33 @@ source ~/.bash_profile
 # popd || return
 
 # Vim
-read -p "Vim Plugins (any key)"
-
-# brew install vim
-# brew ls --versions vim && brew upgrade vim || brew install vim
-# brew unlink vim && brew link vim
-ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
-ln -s `ls -d ~/.dotfiles`/.vim/* ~/.vim
-# vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-# vim '+PlugUpdate' '+qall'
+read -pr "Vim Plugins (any key)"
+mkdir -p ~/.vim
+ln -sf ~/.dotfiles/.vim/.vimrc ~/.vimrc
+ln -sf ~/.dotfiles/.vim ~/.vim
 vim -u ~/.vim/.vimrc.plug '+PlugUpdate' '+qall'
 
-read -p "Tmux Plugins (any key)"
-
 # Tmux
-# ----------------
+read -pr "Tmux Plugins (any key)"
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
 
+# Docker
 read -p "Docker (any key)"
 
-# Docker
-# ------
-# Completion
-ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion \
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion \
 	"$(brew --prefix)/etc/bash_completion.d/docker"
-ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion \
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion \
 	"$(brew --prefix)/etc/bash_completion.d/docker-machine"
-ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion \
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion \
 	"$(brew --prefix)/etc/bash_completion.d/docker-compose"
 
 # ECR Credentials
 # go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
 mkdir -p ~/.docker/
-ln -s ~/Dropbox/.docker/config.json ~/.docker/config.json
+ln -sf ~/Dropbox/.docker/config.json ~/.docker/config.json
 
-read -p "Default Applications (any key)"
+read -pr "Default Applications (any key)"
 
 # Default applications
 sudo touch /usr/local/outset/login-every/duti.sh
@@ -264,18 +254,18 @@ sudo chmod +x /usr/local/outset/login-every/duti.sh
 echo "duti ~/.dotfiles/duti/" | sudo tee /usr/local/outset/login-every/duti.sh
 duti ~/.dotfiles/duti/
 
-echo "Setting remote URL for this dotfiles repo"
-
 # This repo
+echo "Setting remote URL for this dotfiles repo"
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
 
 # Folders I inevitably make later
 mkdir -p ~/Sites
-mkdir -p ~/Sites/octaive
+mkdir -p ~/Sites/work
+mkdir -p ~/Sites/playground
 mkdir -p ~/Downloads/Torrents/Complete
 mkdir -p ~/Downloads/Torrents/.pending
 
-read -p "Finder Shortcuts (any key)"
+read -pr "Finder Shortcuts (any key)"
 
 # Finder shortcuts
 pushd . || return
@@ -294,6 +284,7 @@ rm -rf /tmp/mysides
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
 
 # Clean up
+read -pr "Cleaning up Brew (any key)"
 brew update
 brew cleanup
 
@@ -303,4 +294,4 @@ printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
 # sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 # Change to the new shell
 _USER=$(whoami)
-sudo chsh -s /usr/local/bin/bash $_USER
+sudo chsh -s /usr/local/bin/bash "$_USER"

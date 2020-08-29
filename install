@@ -32,7 +32,7 @@ brew bundle cleanup --force
 # Sensible Mac Defaults
 read -pr "Mac Defaults (any key)"
 echo "Configuring MacOS defaults"
-./.osx
+./install-osx
 echo "Finished MacOS defaults"
 
 # Clean up the default dock programs
@@ -179,6 +179,7 @@ sudo /usr/local/opt/mysql/bin/mysql.server stop
 read -pr "Symlinks (any key)"
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
 ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+ln -sf ~/.dotfiles/.inputrc ~/.inputrc
 ln -sf ~/.dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
@@ -190,6 +191,7 @@ ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml
 ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
+ln -sf ~/Dropbox/.httpie ~/.httpie;
 
 # AWS
 # ----------------

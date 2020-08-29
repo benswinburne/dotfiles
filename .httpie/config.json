@@ -7,6 +7,6 @@
     "default_options": [
         "--verify=no",
         "--session-read-only",
-        "~/httpie-custom-headers.json"
+        "~/.dotfiles/.httpie/httpie-custom-headers.json"
     ]
 }

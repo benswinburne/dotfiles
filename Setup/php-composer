@@ -1,0 +1,28 @@
+#!/bin/bash
+# vi:syntax=sh
+
+source sudo-no-root
+
+echo "PHP Setup"
+
+echo '' | pecl install xdebug
+echo '' | pecl install memcached
+
+composer global require \
+  phpstan/phpstan \
+  phpunit/phpunit \
+  dealerdirect/phpcodesniffer-composer-installer \
+  phpcompatibility/php-compatibility \
+  flickerleap/phpmd
+
+# Laravel & Valet
+read -pr "Valet (any key)"
+mkdir -p ~/Sites
+composer global require laravel/valet
+export PATH=~/.composer/vendor/bin:$PATH
+valet install
+(cd ~/Sites && valet park)
+valet start
+composer global require tightenco/lambo
+
+ln -sf ~/.dotfiles/phpcs.xml ~/phpcs.xml

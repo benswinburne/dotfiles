@@ -1,0 +1,72 @@
+#!/bin/bash
+
+source sudo-no-root
+source xcode
+source homebrew
+source osx-preferences
+source cleanup-dock
+source restart-osx-services
+source open-applications
+source php-composer
+source local-certificates
+source fzf
+source yarn-global
+source symlinks
+source ssh
+source vim-setup
+source tmux-setup
+source docker
+source osx-default-apps
+source osx-finder-shortcuts
+
+sudo /usr/local/opt/mysql/bin/mysql.server stop
+
+# This repo
+echo "Setting remote URL for this dotfiles repo"
+git remote set-url origin git@github.com:benswinburne/dotfiles.git
+
+source ../.bash_profile
+
+# Clean up
+read -pr "Cleaning up Brew (any key)"
+brew update
+brew cleanup
+
+printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
+
+# Add the new shell to the list of allowed shells
+# sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+# Change to the new shell
+_USER=$(whoami)
+sudo chsh -s /usr/local/bin/bash "$_USER"
+
+# Bye itunes (hopefully?!)
+# sudo chmod -x /Applications/Music.app
+
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
+#(cd /System/Library/CoreServices/; sudo mv Search.bundle/ Search2.bundle)
+# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+# /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
+#   "Set AppleSymbolicHotKeys:64:enabled false"
+
+
+# read -p "Pip installations"
+# # pip install howdoi --user
+# # pip install cfn-lint --user # cfn linting
+# # pip install websocket-client
+
+# english-dictionary-cli \
+#zmq
+# https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md
+
+# MySQL
+# ---------------
+# mysql_secure_installation
+# mysql_upgrade -u root
+
+# Fonts
+# cp ~/.dotfiles/fonts/* ~/Library/Fonts/.
+
+# Disable crash reporting service
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist

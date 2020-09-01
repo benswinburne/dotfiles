@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# xcode-select --install
+mas install 497799835 # because the command line tools never works with node
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# install homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Installing Homebrew"
+  /usr/bin/ruby -e \
+  	"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# HOMEBREW_NO_AUTO_UPDATE=1
+echo "Installing Homebrew Bundle"
+brew bundle
+brew bundle cleanup --force
+# HOMEBREW_NO_AUTO_UPDATE=0
+

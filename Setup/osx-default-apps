@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source sudo-no-root
+
+echo "Default Applications"
+
+# Default applications
+sudo touch /usr/local/outset/login-every/duti.sh
+sudo chmod +x /usr/local/outset/login-every/duti.sh
+echo "duti ~/.dotfiles/duti/" | sudo tee /usr/local/outset/login-every/duti.sh
+duti ~/.dotfiles/duti/
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
+
+source sudo-no-root
+
+echo "Local Certificate Setup"
+
+brew install mkcert
+mkdir -p ~/.localcert
+pushd . || return
+cd ~/.localcert || return
+mkcert localhost 127.0.0.1 0.0.0.0 *.eu.ngrok.io *.ngrok.io
+mkcert -install
+mv localhost+4.pem localhost.pem
+mv localhost+4-key.pem localhost-key.pem
+popd || return
+

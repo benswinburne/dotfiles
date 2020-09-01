@@ -1,0 +1,27 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# Symlink all the things
+echo "Setup Symlinks"
+
+ln -sf ~/.dotfiles/.npmrc ~/.npmrc
+ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+ln -sf ~/.dotfiles/.inputrc ~/.inputrc
+ln -sf ~/.dotfiles/.gitignore ~/.gitignore
+ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
+ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
+ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
+ln -sf ~/.dotfiles/.agignore ~/.agignore
+ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
+ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
+ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
+ln -sf ~/.dotfiles/.httpie ~/.httpie;
+
+if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
+
+# AWS
+mkdir -p ~/Dropbox/.aws
+if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
+

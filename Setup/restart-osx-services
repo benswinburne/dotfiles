@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source sudo-no-root
+
+echo "Restarting Mac services"
+
+echo "Restarting Dock"
+killall Dock
+
+echo "Restarting Finder"
+killall Finder
+
+echo "Restarting System UI Server"
+killall SystemUIServer
+

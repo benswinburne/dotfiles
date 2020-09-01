@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# SSH
+echo "Setup SSH"
+
+mkdir -p ~/Dropbox/.ssh
+if ! [ -L ~/.ssh ]; then rm -rf ~/.ssh; ln -s ~/Dropbox/.ssh ~/.ssh; fi
+sudo find ~/.ssh/* -type f -exec chmod 0600 {} \;

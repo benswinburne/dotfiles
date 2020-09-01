@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# FZF
+echo "Installing FZF"
+
+/usr/local/opt/fzf/install \
+  --no-update-rc \
+  --completion \
+  --key-bindings \
+  --no-fish \
+  --no-zsh
+

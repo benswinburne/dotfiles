@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source sudo-no-root
+
+echo "Finder Shortcuts"
+
+# Folders I inevitably make later
+mkdir -p ~/Sites
+mkdir -p ~/Sites/work
+mkdir -p ~/Sites/playground
+mkdir -p ~/Downloads/Torrents/Complete
+mkdir -p ~/Downloads/Torrents/.pending
+
+# Finder shortcuts
+pushd . || return
+git clone git@github.com:mosen/mysides.git /tmp/mysides
+cd /tmp/mysides || return
+make build
+build/Release/mysides add Sites \
+	"file:///Users/$(whoami)/Sites/"
+build/Release/mysides add Torrents \
+	"file:///Users/$(whoami)/Downloads/Torrents/Complete/"
+popd || return
+rm -rf /tmp/mysides
+

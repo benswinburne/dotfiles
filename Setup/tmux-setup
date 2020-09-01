@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# Tmux
+echo "Tmux & Tmux Plugins"
+ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+

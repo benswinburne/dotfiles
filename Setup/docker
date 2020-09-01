@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# Docker
+echo "Setup Docker"
+
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion \
+	"$(brew --prefix)/etc/bash_completion.d/docker"
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion \
+	"$(brew --prefix)/etc/bash_completion.d/docker-machine"
+ln -sf /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion \
+	"$(brew --prefix)/etc/bash_completion.d/docker-compose"
+
+# ECR Credentials
+mkdir -p ~/.docker/
+ln -sf ~/Dropbox/.docker/config.json ~/.docker/config.json

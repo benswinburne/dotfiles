@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# Vim
+echo "Vim & Vim Plugins"
+mkdir -p ~/.vim
+ln -sf ~/.dotfiles/.vim/.vimrc ~/.vimrc
+ln -sf ~/.dotfiles/.vim ~/.vim
+vim -u ~/.vim/.vimrc.plug '+PlugUpdate' '+qall'

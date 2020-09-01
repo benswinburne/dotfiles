@@ -1,0 +1,28 @@
+#!/bin/bash
+
+source sudo-no-root
+
+echo "Installing Yarn Global Packages"
+
+yarn global add bundle-phobia-cli \
+  eslint_d \
+  package-size \
+  fixjson \
+  dynamodb-admin \
+  htmlhint \
+  dockerfile-language-server-nodejs \
+  bash-language-server \
+  bitly-cli-client \
+  create-react-app \
+  cubejs-cli \
+  dynamodump \
+  gzip-size-cli \
+  hs \
+  intelephense \
+  package-size \
+  remotedebug-ios-webkit-adapter \
+  yahoo-stocks-cli \
+  yalc \
+  aws-cdk \
+  zeromq \
+  node-gyp

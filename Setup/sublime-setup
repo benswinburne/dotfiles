@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source sudo-no-root
+
+# Sublime
+mkdir -p ~/Dropbox/Sublime/User
+pushd . || return
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+if ! [ -L ./User ]; then
+  rm -r User; ln -s ~/Dropbox/Sublime/User
+  rm -rf ~/Dropbox/Sublime/User
+fi
+popd || return
+

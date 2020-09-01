@@ -1,0 +1,9 @@
+#!/bin/sh
+# vi:syntax=sh
+
+git clone https://github.com/benswinburne/dotfiles.git ~/.dotfiles
+
+cd ~/.dotfiles
+
+source Setup/xcode
+source Setup/yarn-global

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # vi:syntax=sh
 
-source sudo-no-root
+source ~/.dotfiles/Setup/sudo-no-root
 
 # Sensible Mac Defaults
 

@@ -5,5 +5,7 @@ git clone https://github.com/benswinburne/dotfiles.git ~/.dotfiles
 
 cd ~/.dotfiles || exit
 
-source xcode
+pwd
+
+source ./Setup/xcode
 source yarn-global

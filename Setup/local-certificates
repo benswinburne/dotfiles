@@ -2,7 +2,7 @@
 
 # https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
 
-source sudo-no-root
+source ~/.dotfiles/Setup/sudo-no-root
 
 echo "Local Certificate Setup"
 

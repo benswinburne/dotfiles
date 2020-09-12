@@ -26,12 +26,15 @@ cask "transmission"
 cask "discord"
 # cask "gimp"
 # cask "vectr" # graphics
-cask "vlc"
 cask "flux"
 cask "iterm2"
 cask "private-internet-access"
 cask "handbrake"
+
+cask "vlc"
 cask "now-tv-player"
+cask "videostream"
+
 # cask "qlstephen" # preview textfiles without extensions
 # cask "qlmarkdown" # preview markdown
 # cask "quicklook-json" # preview json

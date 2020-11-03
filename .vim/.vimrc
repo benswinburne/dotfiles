@@ -407,6 +407,7 @@ map <D-1> :NERDTreeToggle<CR>
 " ----------------------
 nmap <C-p> :Files .<CR>
 nnoremap <leader>P :Files <C-R>=expand('%:h')<CR><CR>
+let g:fzf_layout = { 'down': '40%' }
 
 " Goyo
 " ----------------------

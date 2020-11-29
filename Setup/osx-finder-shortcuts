@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source sudo-no-root
+source ~/.dotfiles/Setup/sudo-no-root
 
 echo "Finder Shortcuts"
 

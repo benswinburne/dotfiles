@@ -1,23 +1,23 @@
 #!/bin/bash
 
-source sudo-no-root
-source xcode
-source homebrew
-source osx-preferences
-source cleanup-dock
-source restart-osx-services
-source open-applications
-source php-composer
-source local-certificates
-source fzf
-source yarn-global
-source symlinks
-source ssh
-source vim-setup
-source tmux-setup
-source docker
-source osx-default-apps
-source osx-finder-shortcuts
+source ~/.dotfiles/Setup/sudo-no-root
+source ~/.dotfiles/Setup/xcode
+source ~/.dotfiles/Setup/homebrew
+source ~/.dotfiles/Setup/osx-preferences
+source ~/.dotfiles/Setup/cleanup-dock
+source ~/.dotfiles/Setup/restart-osx-services
+source ~/.dotfiles/Setup/open-applications
+source ~/.dotfiles/Setup/php-composer
+source ~/.dotfiles/Setup/local-certificates
+source ~/.dotfiles/Setup/fzf
+source ~/.dotfiles/Setup/yarn-global
+source ~/.dotfiles/Setup/symlinks
+source ~/.dotfiles/Setup/ssh
+source ~/.dotfiles/Setup/vim-setup
+source ~/.dotfiles/Setup/tmux-setup
+source ~/.dotfiles/Setup/docker
+source ~/.dotfiles/Setup/osx-default-apps
+source ~/.dotfiles/Setup/osx-finder-shortcuts
 
 sudo /usr/local/opt/mysql/bin/mysql.server stop
 
@@ -25,7 +25,7 @@ sudo /usr/local/opt/mysql/bin/mysql.server stop
 echo "Setting remote URL for this dotfiles repo"
 git remote set-url origin git@github.com:benswinburne/dotfiles.git
 
-source ../.bash_profile
+source ~/.dotfiles/.bash_profile
 
 # Clean up
 read -pr "Cleaning up Brew (any key)"

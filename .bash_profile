@@ -13,7 +13,7 @@ export COMPOSER_MEMORY_LIMIT=-1
 
 function tinker  { php artisan tinker; }
 function artisan { php artisan "$@"; }
-function mrs     { php artisan migrate:refresh --seed; }
+function mrs     { php artisan migrate:fresh --seed; }
 function phpunit { vendor/bin/phpunit "$@"; }
 function phpunit:watch { vendor/bin/phpunit-watcher watch "$@"; }
 function pest { vendor/bin/pest "$@"; }

@@ -42,6 +42,10 @@ if has('persistent_undo')
   set undofile
 endif
 
+" Don't record .netrwhist
+" https://stackoverflow.com/a/24167309/769237
+let g:netrw_dirhistmax = 0
+
 
 " Set a directory to store vim state etc
 set viminfo=<800,'10,/50,:100,h,f0,n~/.viminfo

@@ -16,6 +16,7 @@ cask "keepingyouawake"
 cask "dropbox"
 cask "google-chrome"
 cask "firefox"
+cask "microsoft-edge"
 cask "slack"
 cask "rectangle" # window management app
 cask "spotify"
@@ -99,6 +100,7 @@ brew "http-server"
 brew "speedtest"
 brew "bat"
 brew "exa"
+brew "dog"
 
 # Aws
 brew "awscli"

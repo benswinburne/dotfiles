@@ -54,7 +54,8 @@ sudo chsh -s /usr/local/bin/bash "$_USER"
 # # pip install howdoi --user
 # # pip install cfn-lint --user # cfn linting
 # # pip install websocket-client
-pip install --user localstack
+pip3 install --user localstack
+pip3 install --user awscli-local
 
 # english-dictionary-cli \
 #zmq

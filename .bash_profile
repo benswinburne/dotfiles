@@ -29,6 +29,9 @@ export PATH=${HOME}/.npm-packages/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
 
+# Python
+export PATH=${HOME}/Library/Python/3.9/bin:$PATH
+
 __ORIG_PATH=$PATH
 function cd {
   NPMBIN=$(realpath "$@")/node_modules/.bin

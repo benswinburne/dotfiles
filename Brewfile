@@ -56,6 +56,7 @@ brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
 brew "pulumi"
+brew "python"
 
 # cask "sequel-pro"
 # cask "homebrew/cask-versions/sequel-pro-nightly"

@@ -11,12 +11,14 @@ source ~/.dotfiles/bash/colours
 
 export COMPOSER_MEMORY_LIMIT=-1
 
-function tinker  { php artisan tinker; }
-function artisan { php artisan "$@"; }
-function mrs     { php artisan migrate:fresh --seed; }
-function phpunit { vendor/bin/phpunit "$@"; }
-function phpunit:watch { vendor/bin/phpunit-watcher watch "$@"; }
-function pest { vendor/bin/pest "$@"; }
+tinker()  { php artisan tinker; }
+artisan() { php artisan "$@"; }
+mrs()     { php artisan migrate:fresh --seed; }
+phpunit() { vendor/bin/phpunit "$@"; }
+phpunit_watch() { vendor/bin/phpunit-watcher watch "$@"; }
+pest()    { vendor/bin/pest "$@"; }
+doc()     { docker-compose "$@"; }
+alias phpunit-watch='phpunit_watch'
 
 # Go
 export GOPATH=$HOME/go

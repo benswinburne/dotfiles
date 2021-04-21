@@ -58,6 +58,7 @@ brew "dive" # docker layer cli
 brew "pulumi"
 brew "python"
 cask "gpg-tools"
+cask "pop" # remote pair programming
 
 # cask "sequel-pro"
 # cask "homebrew/cask-versions/sequel-pro-nightly"

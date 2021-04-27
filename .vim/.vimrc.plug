@@ -164,4 +164,7 @@ Plug 'tpope/vim-fugitive'
 " Plug 'unblevable/quick-scope' " hl unique chars per word/line for f, F etc 
 " Plug 'pboettch/vim-highlight-cursor-words'
 
+" Arduino
+Plug 'stevearc/vim-arduino'
+
 call plug#end()

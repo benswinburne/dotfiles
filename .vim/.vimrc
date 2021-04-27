@@ -368,8 +368,9 @@ let g:ale_fixers = {
 \   'json': ['fixjson'],
 \   'blade': ['prettier'],
 \   'yaml': ['prettier'],
-\   'html': ['tidy', 'prettier'],
 \   'php': ['prettier'],
+\   'html': ['tidy', 'prettier'],
+\   'arduino': ['astyle'],
 \}
 
 let g:ale_linter_aliases = {
@@ -549,3 +550,25 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Arduino
+nnoremap <leader>am :ArduinoVerify<CR>
+nnoremap <leader>au :ArduinoUpload<CR>
+
+" my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
+" function! ArduinoStatusLine()
+"   let port = arduino#GetPort()
+"   let line = '%f [' . g:arduino_board . '] [' . g:arduino_programmer . ']'
+"   if !empty(port)
+"     let line = line . ' (' . port . ':' . g:arduino_serial_baud . ')'
+"   endif
+"   return line
+" endfunction
+
+" autocmd BufNewFile,BufRead *.ino let g:airline_section_x='%{ArduinoStatusLine()}'
+
+" let g:arduino_serial_tmux = ''
+" let g:arduino_verify_tmux = ''
+" let g:arduino_upload_tmux = ''
+" let g:arduino_cmd = 'arduno-cli'
+" let g:arduino_dir = '/Applications/Arduino.app/Contents/Java/'

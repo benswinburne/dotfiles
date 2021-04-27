@@ -60,6 +60,10 @@ brew "python"
 cask "gpg-tools"
 cask "pop" # remote pair programming
 
+cask "arduino"
+brew "arduino-cli"
+brew "astyle" # formatter
+
 # cask "sequel-pro"
 # cask "homebrew/cask-versions/sequel-pro-nightly"
 # cask "botframework-emulator"

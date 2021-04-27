@@ -18,6 +18,7 @@ ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
 ln -sf ~/.dotfiles/.httpie ~/.httpie;
+ln -sf ~/.dotfiles/.astylerc ~/.astylerc;
 
 if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
 

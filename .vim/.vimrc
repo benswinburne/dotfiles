@@ -107,7 +107,7 @@ set autoindent          " autoindent lines
 set copyindent          " copy the indentation on autoindenting
 
 nmap <leader><tab> :retab<cr>
-nmap <leader>ts :%s/\t/    /g
+nmap <leader>tts :%s/\t/    /g
 
 " UI Config
 " ----------------------

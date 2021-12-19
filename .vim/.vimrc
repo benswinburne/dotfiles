@@ -354,6 +354,7 @@ let g:ale_linters = {
 \   'html': ['htmlhint', 'prettier'],
 \   'markdown': ['write-good'],
 \   'php': ['php'],
+\   'yaml': ['yamllint'],
 \}
 
 " \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],

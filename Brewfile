@@ -39,7 +39,7 @@ cask "airflow" # cast anything to chromecast
 # cask "qlstephen" # preview textfiles without extensions
 # cask "qlmarkdown" # preview markdown
 # cask "quicklook-json" # preview json
-cask "logitech-g-hub"
+# cask "logitech-g-hub"
 cask "macmediakeyforwarder" # fix media keys / prioritise spotify
 
 # Dev Stuff

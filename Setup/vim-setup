@@ -4,6 +4,7 @@ source ~/.dotfiles/Setup/sudo-no-root
 
 # Vim
 echo "Vim & Vim Plugins"
+rm -rf ~/.vim
 mkdir -p ~/.vim
 ln -sf ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.vim ~/.vim

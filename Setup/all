@@ -19,7 +19,9 @@ source ~/.dotfiles/Setup/docker
 source ~/.dotfiles/Setup/osx-default-apps
 source ~/.dotfiles/Setup/osx-finder-shortcuts
 
-sudo /usr/local/opt/mysql/bin/mysql.server stop
+# sudo /usr/local/opt/mysql/bin/mysql.server stop
+# sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop
+sudo mysqladmin shutdown
 
 # This repo
 echo "Setting remote URL for this dotfiles repo"
@@ -38,7 +40,7 @@ printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
 # sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 # Change to the new shell
 _USER=$(whoami)
-sudo chsh -s /usr/local/bin/bash "$_USER"
+sudo chsh -s "$(brew --prefix)/bin/bash" "$_USER"
 
 # Bye itunes (hopefully?!)
 # sudo chmod -x /Applications/Music.app

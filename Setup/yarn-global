@@ -7,7 +7,6 @@ echo "Installing Yarn Global Packages"
 yarn global add \
   aws-cdk \
   bash-language-server \
-  bitly-cli-client \
   bundle-phobia-cli \
   cfn-lint \
   create-react-app \
@@ -19,7 +18,7 @@ yarn global add \
   fixjson \
   gzip-size-cli \
   htmlhint \
-  http-status-identifier-cli \ # http status codes
+  http-status-identifier-cli \
   intelephense \
   node-gyp \
   np \

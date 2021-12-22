@@ -94,7 +94,7 @@ brew "arduino-cli"
 brew "astyle" # formatter
 
 # PHP
-brew "php@7.4", restart_service: :changed
+brew "php@8.1", restart_service: :changed
 brew "mcrypt"
 brew "composer"
 

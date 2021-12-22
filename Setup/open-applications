@@ -13,5 +13,6 @@ open /Applications/Alfred\ 4.app/
 open /Applications/Docker.app/
 open /Applications/Muzzle.app/
 open /Applications/Rectangle.app/
+open /Applications/Firefox.app/ # Required for certificate creation to work
 
 read -pr "Wait for Dropbox (For ~/Dropbox/.ssh)"

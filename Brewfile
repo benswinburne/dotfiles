@@ -17,7 +17,8 @@ cask "spotify"
 cask "transmission"
 cask "discord"
 cask "iterm2"
-cask "private-internet-access", args: ["no-quarantine"]
+cask "private-internet-access"
+# cask "private-internet-access", args: { no_quarantine: true }
 cask "signal"
 cask "alfred"
 cask "rectangle" # window management app

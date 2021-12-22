@@ -151,7 +151,7 @@ brew "tsung" # Load testing for http
 brew "goaccess" # Http log viewer
 
 # Node related
-brew "node@14"
+brew "node@14", link: true
 brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
 

@@ -115,3 +115,5 @@
 #	insteadOf = https://github.com/
 [commit]
 	gpgsign = true
+[init]
+	defaultBranch = master

@@ -4,25 +4,27 @@ source ~/.dotfiles/Setup/sudo-no-root
 
 echo "Installing Yarn Global Packages"
 
-yarn global add bundle-phobia-cli \
-  eslint_d \
-  package-size \
-  fixjson \
-  dynamodb-admin \
-  htmlhint \
-  dockerfile-language-server-nodejs \
+yarn global add \
+  aws-cdk \
   bash-language-server \
   bitly-cli-client \
+  bundle-phobia-cli \
+  cfn-lint \
   create-react-app \
   cubejs-cli \
+  dockerfile-language-server-nodejs \
+  dynamodb-admin \
   dynamodump \
+  eslint_d \
+  fixjson \
   gzip-size-cli \
-  hs \
+  htmlhint \
+  http-server \
+  http-status-identifier-cli \ # http status codes
   intelephense \
+  node-gyp \
+  np \
   package-size \
+  release-it \
   remotedebug-ios-webkit-adapter \
-  yahoo-stocks-cli \
-  yalc \
-  aws-cdk \
-  zeromq \
-  node-gyp
+  uuid-cli

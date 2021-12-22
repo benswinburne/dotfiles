@@ -1,4 +1,5 @@
 # vi:syntax=ruby
+
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -10,44 +11,61 @@ tap "teamookla/speedtest"
 
 # General programs
 cask "bitwarden"
-cask "aerial"
-cask "alfred"
-cask "keepingyouawake"
 cask "dropbox"
+cask "slack"
+cask "spotify"
+cask "transmission"
+cask "discord"
+cask "iterm2"
+cask "private-internet-access"
+cask "signal"
+cask "alfred"
+cask "rectangle" # window management app
+
+# Video
+cask "vlc"
+cask "airflow" # cast anything to chromecast
+cask "handbrake"
+
+# Design tools
+cask "affinity-designer"
+cask "affinity-photo"
+
+# Browsers
 cask "google-chrome"
 cask "firefox"
 cask "microsoft-edge"
-cask "slack"
-cask "rectangle" # window management app
-cask "spotify"
-cask "muzzle" # auto disable notifications
-cask "fanny" # fan/cpu monitoring widget
-cask "sublime-text"
-cask "transmission"
-cask "discord"
-# cask "gimp"
-# cask "vectr" # graphics
-cask "flux"
-cask "iterm2"
-cask "private-internet-access"
-cask "handbrake"
-cask "dozer" # Tool to hide status bar icons
-cask "signal"
-cask "keepingyouawake" # don't let screen sleep
 
-cask "vlc"
-cask "now-tv-player"
-cask "airflow" # cast anything to chromecast
-
-# cask "qlstephen" # preview textfiles without extensions
-# cask "qlmarkdown" # preview markdown
-# cask "quicklook-json" # preview json
-# cask "logitech-g-hub"
+# Mac OS tools
+cask "aerial" # screensaver
+brew "duti" # Required for setting preferences
+brew "tccutil" # Required for setting preferences
+brew "trash" # CLI tool that moves files or folder to the trash
+brew "wifi-password" # Show the current WiFi network password
 cask "macmediakeyforwarder" # fix media keys / prioritise spotify
+cask "keepingyouawake" # don't let screen sleep
+cask "dozer" # Tool to hide status bar icons
+cask "muzzle" # auto disable notifications
+cask "flux" # brightness / yellowness by time/location
+
+# QuickLook plugins
+cask "qlcolorcode" # renders source code with syntax highlighting
+cask "qlmarkdown" # preview markdown
+cask "qlstephen" # preview textfiles without extensions
+# cask "webpquicklook"
+cask "quicklook-json" # preview json
+
+# Color Picker plugins
+cask "colorpicker-skalacolor"
+
+# Shells
+# Note: Don't forget to add shells to `/etc/shells` before running `chsh`.
+brew "bash"
+brew "bash-completion"
 
 # Dev Stuff
+cask "sublime-text"
 brew "act" # local github actions runner
-brew "bash"
 brew "coreutils"
 cask "postman"
 cask "tableplus"
@@ -56,27 +74,23 @@ cask "visual-studio-code"
 brew "tidy-html5"
 brew "mkcert"
 brew "nss" # for mkcert + firefox
-brew "jsonlint"
-
-cask "docker"
-brew "docker-credential-helper-ecr"
-brew "lazydocker" # docker cli
-brew "dive" # docker layer cli
 brew "pulumi"
-cask "gpg-tools"
 cask "pop" # remote pair programming
 cask "gpg-suite" # gpg signing tools
 brew "openjdk"
 brew "ruby"
 brew "terraform"
 
+# Docker tools
+cask "docker"
+brew "docker-credential-helper-ecr"
+brew "lazydocker" # docker cli
+brew "dive" # docker layer cli
+
+# Arduinotools
 cask "arduino"
 brew "arduino-cli"
 brew "astyle" # formatter
-
-# cask "sequel-pro"
-# cask "homebrew/cask-versions/sequel-pro-nightly"
-# cask "botframework-emulator"
 
 # PHP
 brew "php@7.4", restart_service: :changed
@@ -86,13 +100,14 @@ brew "composer"
 # Linters
 brew "hadolint" # docker
 brew "shellcheck" # shell
+brew "jsonlint" # json
+brew "yamllint" # yaml
+brew "xmlstarlet" # includes xmllint
 
 # Terminal Utilities
 brew "reattach-to-user-namespace"
-brew "bash-completion"
 brew "jq"
 brew "ansiweather"
-brew "duti"
 cask "outset"
 brew "fzf"
 brew "hub"
@@ -112,13 +127,11 @@ brew "wget"
 brew "z"
 brew "watch"
 cask "ngrok"
-brew "yamllint"
 brew "http-server"
 brew "speedtest"
 brew "bat"
 brew "exa"
 brew "dog"
-brew "xmlstarlet" # includes xmllint
 
 # Aws
 brew "awscli"
@@ -136,22 +149,17 @@ brew "siege"
 brew "tsung" # Load testing for http
 brew "goaccess" # Http log viewer
 
-# Java
-cask "java"
-# cask "java8"
+# Preference Panes
+cask "hosts"
 
 # Node related
 brew "node@14"
-# brew "node@8", link: true
 brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
 
-# Python
-# brew "python"
+# Languages
 brew "python@3.9"
-# brew "python@2"
-
-# Go
+brew "java"
 brew "go"
 
 # Services
@@ -163,11 +171,7 @@ brew "nginx", restart_service: :changed
 
 
 # Uncategorised
-# -------------
-#
 # brew "weechat", args: ["with-aspell", "with-lua", "with-perl", "with-python@2"]
-# brew "zeromq" # ???
-# cask "flash-npapi" # Flashplayer
 
 # Fonts
 # cask "font-hack-nerd-font"
@@ -185,9 +189,4 @@ mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
-# mas "Spark – Email App by Readdle", id: 1176895641
-
-# mas "ColorSlurp", id: 1287239339
-# mas "GarageBand", id: 682658836
-# mas "iMovie", id: 408981434
-
+mas "iMazing HEIC Converter", id: 1292198261

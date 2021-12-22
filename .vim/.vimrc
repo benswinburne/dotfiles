@@ -268,7 +268,7 @@ let g:coc_snippet_next = '<tab>'
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -314,7 +314,7 @@ let g:jsdoc_allow_input_prompt = 1
 " ----------------------
 map <leader>X :VimuxPromptCommand<CR>
 map <leader>x :VimuxRunLastCommand<CR>
-map <leader>t :call VimuxRunCommand("!!")<CR>
+" map <leader>t :call VimuxRunCommand("!!")<CR>
 " map <leader>r :!refchrome<CR>
 
 " Multiple cursors
@@ -367,11 +367,14 @@ let g:ale_fixers = {
 \   'typescript': ['prettier', 'eslint'],
 \   'typescriptreact': ['prettier', 'eslint'],
 \   'json': ['fixjson'],
+\   'jsonc': ['fixjson'],
 \   'blade': ['prettier'],
 \   'yaml': ['prettier'],
 \   'php': ['prettier'],
 \   'html': ['tidy', 'prettier'],
 \   'arduino': ['astyle'],
+\   'python': ['yapf'],
+\   'xml': ['xmllint'],
 \}
 
 let g:ale_linter_aliases = {
@@ -518,8 +521,8 @@ augroup END
 
 " This prevents syntax hilighting breaking on templatte strings
 " when part of bigger files. Can slow vim down quite a bit though
-autocmd BufEnter *.{js,ts,jsx,tsx,scss} :syntax sync fromstart
-autocmd BufLeave *.{js,ts,jsx,tsx,scss} :syntax sync clear
+autocmd BufEnter *.{js,ts,jsx,tsx,scss,html} :syntax sync fromstart
+autocmd BufLeave *.{js,ts,jsx,tsx,scss,html} :syntax sync clear
 
 " nmap <silent> <C-c> <Plug>(coc-cursors-position)
 " nmap <silent> <C-d> <Plug>(coc-cursors-word)

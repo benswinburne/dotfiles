@@ -35,6 +35,7 @@ Plug 'AndrewRadev/switch.vim' " toggles for booleans etc
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab'
 Plug 'Shougo/echodoc.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'sakshamgupta05/vim-todo-highlight'
 
 " Tmux
 Plug 'benmills/vimux'

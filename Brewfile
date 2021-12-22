@@ -52,6 +52,7 @@ cask "visual-studio-code"
 brew "tidy-html5"
 brew "mkcert"
 brew "nss" # for mkcert + firefox
+brew "jsonlint"
 
 cask "docker"
 brew "docker-credential-helper-ecr"

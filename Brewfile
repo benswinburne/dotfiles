@@ -17,7 +17,7 @@ cask "spotify"
 cask "transmission"
 cask "discord"
 cask "iterm2"
-cask "private-internet-access"
+cask "private-internet-access", args: ["no-quarantine"]
 cask "signal"
 cask "alfred"
 cask "rectangle" # window management app
@@ -148,9 +148,6 @@ brew "httpie"
 brew "siege"
 brew "tsung" # Load testing for http
 brew "goaccess" # Http log viewer
-
-# Preference Panes
-cask "hosts"
 
 # Node related
 brew "node@14"

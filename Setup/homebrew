@@ -9,6 +9,10 @@ if ! command -v brew >/dev/null 2>&1; then
   	"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# now OSX defaults to zsh, and it's not in our path yet
+# echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/ben/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # HOMEBREW_NO_AUTO_UPDATE=1
 echo "Installing Homebrew Bundle"
 brew bundle

@@ -19,7 +19,6 @@ yarn global add \
   fixjson \
   gzip-size-cli \
   htmlhint \
-  http-server \
   http-status-identifier-cli \ # http status codes
   intelephense \
   node-gyp \

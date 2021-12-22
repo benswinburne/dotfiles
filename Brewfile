@@ -31,6 +31,9 @@ cask "flux"
 cask "iterm2"
 cask "private-internet-access"
 cask "handbrake"
+cask "dozer" # Tool to hide status bar icons
+cask "signal"
+cask "keepingyouawake" # don't let screen sleep
 
 cask "vlc"
 cask "now-tv-player"
@@ -43,6 +46,7 @@ cask "airflow" # cast anything to chromecast
 cask "macmediakeyforwarder" # fix media keys / prioritise spotify
 
 # Dev Stuff
+brew "act" # local github actions runner
 brew "bash"
 brew "coreutils"
 cask "postman"
@@ -59,9 +63,12 @@ brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
 brew "pulumi"
-brew "python"
 cask "gpg-tools"
 cask "pop" # remote pair programming
+cask "gpg-suite" # gpg signing tools
+brew "openjdk"
+brew "ruby"
+brew "terraform"
 
 cask "arduino"
 brew "arduino-cli"
@@ -72,7 +79,7 @@ brew "astyle" # formatter
 # cask "botframework-emulator"
 
 # PHP
-brew "php", restart_service: :changed
+brew "php@7.4", restart_service: :changed
 brew "mcrypt"
 brew "composer"
 
@@ -111,6 +118,7 @@ brew "speedtest"
 brew "bat"
 brew "exa"
 brew "dog"
+brew "xmlstarlet" # includes xmllint
 
 # Aws
 brew "awscli"
@@ -133,13 +141,14 @@ cask "java"
 # cask "java8"
 
 # Node related
-brew "node"
+brew "node@14"
 # brew "node@8", link: true
 brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
 
 # Python
-brew "python"
+# brew "python"
+brew "python@3.9"
 # brew "python@2"
 
 # Go
@@ -157,8 +166,8 @@ brew "nginx", restart_service: :changed
 # -------------
 #
 # brew "weechat", args: ["with-aspell", "with-lua", "with-perl", "with-python@2"]
-brew "zeromq" # ???
-cask "flash-npapi" # Flashplayer
+# brew "zeromq" # ???
+# cask "flash-npapi" # Flashplayer
 
 # Fonts
 # cask "font-hack-nerd-font"
@@ -175,7 +184,8 @@ mas "Keynote", id: 409183694
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Spark – Email App by Readdle", id: 1176895641
+mas "Xcode", id: 497799835
+# mas "Spark – Email App by Readdle", id: 1176895641
 
 # mas "ColorSlurp", id: 1287239339
 # mas "GarageBand", id: 682658836

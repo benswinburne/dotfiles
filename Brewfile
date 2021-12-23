@@ -188,3 +188,4 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
 mas "iMazing HEIC Converter", id: 1292198261
+mas "Irvue", id: 1039633667

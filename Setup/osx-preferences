@@ -93,7 +93,16 @@ sudo pmset -a hibernatemode 0
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true # trackpad
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true # bluetooth trackpad
 defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton # right click
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerHorizSwipeGesture -int 0
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1 # tap to click at login screen
+
+# single finger swipe left
+defaults write "com.apple.AppleMultitouchMouse" "MouseTwoFingerHorizSwipeGesture" '0'
+defaults write "Apple Global Domain" "AppleEnableMouseSwipeNavigateWithScrolls" '1'
+
+# don't open mission control with tap two fingers
+defaults write "com.apple.driver.AppleBluetoothMultitouch.mouse" "MouseTwoFingerDoubleTapGesture" '0'
+defaults write "com.apple.AppleMultitouchMouse" "MouseTwoFingerDoubleTapGesture" '0'
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

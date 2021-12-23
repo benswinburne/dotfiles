@@ -93,6 +93,9 @@
 [user]
 	name = benswinburne
 	email = ben.swinburne@gmail.com
+  # gpg --import my_public_key.gpg
+  # gpg --allow-secret-key-import --import my_private_key.gpg
+	signingkey = 9483B3A8189BBCED
 [push]
 	default = tracking
 [filter "hawser"]

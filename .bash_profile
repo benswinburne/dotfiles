@@ -4,6 +4,8 @@ export PATH=$HOME/.dotfiles/scripts:$PATH
 
 BREW_PREFIX=$(brew --prefix)
 
+export GPG_TTY=$(tty)
+
 source ~/.dotfiles/bash/colours
 
 # PHP

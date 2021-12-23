@@ -26,3 +26,5 @@ if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
 mkdir -p ~/Dropbox/.aws
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
 
+mkdir -p ~/Dropbox/.gnupg
+if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Dropbox/.gnupg ~/.gnupg; fi

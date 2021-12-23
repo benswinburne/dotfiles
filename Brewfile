@@ -78,6 +78,7 @@ brew "nss" # for mkcert + firefox
 brew "pulumi"
 cask "pop" # remote pair programming
 cask "gpg-suite" # gpg signing tools
+brew "gnupg" # gpg https://samuelsson.dev/sign-git-commits-on-github-with-gpg-in-macos/
 brew "openjdk"
 brew "ruby"
 brew "terraform"

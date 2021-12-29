@@ -394,6 +394,12 @@ ln -sf ~/.dotfiles/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences
 # Rectangle
 # defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 
+# Unquarantine Quicklook application
+sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator
+sudo xattr -cr ~/Library/QuickLook/*.qlgenerator
+qlmanage -r
+qlmanage -r cache
+
 # Kill affected applications
 # --------------------------
 

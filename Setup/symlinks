@@ -28,3 +28,6 @@ if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
 
 mkdir -p ~/Dropbox/.gnupg
 if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Dropbox/.gnupg ~/.gnupg; fi
+
+# Tokens
+ln -sf ~/Dropbox/.envtokens ~/.envtokens;

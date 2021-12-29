@@ -6,7 +6,8 @@ BREW_PREFIX=$(brew --prefix)
 
 export GPG_TTY=$(tty)
 
-source ~/.dotfiles/bash/colours
+. ~/.envtokens
+. ~/.dotfiles/bash/colours
 
 # PHP
 # export PATH=~/.composer/vendor/bin:$PATH

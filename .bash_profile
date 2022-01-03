@@ -1,8 +1,13 @@
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/usr/local/homebrew/opt/openjdk/bin:$PATH"
 export PATH=$HOME/.dotfiles/scripts:$PATH
 
 BREW_PREFIX=$(brew --prefix)
+
+alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
 export GPG_TTY=$(tty)
 

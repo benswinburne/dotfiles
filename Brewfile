@@ -158,7 +158,7 @@ brew "yarn-completion"
 
 # Languages
 brew "python@3.9"
-brew "java"
+# brew "java" # installed manually in x86 arch
 brew "go"
 
 # Services

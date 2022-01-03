@@ -22,6 +22,7 @@ source ~/.dotfiles/Setup/osx-finder-shortcuts
 # sudo /usr/local/opt/mysql/bin/mysql.server stop
 # sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop
 sudo mysqladmin shutdown
+sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 
 # This repo
 echo "Setting remote URL for this dotfiles repo"

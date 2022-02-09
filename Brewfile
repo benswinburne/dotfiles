@@ -155,6 +155,7 @@ brew "goaccess" # Http log viewer
 brew "node@14", link: true
 brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
+brew "watchman" # makes node watcher (jest watch) work well
 
 # Languages
 brew "python@3.9"

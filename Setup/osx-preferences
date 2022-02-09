@@ -396,9 +396,13 @@ ln -sf ~/.dotfiles/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences
 
 # Unquarantine Quicklook application
 sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator
+sudo xattr -cr ~/Library/QuickLook/QLColorCode.qlgenerator
+sudo xattr -cr ~/Library/QuickLook/QuickLookJSON.qlgenerator
 sudo xattr -cr ~/Library/QuickLook/*.qlgenerator
 qlmanage -r
 qlmanage -r cache
+
+sudo xattr -cr /Applications/MacMediaKeyForwarder.app
 
 # Kill affected applications
 # --------------------------

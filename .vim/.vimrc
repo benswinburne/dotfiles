@@ -470,9 +470,9 @@ let g:lightline#ale#indicator_ok = ""
 " -------------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-nmap <silent> mn <Plug>(coc-bookmark-next)
-nmap <silent> mp <Plug>(coc-bookmark-prev)
-nmap <silent> mm <Plug>(coc-bookmark-toggle)
+" nmap <silent> mn <Plug>(coc-bookmark-next)
+" nmap <silent> mp <Plug>(coc-bookmark-prev)
+" nmap <silent> mm <Plug>(coc-bookmark-toggle)
 
 " vim-bookmarks
 " -------------------

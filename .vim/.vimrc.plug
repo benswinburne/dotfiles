@@ -24,7 +24,7 @@ Plug 'romainl/vim-cool' " search highlighting tweaks
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ap/vim-buftabline' " buffer list at top of window
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'MattesGroeger/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -70,7 +70,7 @@ Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 
 " Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'wix/import-cost', {'do': 'yarn install --frozen-lockfile'}

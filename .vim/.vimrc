@@ -107,6 +107,7 @@ set autoindent          " autoindent lines
 set copyindent          " copy the indentation on autoindenting
 
 nmap <leader><tab> :retab<cr>
+" replace tabs with spaces
 nmap <leader>tts :%s/\t/    /g
 
 " UI Config
@@ -334,6 +335,7 @@ highlight clear ALEWarningSign
 let g:ale_echo_msg_format = '%s [%severity%%/code%]'
 nnoremap <leader>af :ALEFix<cr>
 nnoremap <leader>ad :ALEDetail<cr>
+" typescript
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
 

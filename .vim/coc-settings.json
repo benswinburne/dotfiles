@@ -22,21 +22,24 @@
       "cd"
     ]
   },
-  "git.enableGlobalStatus": false,
   "explorer.position": "right",
-  "explorer.autoCollapseChildren": false,
-  "explorer.file.tabCD": false,
   "explorer.previewAction.onHover": false,
   "explorer.width": 40,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
   "typescript.suggestionActions.enabled": false,
   "typescript.suggest.enabled": false,
-  "typescript.validate.enable": false,
-  "typescript.format.enabled": false,
+  "typescript.validate.enable": true,
   "javascript.suggest.enabled": false,
   "javascript.validate.enable": false,
+  "diagnostic.enableMessage": "never",
   "diagnostic.displayByAle": true,
+  "inlayHint.display": false,
+  "inlayHint.enable": false,
+  "intelephense.diagnostics.enable": true,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextCurrentLineOnly": true,
   "snippets.loadFromExtensions": true,
   "snippets.extends": {
     "javascriptreact": [
@@ -49,10 +52,10 @@
       "javascript"
     ]
   },
-  "_coc.preferences.hoverTarget": "float",
+  "phpls.path": "/Users/ben/.npm-packages/bin/intelephense",
+  "phpls.enable": true,
   "suggest.timeout": 500,
-  "suggest.echodocSupport": true,
-  "suggest.noselect": false,
+  "suggest.noselect": true,
   "suggest.maxCompleteItemCount": 30,
   "languageserver": {
     "dockerfile": {
@@ -65,11 +68,16 @@
       ]
     }
   },
-  "tsserver.formatOnType": false,
-  "tsserver.disableAutomaticTypeAcquisition": true,
-  "tsserver.watchOptions": {
-    "watchFile": "useFsEvents",
-    "fallbackPolling": "dynamicPriorityPolling"
-  },
-  "intelephense.licenceKey": "~/Dropbox/.private/intelephense.txt"
+  "intelephense.licenceKey": "~/Dropbox/.private/intelephense.txt",
+  "intelephense.environment.phpVersion": "8.3.0",
+  "yaml.customTags": [
+    "!env_var scalar",
+    "!include_dir_list scalar",
+    "!include_dir_merge_list scalar",
+    "!include_dir_merge_named scalar",
+    "!include_dir_named scalar",
+    "!include scalar",
+    "!secret scalar"
+  ],
+  "tsserver.tsdk": "/Users/ben/.config/yarn/global/node_modules/typescript/lib"
 }

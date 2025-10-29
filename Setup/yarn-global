@@ -9,7 +9,6 @@ yarn global add \
   bash-language-server \
   bundle-phobia-cli \
   cfn-lint \
-  create-react-app \
   cubejs-cli \
   dockerfile-language-server-nodejs \
   dynamodb-admin \
@@ -17,6 +16,7 @@ yarn global add \
   eslint_d \
   fixjson \
   gzip-size-cli \
+  hs \
   htmlhint \
   http-status-identifier-cli \
   intelephense \
@@ -25,4 +25,5 @@ yarn global add \
   package-size \
   release-it \
   remotedebug-ios-webkit-adapter \
-  uuid-cli
+  uuid-cli \
+  bitly-client

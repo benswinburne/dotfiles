@@ -102,6 +102,9 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 " Plug 'groenewege/vim-less', { 'for': ['less'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
+" Plug 'lepture/vim-jinja'
+Plug 'nextmn/vim-yaml-jinja'
+" Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Node
 Plug 'moll/vim-node', { 'for': ['javascript', 'jsx', 'javascript.jsx'] }
@@ -167,5 +170,9 @@ Plug 'tpope/vim-fugitive'
 
 " Arduino
 Plug 'stevearc/vim-arduino'
+
+" Codeium
+Plug 'Exafunction/codeium.vim'
+
 
 call plug#end()

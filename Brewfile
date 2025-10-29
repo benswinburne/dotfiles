@@ -48,6 +48,16 @@ cask "keepingyouawake" # don't let screen sleep
 cask "dozer" # Tool to hide status bar icons
 cask "muzzle" # auto disable notifications
 cask "flux" # brightness / yellowness by time/location
+cask "imazing-converter" # HEIC converter
+brew "clocker" # taskbar clock
+cask "tripmode"
+# cask "pop-app"
+cask "obs" # streaming software
+cask "nordvpn" # vpn
+cask "kap" # screenshoter
+cask "balenaetcher" # iso writer
+cask "beardedspice" # media key forwarder
+cask "jordanbaird-ice" # taskbar manager
 
 # QuickLook plugins
 cask "qlcolorcode" # renders source code with syntax highlighting
@@ -71,6 +81,7 @@ brew "coreutils"
 cask "postman"
 cask "tableplus"
 brew "vim"
+brew "neovim"
 cask "visual-studio-code"
 brew "tidy-html5"
 brew "mkcert"
@@ -82,9 +93,12 @@ brew "gnupg" # gpg https://samuelsson.dev/sign-git-commits-on-github-with-gpg-in
 brew "openjdk"
 brew "ruby"
 brew "terraform"
+brew "pwgen"
+brew "lazygit"
 
 # Docker tools
 cask "docker"
+cask "docker-desktop"
 brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
@@ -183,11 +197,11 @@ cask "font-meslo-lg-nerd-font"
 
 # This is at the bottom because if this exits because it's not signed in
 # then brew bundle exits without installing anything below
-mas "Clocker", id: 1056643111
+# mas "Clocker", id: 1056643111
 mas "Keynote", id: 409183694
-mas "Noizio", id: 928871589
+# mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
-mas "iMazing HEIC Converter", id: 1292198261
+# mas "iMazing HEIC Converter", id: 1292198261
 mas "Irvue", id: 1039633667

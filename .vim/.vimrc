@@ -6,7 +6,6 @@ source ~/.vim/.vimrc.plug
 set nobackup
 set noswapfile
 set hidden " Automatically set buffers as 'hidden' when navigating away
-set clipboard=unnamed " unnunamedplus
 set nocompatible              " be iMproved, required
 set updatetime=300 " More frequent updates for, e.g. signs.
 set ts=4 sw=4 et
@@ -84,6 +83,8 @@ set background=dark
 :silent! colorscheme $VIM_COLORSCHEME
 
 syntax enable " enable syntax processing
+autocmd! bufreadpost CHANGELOG.md set syntax=off
+autocmd! bufreadpost changelog.md set syntax=off
 
 " hi ColorColumn guibg=NONE ctermbg=19 " columns like line limit
 " hi Normal guibg=NONE ctermbg=NONE " No background
@@ -108,7 +109,7 @@ set copyindent          " copy the indentation on autoindenting
 
 nmap <leader><tab> :retab<cr>
 " replace tabs with spaces
-nmap <leader>tts :%s/\t/    /g
+nmap <leader>ts :%s/\t/    /g
 
 " UI Config
 " ----------------------
@@ -246,25 +247,36 @@ endif
 " -------------------------------
 
 " Use tab for trigger completion with characters ahead and navigate.
+" inoremap <silent><expr> <TAB>
+"   \ pumvisible() ? coc#_select_confirm() :
+"   \ coc#expandableOrJumpable() ?
+"   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ coc#refresh()
+
+" inoremap <silent><expr> <C-o>
+"   \ pumvisible() ? coc#_select_confirm() :
+"   \ coc#expandableOrJumpable() ?
+"   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"   \ <SID>check_back_space() ? "\<TAB>" :
+"   \ coc#refresh()
+
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ?
-  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+    \ coc#pum#visible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ?
+    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ CheckBackspace() ? "\<TAB>" :
+    \ coc#refresh()
 
-inoremap <silent><expr> <C-o>
-  \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ?
-  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 let g:coc_snippet_next = '<tab>'
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
@@ -342,14 +354,16 @@ nnoremap <leader>ad :ALEDetail<cr>
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
+" let g:ale_yaml_prettier_options = '--no-bracket-spacing'
 let g:ale_php_phpstan_executable = './vendor/bin/phpstan'
+let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'scss-lint', 'stylelint'],
 \   'less': ['prettier', 'stylelint'],
-\   'javascript': ['eslint', 'stylelint'],
-\   'jsx': ['eslint', 'stylelint'],
+\   'javascript': ['biome', 'eslint', 'stylelint'],
+\   'jsx': ['biome', 'eslint', 'stylelint'],
 \   'sh': ['shellcheck'],
 \   'Dockerfile': ['hadolint'],
 \   'blade': ['htmlhint', 'prettier'],
@@ -358,6 +372,7 @@ let g:ale_linters = {
 \   'php': ['php'],
 \   'yaml': ['yamllint'],
 \}
+" \   'yaml-jinja': ['biome', 'yamllint'],
 
 " \   'php': ['php', 'langserver', 'phpcs', 'phpmd'],
 
@@ -365,22 +380,25 @@ let g:ale_fixers = {
 \   'css': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
 \   'less': ['prettier', 'stylelint'],
-\   'javascript': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'eslint'],
-\   'typescriptreact': ['prettier', 'eslint'],
+\   'javascript': ['prettier', 'biome', 'eslint'],
+\   'typescript': ['prettier', 'biome', 'eslint'],
+\   'javascriptreact': ['prettier', 'biome', 'eslint'],
+\   'typescriptreact': ['prettier', 'biome', 'eslint'],
 \   'json': ['fixjson'],
 \   'jsonc': ['fixjson'],
 \   'blade': ['prettier'],
-\   'yaml': ['prettier'],
+\   'yaml': ['biome', 'prettier'],
+\   'yaml-jinja': ['biome', 'prettier'],
 \   'php': ['prettier'],
 \   'html': ['tidy', 'prettier'],
 \   'arduino': ['astyle'],
 \   'python': ['yapf'],
-\   'xml': ['xmllint'],
+\   'xml': [],
 \}
 
 let g:ale_linter_aliases = {
 \ 'javascript': ['css'],
+\ 'javascriptreact': ['css'],
 \ 'typescriptreact': ['typescript'],
 \ 'jsx': ['css']
 \}
@@ -403,14 +421,15 @@ let g:ale_linter_aliases = {
 " let g:explorer.file.showHiddenFiles
 
 " map <leader>nt :NERDTreeToggle<CR>
-nmap <leader>nt :CocCommand explorer<CR>
+" nmap <leader>nt :CocCommand explorer<CR>
+nmap <leader>nt <Cmd>CocCommand explorer --toggle<CR>
 map <D-1> :NERDTreeToggle<CR>
 
 " explorer.vim
-" let g:coc_explorer = {
-" \   "explorer.icon.enableNerdfont": v:true,
-" \   "explorer.file.showHiddenFiles": v:true,
-" \ }
+let g:coc_explorer = {
+\   "explorer.icon.enableNerdfont": v:true,
+\   "explorer.file.showHiddenFiles": v:true,
+\ }
 
 " let g:coc_user_config = g:coc_explorer
 
@@ -578,3 +597,30 @@ nnoremap <leader>au :ArduinoUpload<CR>
 " let g:arduino_upload_tmux = ''
 " let g:arduino_cmd = 'arduno-cli'
 " let g:arduino_dir = '/Applications/Arduino.app/Contents/Java/'
+"
+" Jinja
+"
+" au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.yml,*.yaml set ft=jinja
+" autocmd BufNewFile,BufRead *.yaml,*.yml set ft=yaml-jinja
+" autocmd FileType yaml-jinja setlocal commentstring=#\ %s
+
+" Codeium
+let g:codeium_disable_bindings = 1
+let g:codeium_no_map_tab = 1
+imap <script><silent><nowait><expr> <C-h> codeium#Accept()
+imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+
+" Clipboard helpers
+" set clipboard=unnamed " unnunamedplus
+vmap <leader>y "*y
+vmap <leader>v "*p
+nmap <leader>v "*p
+
+" nmap <leader>v <esc>"+p`]a
+" vmap <leader>y :w !pbcopy<CR><CR>
+" vmap <leader>cp :r !pbpaste<CR><CR>
+" nmap <leader>cp :r !pbpaste<CR><CR>
+
+" vnoremap <C-c> :w !pbcopy<CR><CR>
+" noremap <C-v> :r !pbpaste<CR><CR>

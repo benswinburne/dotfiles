@@ -4,8 +4,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/homebrew/opt/openjdk/bin:$PATH"
 export PATH=$HOME/.dotfiles/scripts:$PATH
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 BREW_PREFIX=$(brew --prefix)
+HOMEBREW_NO_AUTO_UPDATE=0
+HOMEBREW_NO_ENV_HINTS=1
 
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
@@ -15,7 +18,7 @@ export GPG_TTY=$(tty)
 . ~/.dotfiles/bash/colours
 
 # PHP
-# export PATH=~/.composer/vendor/bin:$PATH
+export PATH=~/.composer/vendor/bin:$PATH
 
 export COMPOSER_MEMORY_LIMIT=-1
 
@@ -23,10 +26,19 @@ tinker()  { php artisan tinker; }
 artisan() { php artisan "$@"; }
 mrs()     { php artisan migrate:fresh --seed; }
 phpunit() { vendor/bin/phpunit "$@"; }
-phpunit_watch() { vendor/bin/phpunit-watcher watch "$@"; }
+# phpunit_watch() { vendor/bin/phpunit-watcher watch "$@"; }
+phpunit_watch() { phpunit-watcher watch "$@"; }
 pest()    { vendor/bin/pest "$@"; }
 doc()     { docker-compose "$@"; }
 alias phpunit-watch='phpunit_watch'
+alias pbcopynl='xargs echo -n | pbcopy' # https://stackoverflow.com/a/3482322/769237
+alias pbc='xargs echo -n | pbcopy' # https://stackoverflow.com/a/3482322/769237
+# random_string() { openssl rand -hex "${@:-12}"; }
+random_string() { pwgen "${@:-24}" 1; }
+rdm() { pwgen "${@:-24}" 1; }
+bitly() { bitly-client "$@"; }
+shorturl() { bitly-client "$@"; }
+tinyurl() { bitly-client "$@"; }
 
 # Go
 export GOPATH=$HOME/go
@@ -38,6 +50,7 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=${HOME}/.npm-packages/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
 export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+export NODE_NO_WARNINGS=1
 
 # Python
 export PATH=${HOME}/Library/Python/3.9/bin:$PATH
@@ -52,10 +65,10 @@ function cd {
   command cd "$@";
 }
 
-function bundlephobia { bundle-phobia "$@"; }
+bundlephobia() { bundle-phobia "$@"; }
 
 # function tinker  { php artisan tinker; }
-function ace { node ace "$@"; }
+ace() { node ace "$@"; }
 # function mrs {
 #   ace migration:rollback --batch 0;
 #   ace migration:run;
@@ -105,29 +118,31 @@ function playground { cd ~/Sites/playground || return; }
 function dotfiles   { cd ~/.dotfiles || return; }
 
 # Utilities
-function g        { git "$@"; }
-function nah      { git reset --hard && git clean -df; }
-function ip       { curl ident.me; echo; }
-function localip  { ipconfig getifaddr en0 ; }
-function dict     { open "dict://$*"; }
-function mkd      { mkdir -p "$@" && cd "$@" || return; }
+g()        { git "$@"; }
+nah()      { git reset --hard && git clean -df; }
+ip()       { curl 4.ident.me; echo; }
+localip()  { ipconfig getifaddr en0 ; }
+dict()     { open "dict://$*"; }
+mkd()      { mkdir -p "$@" && cd "$@" || return; }
 # function grep     { command grep --color=auto "$@" ; }
 # function tunnel   { ssh -D 8080 -C -N $argv ; }
 
-function restartaudio { sudo pkill coreaudiod; }
+restartaudio() { sudo pkill coreaudiod; }
+restartbluetooth() { sudo pkill bluetoothd; }
+
 
 # Homebrew
 function fix-brew { brew update; brew cleanup; brew cask cleanup; brew prune; }
 
 # Git branch details
-function parse_git_dirty() {
+parse_git_dirty() {
 	[[ $(git status 2> /dev/null |\
 	  tail -n1) != *"working tree clean"* ]] && echo " •"
 }
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null |\
-	  sed -e '/^[^*]/d' -e "s/* \\(.*\\)/\\1$(parse_git_dirty)/"
+parse_git_branch() {
+  git branch --no-color 2> /dev/null |\
+    sed -e '/^[^*]/d' -e "s/* \\(.*\\)/\\1$(parse_git_dirty)/"
 }
 
 prompt_prefix="λ"
@@ -183,3 +198,5 @@ export PULUMI_CONFIG_PASSPHRASE="pulumi"
 function covid { curl -s -L http://covid19.trackercli.com/"${*:-uk}"; }
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+. "$HOME/.local/bin/env"

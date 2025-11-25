@@ -1,0 +1,62 @@
+" hi ColorColumn guibg=NONE ctermbg=19 " columns like line limit
+" hi Normal guibg=NONE ctermbg=NONE " No background
+" hi VertSplit ctermbg=NONE guibg=NONE
+hi GitGutterAdd guibg=NONE ctermbg=NONE
+hi GitGutterChange guibg=NONE ctermbg=NONE
+hi GitGutterDelete guibg=NONE ctermbg=NONE
+hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
+" hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
+hi LineNr guibg=NONE ctermbg=NONE " transparent line numbers
+" hi CursorLine ctermbg=NONE " transparent cursor line
+
+" Vimux
+" ----------------------
+map <leader>X :VimuxPromptCommand<CR>
+map <leader>x :VimuxRunLastCommand<CR>
+" map <leader>t :call VimuxRunCommand("!!")<CR>
+
+https://github.com/rockerBOO/awesome-neovim
+
+QUICKFIX
+
+https://github.com/kevinhwang91/nvim-bqf
+https://github.com/yorickpeterse/nvim-pqf
+https://github.com/stevearc/quicker.nvim
+
+TYPESCRIPT
+
+https://github.com/dmmulroy/ts-error-translator.nvim
+https://github.com/dmmulroy/tsc.nvim
+
+EDITOR HELPERS
+
+https://github.com/tenxsoydev/tabs-vs-spaces.nvim
+https://github.com/folke/twilight.nvim
+https://github.com/qwavies/smart-backspace.nvim
+https://github.com/nocksock/do.nvim
+
+GIT
+
+https://github.com/StackInTheWild/headhunter.nvim
+https://github.com/yus-works/csc.nvim
+https://github.com/topaxi/pipeline.nvim
+https://github.com/f-person/git-blame.nvim
+https://github.com/sindrets/diffview.nvim
+
+IDEAS BUT PROB NOT
+
+https://github.com/olrtg/nvim-emmet
+https://github.com/ethanholz/nvim-lastplace
+https://github.com/kristijanhusak/vim-dadbod-ui
+https://github.com/nvim-treesitter/nvim-treesitter-context
+https://github.com/petertriho/nvim-scrollbar
+
+
+" Editor
+Plug 'stevearc/vim-arduino'
+
+idea
+> I use signcolumn=yes:1 for git gutter and change the line-number color for LSP
+errors, warning, info etc. That gives me a small signcolumn and the two don't
+compete against each other.
+

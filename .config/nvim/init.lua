@@ -1,0 +1,5 @@
+require("config.lazy")
+require("config.options")
+require("config.maps")
+require("config.autocmd")
+require("config.search")

@@ -22,6 +22,11 @@ export PATH=~/.composer/vendor/bin:$PATH
 
 export COMPOSER_MEMORY_LIMIT=-1
 
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"
+alias ovim="vim"
+
 tinker()  { php artisan tinker; }
 artisan() { php artisan "$@"; }
 mrs()     { php artisan migrate:fresh --seed; }

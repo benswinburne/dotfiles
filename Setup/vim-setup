@@ -9,3 +9,11 @@ mkdir -p ~/.vim
 ln -sf ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.vim ~/.vim
 vim -u ~/.vim/.vimrc.plug '+PlugUpdate' '+qall'
+
+
+# NeoVim
+echo "NeoVim & NeoVim Plugins"
+rm -rf ~/.config/nvim
+ln -sf ~/.dotfiles/.config/nvim ~/.config
+
+nvim --headless -u ~/.config/nvim/init.lua '+Lazy! sync' '+qall'

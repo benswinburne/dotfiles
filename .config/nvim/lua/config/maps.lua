@@ -46,3 +46,14 @@ vim.keymap.set("n", "k", "gk", {})
 vim.keymap.set("v", "<leader>y", '"*y', {})
 vim.keymap.set("v", "<leader>v", '"*p', {})
 vim.keymap.set("n", "<leader>v", '"*p', {})
+
+local neotree_command = require("neo-tree.command")
+
+-- edit neovim config
+vim.keymap.set("n", "<leader>ev", function()
+	vim.cmd("tabnew")
+	neotree_command.execute({
+		action = "show",
+		dir = vim.fn.expand("~/.config/nvim"),
+	})
+end, { desc = "Edit Nvim Config", silent = true })

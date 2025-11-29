@@ -80,7 +80,8 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "luasnip" },
-				{ name = "conventionalcommits" },
+				{ name = "codeium" },
+				-- { name = "conventionalcommits" },
 			}, {
 				{ name = "buffer" },
 				{ name = "path" },

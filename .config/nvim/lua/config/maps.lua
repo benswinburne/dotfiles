@@ -30,14 +30,6 @@ vim.keymap.set("n", "<leader>ts", ":%s/\t/    /g", { silent = true })
 -- select text that was just pasted
 vim.keymap.set("n", "<leader>v", "V`]", { silent = true })
 
--- Buffer navigation
-vim.keymap.set("n", "qq", ":bd<CR>", {}) -- close current buffer
-vim.keymap.set("n", "<leader>bd", ":bufdo bd<CR>", {}) -- close all buffers
-vim.keymap.set("n", "<tab>", ":bnext<CR>", { silent = true }) -- Use tab to move to next buffer
-vim.keymap.set("n", "<s-tab>", ":bprevious<CR>", { silent = true }) -- use shift-tab to move to prev buffer
-vim.keymap.set("n", "<leader><leader>", "<c-^>", {}) -- Switch between last two files
-vim.keymap.set("n", "<leader>fp", ":cd %:p:h<CR>", {}) -- set pwd to that of current file/buffer
-
 -- Move by visual line
 vim.keymap.set("n", "j", "gj", {})
 vim.keymap.set("n", "k", "gk", {})

@@ -4,8 +4,6 @@ return {
 	config = function()
 		local lualine = require("lualine")
 
-		vim.opt.virtualedit = "all"
-
 		lualine.setup({
 			options = {
 				draw_empty_line_on_bg = true,

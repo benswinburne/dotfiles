@@ -79,8 +79,8 @@ set t_ut=
 let base16colorspace=256
 set background=dark
 " colorscheme forest-night
-" colorscheme base16-eighties
-:silent! colorscheme $VIM_COLORSCHEME
+colorscheme base16-eighties
+" :silent! colorscheme $VIM_COLORSCHEME
 
 syntax enable " enable syntax processing
 autocmd! bufreadpost CHANGELOG.md set syntax=off
@@ -93,7 +93,7 @@ hi GitGutterAdd guibg=NONE ctermbg=NONE
 hi GitGutterChange guibg=NONE ctermbg=NONE
 hi GitGutterDelete guibg=NONE ctermbg=NONE
 hi GitGutterChangeDelete guibg=NONE ctermbg=NONE
-" hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
+hi SignColumn guibg=NONE ctermbg=NONE " transparent gutter
 hi LineNr guibg=NONE ctermbg=NONE " transparent line numbers
 " hi CursorLine ctermbg=NONE " transparent cursor line
 
@@ -447,9 +447,9 @@ nmap <leader>Z :Goyo<cr>
 " Lightline
 " ----------------------
 " \  'colorscheme': 'forest_night',
-let g:lightline = {
-\  'colorscheme': 'base16',
-\ }
+let g:lightline = {}
+" \  'colorscheme': 'base16',
+" \ }
 
 let g:lightline.tabline = {
 \   'left': [ ['tabs'] ],

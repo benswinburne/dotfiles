@@ -18,6 +18,8 @@ return {
 			},
 		})
 
+		-- https://github.com/hrsh7th/nvim-cmp/discussions/1538
+		---@diagnostic disable-next-line:redundant-parameter
 		vim.diagnostic.config({
 			virtual_text = false,
 			signs = {

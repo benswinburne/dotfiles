@@ -1,4 +1,4 @@
-local global = vim.g
+-- local global = vim.g
 local o = vim.opt
 
 -- Editor options
@@ -24,7 +24,6 @@ o.showmatch = true -- When a bracket is inserted, briefly jump to the matching o
 -- o.inccommand = "split" -- When nonempty, shows the effects of :substitute, :smagic, :snomagic and user commands with the :command-preview flag as you type.
 o.splitright = true
 o.splitbelow = true -- When on, splitting a window will put the new window below the current one
-o.termguicolors = true
 o.colorcolumn = "80"
 o.undofile = true
 o.autoread = true -- If a file is changed outside of vim, automatically reload it without asking
@@ -45,7 +44,7 @@ o.copyindent = true -- copy the indentation on autoindenting
 -- o.foldlevelstart = 10 -- open most folds by default
 -- o.foldnestmax = 10 -- 10 nested fold max
 -- o.foldmethod = "indent" -- fold based on indent level
--- o.background = "dark"
+
 vim.g.editorconfig = true
 -- vim.opt.laststatus = 3
 vim.opt.cmdheight = 0

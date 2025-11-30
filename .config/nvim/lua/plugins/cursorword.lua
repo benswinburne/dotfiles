@@ -2,5 +2,6 @@
 return {
 	"sontungexpt/stcursorword",
 	event = "VeryLazy",
+	enabled = false,
 	config = true,
 }

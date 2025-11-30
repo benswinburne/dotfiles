@@ -10,9 +10,11 @@ if application "Spotify" is running then
     else
       if player state is paused then
         # set state to "ǁ ॥ "
-        set state to "॥ "
+        # set state to "॥ "
+        set state to " "
       else
-        set state to "▶ "
+        # set state to "▶ "
+        set state to " "
       end if
     end if
 

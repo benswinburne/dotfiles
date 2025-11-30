@@ -2,18 +2,28 @@ return {
 	"brenton-leighton/multiple-cursors.nvim",
 	version = "*",
 	enabled = true,
+	pre_hook = function()
+		require("nvim-autopairs").disable()
+	end,
+	post_hook = function()
+		require("nvim-autopairs").enable()
+	end,
 	config = function()
 		require("multiple-cursors").setup()
 
 		local mc = require("multiple-cursors")
 
 		vim.keymap.set({ "n", "x" }, "<C-n>", function()
-			mc.addJumpNextMatch()
+			mc.add_cursor_and_jump_to_next_match()
 		end, { desc = "Add cursor to word under cursor and jump to next match" })
 
-		vim.keymap.set({ "n", "x" }, "<C-S-n>", function()
-			mc.jumpPrevMatch()
-		end, { desc = "Add cursor to word under cursor and jump to previous match" })
+		vim.keymap.set({ "n", "x" }, "<C-b>", function()
+			mc.jump_to_previous_match()
+		end, { desc = "Jump to previous match" })
+
+		vim.keymap.set({ "n", "x" }, "<C-x>", function()
+			mc.jump_to_next_match()
+		end, { desc = "Jump to next match" })
 	end,
 }
 -- jake-stewart/multicursor.nvim actually seems like the better plugin, but it

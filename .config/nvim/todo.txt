@@ -60,3 +60,11 @@ idea
 errors, warning, info etc. That gives me a small signcolumn and the two don't
 compete against each other.
 
+
+stuff
+
+folke/flash.nvim
+
+https://github.com/j-hui/fidget.nvim
+https://github.com/Wansmer/treesj
+https://github.com/nvim-mini/mini.surround

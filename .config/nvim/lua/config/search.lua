@@ -9,6 +9,11 @@ local exclude = {
 	"CHANGELOG.md",
 }
 
+-- o.incsearch = true -- search as characters are entered
+vim.opt.hlsearch = true -- highlight matches
+vim.opt.ignorecase = true
+-- o.smartcase = true -- ignore case if search pattern is all lowercase, case-sensitive otherwise
+
 local function load_gitignore()
 	local gitignore_path = ".gitignore"
 	local file = io.open(gitignore_path, "r")
@@ -53,9 +58,11 @@ vim.keymap.set("n", "\\", ":Rg<space>", { silent = false })
 -- automatically open the quickfix window when searching
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	pattern = "[^l]*",
-	-- pattern = "*grep*",
 	callback = function()
+		local qf_list = vim.fn.getqflist()
+		-- if #qf_list > 0 then
 		vim.cmd("copen")
+		-- end
 	end,
 })
 

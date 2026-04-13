@@ -31,6 +31,7 @@ cask "handbrake"
 # Design tools
 cask "affinity-designer"
 cask "affinity-photo"
+cask "bambu-studio"
 
 # Browsers
 cask "google-chrome"

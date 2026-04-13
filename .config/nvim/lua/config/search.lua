@@ -55,14 +55,18 @@ vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 -- bind \ (backward slash) to grep shortcut
 vim.keymap.set("n", "\\", ":Rg<space>", { silent = false })
 
+-- vim.keymap.set("n", "\\", function()
+-- 	require("fzf-lua").live_grep()
+-- end, { silent = false })
+
 -- automatically open the quickfix window when searching
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	pattern = "[^l]*",
 	callback = function()
 		local qf_list = vim.fn.getqflist()
-		-- if #qf_list > 0 then
-		vim.cmd("copen")
-		-- end
+		if #qf_list > 0 then
+			vim.cmd("copen")
+		end
 	end,
 })
 

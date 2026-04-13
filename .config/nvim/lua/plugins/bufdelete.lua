@@ -11,10 +11,17 @@ return {
 	config = function()
 		local bd = require("bufdelete")
 
-		-- Buffer navigation
+		-- Close current buffer or qf/loclist window
 		vim.keymap.set("n", "qq", function()
-			bd.bufdelete(0, true)
-		end, { desc = "Close buffer while retaining window layout" }) -- close current buffer
+			local wininfo = vim.fn.getwininfo(vim.fn.win_getid())[1]
+			if wininfo.quickfix == 1 then
+				vim.cmd("cclose")
+			elseif wininfo.loclist == 1 then
+				vim.cmd("lclose")
+			else
+				bd.bufdelete(0, true)
+			end
+		end, { desc = "Close buffer/window while retaining layout" })
 
 		vim.keymap.set("n", "<leader>bd", function()
 			local buffers = vim.api.nvim_list_bufs()
@@ -24,17 +31,6 @@ return {
 				end
 			end
 		end, { desc = "Close all buffers while retaining window layout" })
-
-		-- vim.keymap.set("n", "<leader>bd", function()
-		--   local buffers = vim.api.nvim_list_bufs()
-		--   local to_delete = {}
-		--   for _, buf in ipairs(buffers) do
-		--     if vim.fn.buflisted(buf) == 1 then
-		--       table.insert(to_delete, buf)
-		--     end
-		--   end
-		--   bd.bufdelete(to_delete, true) -- force = true
-		-- end, {})
 
 		vim.keymap.set("n", "<tab>", ":bnext<CR>", {
 			silent = true,

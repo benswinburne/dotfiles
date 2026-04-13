@@ -12,6 +12,14 @@ return {
 		require("tiny-inline-diagnostic").setup({
 			preset = "simple", -- "modern", "classic", "minimal", "powerline", "ghost", "simple", "nonerdfont", "amongus"
 			options = {
+				show_related = {
+					enabled = true, -- Enable displaying related diagnostics
+					max_count = 3, -- Maximum number of related diagnostics to show per diagnostic
+				},
+				show_source = {
+					enabled = true, -- Enable showing source names
+					if_many = false, -- Only show source if multiple sources exist for the same diagnostic
+				},
 				multilines = {
 					enabled = false,
 				},

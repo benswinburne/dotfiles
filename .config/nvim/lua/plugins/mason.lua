@@ -48,6 +48,11 @@ return {
 				"docker-compose-language-service",
 				"docker-language-server",
 				"dockerfile-language-server",
+
+				-- go
+				"gopls",
+				"golangci-lint",
+				"golines",
 			},
 		})
 	end,

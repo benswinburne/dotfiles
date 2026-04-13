@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim'
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'mhartington/oceanic-next'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " Editor
 Plug 'tpope/vim-obsession' " continuously updated session files

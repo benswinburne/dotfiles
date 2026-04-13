@@ -25,6 +25,7 @@ o.showmatch = true -- When a bracket is inserted, briefly jump to the matching o
 o.splitright = true
 o.splitbelow = true -- When on, splitting a window will put the new window below the current one
 o.colorcolumn = "80"
+o.textwidth = 80
 o.undofile = true
 o.autoread = true -- If a file is changed outside of vim, automatically reload it without asking
 
@@ -48,3 +49,5 @@ o.copyindent = true -- copy the indentation on autoindenting
 vim.g.editorconfig = true
 -- vim.opt.laststatus = 3
 vim.opt.cmdheight = 0
+
+vim.opt.formatoptions:append("t")

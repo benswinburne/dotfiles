@@ -76,10 +76,11 @@ endif
 set t_Co=256
 set t_ut=
 
-let base16colorspace=256
-set background=dark
+" let base16colorspace=256
+" set background=dark
 " colorscheme forest-night
-colorscheme base16-eighties
+" colorscheme base16-eighties
+colorscheme catppuccin_frappe
 " :silent! colorscheme $VIM_COLORSCHEME
 
 syntax enable " enable syntax processing
@@ -447,9 +448,7 @@ nmap <leader>Z :Goyo<cr>
 " Lightline
 " ----------------------
 " \  'colorscheme': 'forest_night',
-let g:lightline = {}
-" \  'colorscheme': 'base16',
-" \ }
+let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 
 let g:lightline.tabline = {
 \   'left': [ ['tabs'] ],

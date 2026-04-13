@@ -5,7 +5,7 @@ return {
 			ignore_done_already = true,
 			ignore_empty_message = true,
 			display = {
-				done_ttl = 0,
+				done_ttl = 3,
 			},
 		},
 		notification = {

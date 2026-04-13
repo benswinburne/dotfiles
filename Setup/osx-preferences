@@ -433,8 +433,15 @@ launchctl disable gui/$UID/com.apple.photoanalysisd
 launchctl kill -TERM gui/$UID/com.apple.photoanalysisd
 defaults write com.apple.iPhoto PKFaceDetectionEnabled 0
 
+# no local ai model for chrome
+# https://superuser.com/a/1933684
+defaults write ~/Library/Preferences/com.google.Chrome.plist GenAILocalFoundationalModelSettings -int 1
+
+
 # disable spotlight indexing
 # can't turn this off because alfred shares the index. bugger
 # sudo mdutil -a -i off
 
 echo "Finished MacOS defaults"
+
+

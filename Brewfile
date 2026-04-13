@@ -72,7 +72,7 @@ cask "colorpicker-skalacolor"
 # Shells
 # Note: Don't forget to add shells to `/etc/shells` before running `chsh`.
 brew "bash"
-brew "bash-completion"
+brew "bash-completion@2"
 
 # Dev Stuff
 cask "sublime-text"
@@ -95,6 +95,7 @@ brew "ruby"
 brew "terraform"
 brew "pwgen"
 brew "lazygit"
+brew "sem-cli"
 
 # Docker tools
 cask "docker"

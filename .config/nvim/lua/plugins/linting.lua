@@ -1,6 +1,7 @@
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
+	enabled = true,
 	config = function()
 		local lint = require("lint")
 
@@ -21,6 +22,7 @@ return {
 			markdown = { "write_good" },
 			php = { "php" },
 			yaml = { "yamllint" },
+			go = { "gofmt", "golines" },
 		}
 
 		-- local linters_config = {
@@ -48,18 +50,21 @@ return {
 		-- lint.linters_by_ft[ft] = get_first_available_linter(linters)
 		-- end
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-			callback = function()
-				lint.try_lint()
-			end,
-		})
+		-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+		-- vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+		-- 	callback = function()
+		-- 		lint.try_lint(nil, { ignore_errors = true })
+		-- 	end,
+		-- })
 
 		vim.keymap.set("n", "<leader>al", function()
-			lint.try_lint()
+			lint.try_lint(nil, { ignore_errors = true })
 		end, { desc = "Trigger linting" })
 
 		vim.keymap.set("n", "<leader>ad", function()
 			vim.diagnostic.open_float()
+
+			-- vim.cmd("copen")
 		end, { desc = "Show diagnostics" })
 	end,
 }

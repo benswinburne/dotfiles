@@ -8,8 +8,9 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
 BREW_PREFIX=$(brew --prefix)
-HOMEBREW_NO_AUTO_UPDATE=0
-HOMEBREW_NO_ENV_HINTS=1
+
+export HOMEBREW_NO_AUTO_UPDATE=0
+export HOMEBREW_NO_ENV_HINTS=1
 
 alias axbrew='arch -x86_64 /usr/local/homebrew/bin/brew'
 
@@ -155,6 +156,8 @@ mkd()      { mkdir -p "$@" && cd "$@" || return; }
 
 restartaudio() { sudo pkill coreaudiod; }
 restartbluetooth() { sudo pkill bluetoothd; }
+flushdns() { dscacheutil -flushcache; sudo killall -HUP mDNSResponder; }
+restartdns() { dscacheutil -flushcache; sudo killall -HUP mDNSResponder; }
 
 
 # Homebrew
@@ -215,7 +218,21 @@ export PS2="\\[$ORANGE\\]→ \\[$RESET\\]"
 
 # init bash completion
 # shellcheck source=/dev/null
-[ -f "$BREW_PREFIX/etc/bash_completion" ] && . "$BREW_PREFIX/etc/bash_completion"
+# [[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
+fi
 
 # Use Hub https://hub.github.com/
 alias git='hub'
@@ -248,5 +265,7 @@ alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
 export PULUMI_CONFIG_PASSPHRASE="pulumi"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+export no_proxy=127.0.0.1
 
 . "$HOME/.local/bin/env"

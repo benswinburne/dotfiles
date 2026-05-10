@@ -29,8 +29,7 @@ cask "airflow" # cast anything to chromecast
 cask "handbrake"
 
 # Design tools
-cask "affinity-designer"
-cask "affinity-photo"
+cask "affinity"
 cask "bambu-studio"
 
 # Browsers

@@ -35,6 +35,11 @@ return {
 				leave_dirs_open = false,
 			},
 			filesystem = {
+				window = {
+					mappings = {
+						["/"] = false,
+					},
+				},
 				filtered_items = {
 					visible = true,
 					hide_gitignored = true,

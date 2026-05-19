@@ -7,7 +7,7 @@ mkdir -p ~/Sites/playground
 
 # Install sbedit — modern Finder sidebar tool for macOS 15+
 git clone https://github.com/fabienconus/sidebar-editor.git /tmp/sbedit
-sudo installer -pkg /tmp/sbedit/sbedit-package/000sbedit-1.2/sbedit-1.2.pkg -target /
+sudo installer -pkg /tmp/sbedit/sbedit-package/000sbedit-1.2/000sbedit-1.2.pkg -target /
 rm -rf /tmp/sbedit
 
 sbedit --add ~/Sites

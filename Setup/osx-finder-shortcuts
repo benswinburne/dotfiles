@@ -5,11 +5,21 @@ echo "Finder Shortcuts"
 mkdir -p ~/Sites/work
 mkdir -p ~/Sites/playground
 
+# Build sbedit — modern replacement for mysides, works on macOS 15+
+git clone https://github.com/fabienconus/sidebar-editor.git /tmp/sbedit
+cd /tmp/sbedit
+swift build -c release
+SBEDIT=".build/release/sbedit"
+
+$SBEDIT --add ~/Sites
+$SBEDIT --add ~
+$SBEDIT --reload --force
+
+rm -rf /tmp/sbedit
+
 # Build and use mysides to add Finder sidebar shortcuts
 # git clone git@github.com:mosen/mysides.git /tmp/mysides
 # cd /tmp/mysides
 # make build
 # build/Release/mysides add Sites "file:///Users/$(whoami)/Sites/"
 # rm -rf /tmp/mysides
-
-sfltool add-item com.apple.LSSharedFileList.FavoriteVolumes "file:///Users/$(whoami)/Sites/"

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+DOTFILES="$HOME/.dotfiles"
+SETUP="$DOTFILES/Setup"
+
+if [[ -z "$1" ]]; then
+  echo "Usage: run-single <step-name>"
+  exit 1
+fi
+
+if [[ ! -f "$SETUP/$1" ]]; then
+  echo "Step not found: $SETUP/$1"
+  exit 1
+fi
+
+sudo -v
+
+cd "$DOTFILES" && bash "$SETUP/$1"

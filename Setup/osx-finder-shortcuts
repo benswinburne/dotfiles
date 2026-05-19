@@ -6,17 +6,18 @@ mkdir -p ~/Sites/work
 mkdir -p ~/Sites/playground
 
 # Install sbedit — modern Finder sidebar tool for macOS 15+
-git clone https://github.com/fabienconus/sidebar-editor.git /tmp/sbedit
-sudo installer -pkg /tmp/sbedit/sbedit-package/000sbedit-1.2/000sbedit-1.2.pkg -target /
-rm -rf /tmp/sbedit
-
-sbedit --add ~/Sites
-sbedit --add ~
-sbedit --reload --force
+# git clone https://github.com/fabienconus/sidebar-editor.git /tmp/sbedit
+# sudo installer -pkg /tmp/sbedit/sbedit-package/000sbedit-1.2/000sbedit-1.2.pkg -target /
+# rm -rf /tmp/sbedit
+#
+# sbedit --add ~/Sites
+# sbedit --add ~
+# sbedit --reload --force
 
 # Build and use mysides to add Finder sidebar shortcuts
-# git clone git@github.com:mosen/mysides.git /tmp/mysides
-# cd /tmp/mysides
-# make build
-# build/Release/mysides add Sites "file:///Users/$(whoami)/Sites/"
-# rm -rf /tmp/mysides
+git clone git@github.com:mosen/mysides.git /tmp/mysides
+cd /tmp/mysides
+make build
+build/Release/mysides add Sites "file:///Users/$(whoami)/Sites/"
+build/Release/mysides add "$(whoami)" "file:///Users/$(whoami)/"
+rm -rf /tmp/mysides

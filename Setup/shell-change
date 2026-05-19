@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+BREW_BASH="$(brew --prefix)/bin/bash"
+
+if ! grep -qF "$BREW_BASH" /etc/shells; then
+  echo "Adding $BREW_BASH to /etc/shells"
+  echo "$BREW_BASH" | sudo tee -a /etc/shells
+fi
+
+sudo chsh -s "$BREW_BASH" "$(whoami)"

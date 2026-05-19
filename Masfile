@@ -1,0 +1,7 @@
+# vi:syntax=ruby
+
+mas "Keynote", id: 361285480
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Irvue", id: 1039633667
+mas "Second Clock", id: 6450279539

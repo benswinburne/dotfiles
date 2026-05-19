@@ -1,38 +1,39 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
-
-# xcode-select --install
-mas install 497799835 # because the command line tools never works with node
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-sudo xcodebuild -license accept
+brew install dockutil
 
 # Clean up the default dock programs
-read -pr "Dock Cleanup (any key)"
-dockutil --remove 'System Preferences' --allhomes
-dockutil --remove 'Music' --allhomes
-dockutil --remove 'iBooks' --allhomes
-dockutil --remove 'App Store' --allhomes
-dockutil --remove 'Photos' --allhomes
-dockutil --remove 'Maps' --allhomes
-dockutil --remove 'Messages' --allhomes
-dockutil --remove 'Reminders' --allhomes
-dockutil --remove 'Contacts' --allhomes
-dockutil --remove 'Calendar' --allhomes
-dockutil --remove 'Siri' --allhomes
-dockutil --remove 'Safari' --allhomes
-dockutil --remove 'Mail' --allhomes
-dockutil --remove 'Launchpad' --allhomes
-dockutil --remove 'Notes' --allhomes
-dockutil --remove 'FaceTime' --allhomes
-dockutil --remove 'Downloads' --allhomes
-dockutil --remove 'Numbers' --allhomes
-dockutil --remove 'Keynote' --allhomes
-dockutil --remove 'Pages' --allhomes
-dockutil --remove 'News' --allhomes
-dockutil --remove 'TV' --allhomes
-dockutil --remove 'Podcasts' --allhomes
+for app in \
+  'Launchpad' \
+  'Safari' \
+  'Messages' \
+  'Mail' \
+  'Maps' \
+  'FaceTime' \
+  'Calendar' \
+  'Contacts' \
+  'Reminders' \
+  'Notes' \
+  'Freeform' \
+  'TV' \
+  'Music' \
+  'News' \
+  'App Store' \
+  'System Preferences' \
+  'System Settings' \
+  'iBooks' \
+  'Photos' \
+  'Siri' \
+  'Downloads' \
+  'Numbers' \
+  'Keynote' \
+  'Pages' \
+  'Podcasts'; do
+  dockutil --remove "$app" --allhomes 2>/dev/null
+done
 
 dockutil --add /Applications/Google\ Chrome.app --position 1
-dockutil --add /Applications/iTerm.app --position 2
+dockutil --add /Applications/Ghostty.app --position 2
 dockutil --add /Applications/Slack.app --position 4
+
+brew uninstall dockutil

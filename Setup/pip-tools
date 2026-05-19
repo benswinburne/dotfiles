@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Installing Python tools"
+
+pipx ensurepath
+# pipx install localstack
+# pipx install awscli-local

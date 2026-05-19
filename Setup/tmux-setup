@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
-
-# Tmux
 echo "Tmux & Tmux Plugins"
-ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
-git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
-~/.tmux/plugins/tpm/bin/install_plugins
 
+ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+fi
+
+~/.tmux/plugins/tpm/bin/install_plugins

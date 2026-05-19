@@ -1,29 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
+echo "Installing Global Node Packages"
 
-echo "Installing Yarn Global Packages"
-
-yarn global add \
-  aws-cdk \
-  bash-language-server \
-  bundle-phobia-cli \
-  cfn-lint \
-  cubejs-cli \
-  dockerfile-language-server-nodejs \
-  dynamodb-admin \
-  dynamodump \
-  eslint_d \
-  fixjson \
-  gzip-size-cli \
-  hs \
-  htmlhint \
-  http-status-identifier-cli \
-  intelephense \
-  node-gyp \
-  np \
-  package-size \
-  release-it \
-  remotedebug-ios-webkit-adapter \
-  uuid-cli \
+packages=(
+  aws-cdk
+  bundle-phobia-cli
+  # cfn-lint — moved to Brewfile
+  # cubejs-cli — niche, probably unused
+  dockerfile-language-server-nodejs
+  dynamodb-admin
+  dynamodump
+  fixjson
+  forever
+  gzip-size-cli
+  hs
+  htmlhint
+  http-status-identifier-cli
+  # intelephense — managed by mason.nvim
+  node-gyp
+  np
+  npkill
+  package-size
+  release-it
+  # remotedebug-ios-webkit-adapter — niche, probably unused
+  # tc-string-parse — niche, probably unused
+  uuid-cli
   bitly-client
+  yalc
+  # bash-language-server — managed by mason.nvim
+)
+
+npm install -g "${packages[@]}"

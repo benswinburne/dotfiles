@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # vi:syntax=sh
 
-source ~/.dotfiles/Setup/sudo-no-root
-
 # Sensible Mac Defaults
 
 echo "Configuring MacOS defaults"
@@ -10,12 +8,6 @@ echo "Configuring MacOS defaults"
 ## Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
-
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
@@ -244,7 +236,8 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
+# No longer available after Big Sur
+# defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
@@ -271,7 +264,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 
 # Reset Launchpad, but keep the desktop wallpaper intact
-find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete 2>/dev/null
 defaults write com.apple.dock ResetLaunchPad -bool true #; killall Dock
 
 # Set the icon size of Dock items to 36 pixels
@@ -397,14 +390,14 @@ ln -sf ~/.dotfiles/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences
 # defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 
 # Unquarantine Quicklook application
-sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/QLColorCode.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/QuickLookJSON.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/*.qlgenerator
+sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/QLColorCode.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/QuickLookJSON.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/*.qlgenerator 2>/dev/null
 qlmanage -r
 qlmanage -r cache
 
-sudo xattr -cr /Applications/MacMediaKeyForwarder.app
+# sudo xattr -cr /Applications/MacMediaKeyForwarder.app
 
 # Kill affected applications
 # --------------------------
@@ -424,24 +417,20 @@ for app in "Activity Monitor" \
 	"VLC" \
 	"Transmission" \
 	"iCal"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" &>/dev/null
 done
 
 # disable photoanalysisd
 # https://www.reddit.com/r/MacOS/comments/5887s9/photoanalysisd_macos_sierras_most_contentious_new/
 launchctl disable gui/$UID/com.apple.photoanalysisd
-launchctl kill -TERM gui/$UID/com.apple.photoanalysisd
+launchctl kill -TERM gui/$UID/com.apple.photoanalysisd 2>/dev/null
 defaults write com.apple.iPhoto PKFaceDetectionEnabled 0
 
 # no local ai model for chrome
 # https://superuser.com/a/1933684
 defaults write ~/Library/Preferences/com.google.Chrome.plist GenAILocalFoundationalModelSettings -int 1
 
-
 # disable spotlight indexing
 # can't turn this off because alfred shares the index. bugger
 # sudo mdutil -a -i off
-
-echo "Finished MacOS defaults"
-
 

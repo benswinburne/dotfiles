@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+brew update
+brew cleanup
+
+printf "protocol=https\nhost=github.com\n" | git credential-osxkeychain erase

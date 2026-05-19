@@ -1,37 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
-
-# Symlink all the things
 echo "Setup Symlinks"
 
+# Dotfiles
 ln -sf ~/.dotfiles/.npmrc ~/.npmrc
 ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
 ln -sf ~/.dotfiles/.inputrc ~/.inputrc
 ln -sf ~/.dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
-ln -sf ~/.dotfiles/.ansiweatherrc ~/.ansiweatherrc
 ln -sf ~/.dotfiles/.hushlogin ~/.hushlogin
 ln -sf ~/.dotfiles/.editorconfig ~/.editorconfig
 ln -sf ~/.dotfiles/.agignore ~/.agignore
 ln -sf ~/.dotfiles/.prettierrc ~/.prettierrc
 ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
-ln -sf ~/.dotfiles/.httpie ~/.httpie;
-ln -sf ~/.dotfiles/.astylerc ~/.astylerc;
+ln -sf ~/.dotfiles/.httpie ~/.httpie
+ln -sf ~/.dotfiles/.astylerc ~/.astylerc
 
-if ! [ -L ~/.siege ]; then rm -rf ~/.siege; ln -s ~/Dropbox/.siege ~/.siege; fi
+# Ghostty
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+ln -sf ~/.dotfiles/ghostty-config ~/Library/Application\ Support/com.mitchellh.ghostty/config
 
-# AWS
-mkdir -p ~/Dropbox/.aws
+# AWS — symlink from Dropbox so credentials aren't in the repo
+mkdir -p ~/Library/CloudStorage/Dropbox/.aws
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
 
-mkdir -p ~/Dropbox/.gnupg
-if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Dropbox/.gnupg ~/.gnupg; fi
+# GPG
+mkdir -p ~/Library/CloudStorage/Dropbox/.gnupg
+if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Library/CloudStorage/Dropbox/.gnupg ~/.gnupg; fi
 
 # Tokens
-ln -sf ~/Dropbox/.envtokens ~/.envtokens;
+ln -sf ~/Library/CloudStorage/Dropbox/.envtokens ~/.envtokens
 
-# Java
-# sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+# Java — x86 Homebrew openjdk installed in homebrew step
 sudo ln -sfn /usr/local/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk

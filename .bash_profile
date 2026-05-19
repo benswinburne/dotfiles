@@ -1,5 +1,3 @@
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/sbin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/homebrew/opt/openjdk/bin:$PATH"
@@ -7,7 +5,7 @@ export PATH=$HOME/.dotfiles/scripts:$PATH
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
-BREW_PREFIX=$(brew --prefix)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export HOMEBREW_NO_AUTO_UPDATE=0
 export HOMEBREW_NO_ENV_HINTS=1
@@ -18,7 +16,6 @@ export GPG_TTY=$(tty)
 
 . ~/.envtokens
 
-# export VIM_COLORSCHEME="base16-eighties"
 export CLICOLOR=1
 export TERM=xterm-256color
 
@@ -38,8 +35,6 @@ WHITE=$(tput setaf 15)
 
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
-
-# . ~/.dotfiles/bash/colours
 
 alias ovim="command vim"
 alias oldvim="command vim"
@@ -217,22 +212,7 @@ export PS1="$PS1\\[$RESET\\]"
 export PS2="\\[$ORANGE\\]→ \\[$RESET\\]"
 
 # init bash completion
-# shellcheck source=/dev/null
-# [[ -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
-
-if type brew &>/dev/null
-then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
-  then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-    do
-      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
-    done
-  fi
-fi
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
 # Use Hub https://hub.github.com/
 alias git='hub'
@@ -247,10 +227,9 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *.map -g ""'
 alias disable_itunes="sudo chmod -x /Applications/iTunes.app/"
 alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
 
-
 # Load rupa's z if installed
 # shellcheck source=/dev/null
-[ -f "$BREW_PREFIX/etc/profile.d/z.sh" ] && . "$BREW_PREFIX/etc/profile.d/z.sh"
+[ -f "$HOMEBREW_PREFIX/etc/profile.d/z.sh" ] && . "$HOMEBREW_PREFIX/etc/profile.d/z.sh"
 
 # WTF
 # WTF_OWM_API_KEY=$(cat ~/Dropbox/.wtf/weather)
@@ -262,10 +241,8 @@ alias enable_itunes="sudo chmod -x /Applications/iTunes.app/"
 # https://github.com/microsoft/TypeScript/issues/31048
 # export TSC_WATCHFILE='UseFsEventsWithFallbackDynamicPolling'
 
-export PULUMI_CONFIG_PASSPHRASE="pulumi"
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 export no_proxy=127.0.0.1
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"

@@ -33,7 +33,7 @@ for app in \
 done
 
 dockutil --add /Applications/Google\ Chrome.app --position 1
-dockutil --add /Applications/iTerm.app --position 2
+dockutil --add /Applications/Ghostty.app --position 2
 dockutil --add /Applications/Slack.app --position 4
 
 brew uninstall dockutil

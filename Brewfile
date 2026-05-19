@@ -4,7 +4,6 @@
 
 # Asked for at the top because they require a password
 # They're lower down too where they belong for organisational reasons
-cask "docker"
 cask "nordvpn"
 cask "gpg-suite" # gpg signing tools
 
@@ -25,7 +24,7 @@ cask "rectangle" # window management app
 # Video
 cask "vlc"
 cask "airflow" # cast anything to chromecast
-cask "handbrake"
+cask "handbrake-app"
 
 # Design tools
 cask "affinity"
@@ -44,11 +43,10 @@ brew "trash" # CLI tool that moves files or folder to the trash
 cask "keepingyouawake" # don't let screen sleep
 # cask "dozer" # Tool to hide status bar icons
 cask "muzzle" # auto disable notifications
-cask "flux" # brightness / yellowness by time/location
+cask "flux-app" # brightness / yellowness by time/location
 cask "imazing-converter" # HEIC converter
 # brew "clocker" # taskbar clock
 cask "tripmode"
-# cask "pop-app"
 cask "obs" # streaming software
 cask "nordvpn" # vpn
 cask "kap" # screenshoter
@@ -85,7 +83,7 @@ brew "tidy-html5"
 brew "mkcert"
 brew "nss" # for mkcert + firefox
 brew "pulumi"
-cask "pop" # remote pair programming
+# cask "pop-app"
 cask "gpg-suite" # gpg signing tools
 brew "gnupg" # gpg https://samuelsson.dev/sign-git-commits-on-github-with-gpg-in-macos/
 brew "openjdk"
@@ -97,7 +95,6 @@ brew "lazygit"
 brew "sem-cli"
 
 # Docker tools
-cask "docker"
 cask "docker-desktop"
 brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli

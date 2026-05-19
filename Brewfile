@@ -191,16 +191,3 @@ brew "redis", restart_service: :changed
 # cask "font-meslo-for-powerline"
 # cask "font-menlo-for-powerline"
 cask "font-meslo-lg-nerd-font"
-
-
-# This is at the bottom because if this exits because it's not signed in
-# then brew bundle exits without installing anything below
-# mas "Clocker", id: 1056643111
-mas "Keynote", id: 409183694
-# mas "Noizio", id: 928871589
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-# mas "Xcode", id: 497799835
-# mas "iMazing HEIC Converter", id: 1292198261
-mas "Irvue", id: 1039633667
-mas "Second Clock", id: 6450279539

@@ -38,7 +38,7 @@ step() {
 
 step "xcode-bootstrap"     xcode-bootstrap   # xcode-select --install, no mas
 step "homebrew"            homebrew
-step "xcode"               xcode             # mas install, license, packages
+# step "xcode"               xcode             # mas install, license, packages
 step "osx-preferences"     osx-preferences
 step "cleanup-dock"        cleanup-dock
 step "restart-osx-services" restart-osx-services

@@ -1,77 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-source ~/.dotfiles/Setup/sudo-no-root
-source ~/.dotfiles/Setup/xcode
-source ~/.dotfiles/Setup/homebrew
-source ~/.dotfiles/Setup/osx-preferences
-source ~/.dotfiles/Setup/cleanup-dock
-source ~/.dotfiles/Setup/restart-osx-services
-source ~/.dotfiles/Setup/open-applications
-source ~/.dotfiles/Setup/php-composer
-source ~/.dotfiles/Setup/local-certificates
-source ~/.dotfiles/Setup/fzf
-source ~/.dotfiles/Setup/yarn-global
-source ~/.dotfiles/Setup/symlinks
-source ~/.dotfiles/Setup/ssh
-source ~/.dotfiles/Setup/vim-setup
-source ~/.dotfiles/Setup/tmux-setup
-source ~/.dotfiles/Setup/docker
-source ~/.dotfiles/Setup/osx-default-apps
-source ~/.dotfiles/Setup/osx-finder-shortcuts
+DOTFILES="$HOME/.dotfiles"
+SETUP="$DOTFILES/Setup"
+CHECKPOINT_FILE="$HOME/.dotfiles_setup_progress"
 
-# sudo /usr/local/opt/mysql/bin/mysql.server stop
-# sudo /Library/StartupItems/MySQLCOM/MySQLCOM stop
-sudo mysqladmin shutdown
-sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+# Colours
+GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 
-# This repo
-echo "Setting remote URL for this dotfiles repo"
-git remote set-url origin git@github.com:benswinburne/dotfiles.git
+# Ask for sudo upfront and keep it alive
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-source ~/.dotfiles/.bash_profile
+step() {
+  local name="$1"
+  local script="$SETUP/$2"
 
-# Clean up
-read -pr "Cleaning up Brew (any key)"
-brew update
-brew cleanup
+  if grep -qxF "$name" "$CHECKPOINT_FILE" 2>/dev/null; then
+    echo -e "${YELLOW}⏭  Skipping${NC} $name"
+    return 0
+  fi
 
-printf "protocol=https\\nhost=github.com\\n" | git credential-osxkeychain erase
+  echo -e "\n▶  Running $name..."
 
-# Add the new shell to the list of allowed shells
-# sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
-# Change to the new shell
-_USER=$(whoami)
-sudo chsh -s "$(brew --prefix)/bin/bash" "$_USER"
+  # Each script runs as a subprocess in its own shell, always starting
+  # from DOTFILES dir. pushd/popd in sub-scripts can't affect us.
+  if (cd "$DOTFILES" && bash "$script"); then
+    echo "$name" >> "$CHECKPOINT_FILE"
+    echo -e "${GREEN}✓  $name done${NC}"
+  else
+    echo -e "${RED}✗  $name FAILED${NC}"
+    echo -e "   Fix the issue and re-run — progress is saved."
+    exit 1
+  fi
+}
 
-# Bye itunes (hopefully?!)
-# sudo chmod -x /Applications/Music.app
+step "xcode-bootstrap"     xcode-bootstrap   # xcode-select --install, no mas
+step "homebrew"            homebrew
+step "xcode"               xcode             # mas install, license, packages
+step "osx-preferences"     osx-preferences
+step "cleanup-dock"        cleanup-dock
+step "restart-osx-services" restart-osx-services
+step "open-applications"   open-applications
+step "php-composer"        php-composer
+step "local-certificates"  local-certificates
+step "fzf"                 fzf
+step "yarn-global"         yarn-global
+step "symlinks"            symlinks
+step "ssh"                 ssh
+step "vim-setup"           vim-setup
+step "tmux-setup"          tmux-setup
+step "docker"              docker
+step "osx-default-apps"    osx-default-apps
+step "osx-finder-shortcuts" osx-finder-shortcuts
+step "mysql-shutdown"      mysql-shutdown
+step "pip-tools"           pip-tools
+step "dotfiles-remote"     dotfiles-remote
+step "shell-change"        shell-change
+step "brew-cleanup"        brew-cleanup
 
-# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist # Disable spotlight
-#(cd /System/Library/CoreServices/; sudo mv Search.bundle/ Search2.bundle)
-# sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
-# /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c \
-#   "Set AppleSymbolicHotKeys:64:enabled false"
-
-
-# read -p "Pip installations"
-# # pip install howdoi --user
-# # pip install cfn-lint --user # cfn linting
-# # pip install websocket-client
-pip3 install --user localstack
-pip3 install --user awscli-local
-
-# english-dictionary-cli \
-#zmq
-# https://github.com/nodejs/node-gyp/blob/master/macOS_Catalina.md
-
-# MySQL
-# ---------------
-# mysql_secure_installation
-# mysql_upgrade -u root
-
-# Fonts
-# cp ~/.dotfiles/fonts/* ~/Library/Fonts/.
-
-# Disable crash reporting service
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.ReportCrash.plist
-# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.ReportCrash.Root.plist
+echo -e "\n${GREEN}All done! Delete $CHECKPOINT_FILE to re-run from scratch.${NC}"

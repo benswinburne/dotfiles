@@ -1,34 +1,27 @@
-#!/bin/bash
-
-source ~/.dotfiles/Setup/sudo-no-root
+#!/usr/bin/env bash
 
 # install homebrew if it's missing
 if ! command -v brew >/dev/null 2>&1; then
-	echo "Installing Homebrew"
-  /usr/bin/ruby -e \
-  	"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# now OSX defaults to zsh, and it's not in our path yet
-# echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/ben/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
-# HOMEBREW_NO_AUTO_UPDATE=1
 echo "Installing Homebrew Bundle"
 brew bundle
 brew bundle cleanup --force
-# HOMEBREW_NO_AUTO_UPDATE=0
 
 softwareupdate --all --install --force
 
-# https://medium.com/mkdir-awesome/how-to-install-x86-64-homebrew-packages-on-apple-m1-macbook-54ba295230f
-mkdir -p ~/Downloads
-cd ~/Downloads || return
-mkdir homebrew
-curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
-sudo mv homebrew /usr/local/homebrew
-rm -rf ~/Downloads/homebrew
+# x86 Homebrew for packages that don't have arm64 builds
+# Note: worth checking if you still need this — most things have native arm64 now
+if [[ ! -f /usr/local/homebrew/bin/brew ]]; then
+  mkdir -p ~/Downloads/homebrew
+  curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/Downloads/homebrew
+  sudo mv ~/Downloads/homebrew /usr/local/homebrew
+fi
 
-arch -x86_64 /usr/local/homebrew/bin/brew install java # dynamodb local needs x86 bits
+arch -x86_64 /usr/local/homebrew/bin/brew install java

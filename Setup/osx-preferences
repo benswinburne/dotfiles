@@ -11,12 +11,6 @@ echo "Configuring MacOS defaults"
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
 
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
@@ -244,7 +238,8 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.dock expose-group-by-app -bool false
 
 # Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
+# No longer available after Big Sur
+# defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
@@ -397,14 +392,14 @@ ln -sf ~/.dotfiles/Preferences/com.googlecode.iterm2.plist ~/Library/Preferences
 # defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 
 # Unquarantine Quicklook application
-sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/QLColorCode.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/QuickLookJSON.qlgenerator
-sudo xattr -cr ~/Library/QuickLook/*.qlgenerator
+sudo xattr -cr ~/Library/QuickLook/QLStephen.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/QLColorCode.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/QuickLookJSON.qlgenerator 2>/dev/null
+sudo xattr -cr ~/Library/QuickLook/*.qlgenerator 2>/dev/null
 qlmanage -r
 qlmanage -r cache
 
-sudo xattr -cr /Applications/MacMediaKeyForwarder.app
+# sudo xattr -cr /Applications/MacMediaKeyForwarder.app
 
 # Kill affected applications
 # --------------------------
@@ -424,7 +419,7 @@ for app in "Activity Monitor" \
 	"VLC" \
 	"Transmission" \
 	"iCal"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" &>/dev/null
 done
 
 # disable photoanalysisd

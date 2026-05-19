@@ -171,6 +171,7 @@ brew "watchman" # makes node watcher (jest watch) work well
 
 # Languages
 brew "python@3.9"
+brew "pipx"
 # brew "java" # installed manually in x86 arch
 brew "go"
 

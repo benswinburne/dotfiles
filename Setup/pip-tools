@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-pip3 install --user localstack
-pip3 install --user awscli-local
+echo "Installing Python tools"
+
+pipx ensurepath
+# pipx install localstack
+# pipx install awscli-local

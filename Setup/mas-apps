@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Trigger App Store sign-in
+open -a "App Store"
+echo "Please sign into the App Store, then press enter to continue."
+read -r
+
+brew bundle --file ~/.dotfiles/Masfile

@@ -12,3 +12,5 @@ fi
 if ! sudo xcodebuild -license status >/dev/null 2>&1; then
   sudo xcodebuild -license accept
 fi
+
+xcodebuild -runFirstLaunch

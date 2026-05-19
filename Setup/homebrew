@@ -1,23 +1,32 @@
 #!/usr/bin/env bash
 
-# install homebrew if it's missing
+# Install Homebrew if missing
 if ! command -v brew >/dev/null 2>&1; then
   echo "Installing Homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Add Homebrew to PATH — try both Apple Silicon and Intel paths
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+else
+  echo "Homebrew not found after install — something went wrong"
+  exit 1
+fi
 
-/usr/sbin/softwareupdate --install-rosetta --agree-to-license
+# Rosetta — only needed on Apple Silicon, ignore if already installed
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license 2>/dev/null || true
 
 echo "Installing Homebrew Bundle"
-brew bundle
+NONINTERACTIVE=1 brew bundle --no-lock
 brew bundle cleanup --force
 
+# macOS software updates
 softwareupdate --all --install --force
 
 # x86 Homebrew for packages that don't have arm64 builds
-# Note: worth checking if you still need this — most things have native arm64 now
 if [[ ! -f /usr/local/homebrew/bin/brew ]]; then
   mkdir -p ~/Downloads/homebrew
   curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/Downloads/homebrew

@@ -1,13 +1,12 @@
 # vi:syntax=ruby
 
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/core"
-tap "homebrew/services"
-tap "wallix/awless"
-tap "teamookla/speedtest"
+# tap "hashicorp/tap"
+
+# Asked for at the top because they require a password
+# They're lower down too where they belong for organisational reasons
+cask "docker"
+cask "nordvpn"
+cask "gpg-suite" # gpg signing tools
 
 # General programs
 cask "bitwarden"
@@ -63,10 +62,10 @@ cask "qlcolorcode" # renders source code with syntax highlighting
 cask "qlmarkdown" # preview markdown
 cask "qlstephen" # preview textfiles without extensions
 # cask "webpquicklook"
-cask "quicklook-json" # preview json
+cask "quickjson" # preview json
 
 # Color Picker plugins
-cask "colorpicker-skalacolor"
+# cask "colorpicker-skalacolor"
 
 # Shells
 # Note: Don't forget to add shells to `/etc/shells` before running `chsh`.
@@ -91,7 +90,8 @@ cask "gpg-suite" # gpg signing tools
 brew "gnupg" # gpg https://samuelsson.dev/sign-git-commits-on-github-with-gpg-in-macos/
 brew "openjdk"
 brew "ruby"
-brew "terraform"
+# brew "hashicorp/tap/terraform"
+brew "opentofu"
 brew "pwgen"
 brew "lazygit"
 brew "sem-cli"
@@ -104,14 +104,13 @@ brew "lazydocker" # docker cli
 brew "dive" # docker layer cli
 
 # Arduinotools
-cask "arduino"
+cask "arduino-ide"
 brew "arduino-cli"
 brew "astyle" # formatter
 
 # PHP
 brew "php@8.3", restart_service: :changed
 brew "autoconf" # for pecl extension compilation
-brew "mcrypt"
 brew "composer"
 
 # Linters
@@ -123,10 +122,10 @@ brew "xmlstarlet" # includes xmllint
 brew "cfn-lint" # cloudformation
 
 # Terminal Utilities
-brew "reattach-to-user-namespace"
+# brew "reattach-to-user-namespace"
 brew "jq"
-brew "ansiweather"
-cask "outset"
+# brew "ansiweather"
+# cask "outset"
 brew "fzf"
 brew "hub"
 brew "htop"
@@ -139,17 +138,16 @@ brew "git"
 brew "git-extras"
 brew "git-recent"
 brew "diff-so-fancy"
-brew "the_silver_searcher" # maybe don't need any more
+# brew "the_silver_searcher" # maybe don't need any more
 brew "ripgrep"
 brew "wget"
 brew "z"
 brew "watch"
 cask "ngrok"
 brew "http-server"
-brew "speedtest"
 brew "bat"
-brew "exa"
-brew "dog"
+brew "eza" # modern ls
+brew "doge" # dig but better (was dog/dog-community)
 
 # Aws
 brew "awscli"
@@ -164,7 +162,7 @@ brew "nmap"
 brew "wrk"
 brew "httpie"
 brew "siege"
-brew "tsung" # Load testing for http
+# brew "tsung" # Load testing for http
 brew "goaccess" # Http log viewer
 
 # Node related
@@ -205,7 +203,7 @@ mas "Keynote", id: 409183694
 # mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
+# mas "Xcode", id: 497799835
 # mas "iMazing HEIC Converter", id: 1292198261
 mas "Irvue", id: 1039633667
 mas "Second Clock", id: 6450279539

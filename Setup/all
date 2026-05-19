@@ -60,7 +60,7 @@ step "vim-setup"           vim-setup
 step "tmux-setup"          tmux-setup
 step "docker"              docker
 step "osx-default-apps"    osx-default-apps
-step "osx-finder-shortcuts" osx-finder-shortcuts
+# step "osx-finder-shortcuts" osx-finder-shortcuts
 step "mysql-shutdown"      mysql-shutdown
 step "pip-tools"           pip-tools
 step "dotfiles-remote"     dotfiles-remote

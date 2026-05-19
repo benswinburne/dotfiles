@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pip3 install --user localstack
+pip3 install --user awscli-local

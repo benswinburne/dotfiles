@@ -1,18 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
-
-# read -p "Open some apps for the first time (any key)"
-open /Applications/Clocker.app/
-open /Applications/Noizio.app/
 open /Applications/Docker.app/
 open /Applications/Flux.app/
 open /Applications/KeepingYouAwake.app/
 open /Applications/Dropbox.app/
 open /Applications/Alfred\ 4.app/
-open /Applications/Docker.app/
 open /Applications/Muzzle.app/
 open /Applications/Rectangle.app/
 open /Applications/Firefox.app/ # Required for certificate creation to work
-
-read -pr "Wait for Dropbox (For ~/Dropbox/.ssh)"

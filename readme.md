@@ -1,5 +1,5 @@
-Setup
+## Setup
 
 ```
-curl https://raw.githubusercontent.com/benswinburne/dotfiles/master/Setup/download | sh
+curl -fsSL https://raw.githubusercontent.com/benswinburne/dotfiles/master/download | bash
 ```

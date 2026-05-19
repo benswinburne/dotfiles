@@ -16,8 +16,8 @@ cask "slack"
 cask "spotify"
 cask "transmission"
 cask "discord"
-cask "iterm2"
-cask "private-internet-access"
+# cask "iterm2"
+# cask "private-internet-access"
 # cask "private-internet-access", args: { no_quarantine: true }
 cask "signal"
 cask "alfred"
@@ -39,17 +39,15 @@ cask "microsoft-edge"
 
 # Mac OS tools
 cask "aerial" # screensaver
-brew "duti" # Required for setting preferences
 brew "tccutil" # Required for setting preferences
 brew "trash" # CLI tool that moves files or folder to the trash
-brew "wifi-password" # Show the current WiFi network password
-cask "macmediakeyforwarder" # fix media keys / prioritise spotify
+# cask "macmediakeyforwarder" # fix media keys / prioritise spotify
 cask "keepingyouawake" # don't let screen sleep
-cask "dozer" # Tool to hide status bar icons
+# cask "dozer" # Tool to hide status bar icons
 cask "muzzle" # auto disable notifications
 cask "flux" # brightness / yellowness by time/location
 cask "imazing-converter" # HEIC converter
-brew "clocker" # taskbar clock
+# brew "clocker" # taskbar clock
 cask "tripmode"
 # cask "pop-app"
 cask "obs" # streaming software
@@ -58,6 +56,7 @@ cask "kap" # screenshoter
 cask "balenaetcher" # iso writer
 cask "beardedspice" # media key forwarder
 cask "jordanbaird-ice" # taskbar manager
+cask "topnotch" # black bar for the notch
 
 # QuickLook plugins
 cask "qlcolorcode" # renders source code with syntax highlighting
@@ -110,7 +109,8 @@ brew "arduino-cli"
 brew "astyle" # formatter
 
 # PHP
-brew "php@8.1", restart_service: :changed
+brew "php@8.3", restart_service: :changed
+brew "autoconf" # for pecl extension compilation
 brew "mcrypt"
 brew "composer"
 
@@ -120,6 +120,7 @@ brew "shellcheck" # shell
 brew "jsonlint" # json
 brew "yamllint" # yaml
 brew "xmlstarlet" # includes xmllint
+brew "cfn-lint" # cloudformation
 
 # Terminal Utilities
 brew "reattach-to-user-namespace"
@@ -134,7 +135,6 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 brew "cmake"
-brew "dockutil"
 brew "git"
 brew "git-extras"
 brew "git-recent"
@@ -154,7 +154,7 @@ brew "dog"
 # Aws
 brew "awscli"
 brew "aws-elasticbeanstalk"
-brew "wallix/awless/awless"
+# brew "wallix/awless/awless"
 
 # Networking
 brew "netcat"
@@ -168,7 +168,8 @@ brew "tsung" # Load testing for http
 brew "goaccess" # Http log viewer
 
 # Node related
-brew "node@14", link: true
+brew "node", link: true
+# brew "node@22", link: true
 brew "yarn", args: ["ignore-dependencies"]
 brew "yarn-completion"
 brew "watchman" # makes node watcher (jest watch) work well
@@ -181,9 +182,9 @@ brew "go"
 # Services
 brew "memcached"
 brew "redis", restart_service: :changed
-brew "dnsmasq", restart_service: :changed
-brew "mysql", restart_service: :changed
-brew "nginx", restart_service: :changed
+# brew "dnsmasq", restart_service: :changed
+# brew "mysql", restart_service: :changed
+# brew "nginx", restart_service: :changed
 
 
 # Uncategorised
@@ -207,3 +208,4 @@ mas "Pages", id: 409201541
 mas "Xcode", id: 497799835
 # mas "iMazing HEIC Converter", id: 1292198261
 mas "Irvue", id: 1039633667
+mas "Second Clock", id: 6450279539

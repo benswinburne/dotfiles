@@ -1,12 +1,7 @@
-#!/bin/bash
-
-source ~/.dotfiles/Setup/sudo-no-root
+#!/usr/bin/env bash
 
 echo "Default Applications"
 
-# Default applications
-sudo touch /usr/local/outset/login-every/duti.sh
-sudo chmod +x /usr/local/outset/login-every/duti.sh
-echo "duti ~/.dotfiles/duti/" | sudo tee /usr/local/outset/login-every/duti.sh
+brew install duti
 duti ~/.dotfiles/duti/
-
+brew uninstall duti

@@ -1,25 +1,15 @@
-#!/bin/bash
-
-source ~/.dotfiles/Setup/sudo-no-root
+#!/usr/bin/env bash
 
 echo "Finder Shortcuts"
 
-# Folders I inevitably make later
-mkdir -p ~/Sites
 mkdir -p ~/Sites/work
 mkdir -p ~/Sites/playground
-mkdir -p ~/Downloads/Torrents/Complete
-mkdir -p ~/Downloads/Torrents/.pending
 
-# Finder shortcuts
-pushd . || return
-git clone git@github.com:mosen/mysides.git /tmp/mysides
-cd /tmp/mysides || return
-make build
-build/Release/mysides add Sites \
-	"file:///Users/$(whoami)/Sites/"
-build/Release/mysides add Torrents \
-	"file:///Users/$(whoami)/Downloads/Torrents/Complete/"
-popd || return
-rm -rf /tmp/mysides
+# Build and use mysides to add Finder sidebar shortcuts
+# git clone git@github.com:mosen/mysides.git /tmp/mysides
+# cd /tmp/mysides
+# make build
+# build/Release/mysides add Sites "file:///Users/$(whoami)/Sites/"
+# rm -rf /tmp/mysides
 
+sfltool add-item com.apple.LSSharedFileList.FavoriteVolumes "file:///Users/$(whoami)/Sites/"

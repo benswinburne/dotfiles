@@ -1,9 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ~/.dotfiles/Setup/sudo-no-root
-
-# FZF
-echo "Installing FZF"
+echo "Installing FZF shell integration"
 
 $(brew --prefix)/opt/fzf/install \
   --no-update-rc \
@@ -11,4 +8,3 @@ $(brew --prefix)/opt/fzf/install \
   --key-bindings \
   --no-fish \
   --no-zsh
-

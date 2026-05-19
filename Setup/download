@@ -1,11 +1,22 @@
-#!/bin/bash
-# vi:syntax=sh
+#!/usr/bin/env bash
 
-git clone https://github.com/benswinburne/dotfiles.git ~/.dotfiles
+# curl -fsSL https://raw.githubusercontent.com/benswinburne/dotfiles/master/download | bash
+
+# Inline xcode CLI tools check — needed for git before we can clone
+if ! xcode-select -p >/dev/null 2>&1; then
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install
+  until xcode-select -p >/dev/null 2>&1; do
+    sleep 5
+  done
+fi
+
+if [ ! -d "$HOME/.dotfiles" ]; then
+  git clone https://github.com/benswinburne/dotfiles.git ~/.dotfiles
+else
+  echo "~/.dotfiles already exists, skipping clone"
+fi
 
 cd ~/.dotfiles || exit
 
-pwd
-
-source ./Setup/xcode
-source yarn-global
+bash ./Setup/all

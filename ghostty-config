@@ -54,13 +54,13 @@ theme = Catppuccin Frappe
 fullscreen = true
 
 # square but below notch
-macos-non-native-fullscreen = padded-notch 
+macos-non-native-fullscreen = padded-notch
 # rounded but under notch
-# macos-non-native-fullscreen = true 
+# macos-non-native-fullscreen = true
 # horrible fullscreen
-# macos-non-native-fullscreen = false 
+# macos-non-native-fullscreen = false
 # seems same as true
-# macos-non-native-fullscreen = visible-menu 
+# macos-non-native-fullscreen = visible-menu
 
 macos-titlebar-style = hidden
 
@@ -79,3 +79,5 @@ macos-window-shadow = false
 font-feature = -dlig
 font-feature = -liga
 font-feature = -calt
+
+auto-update = off

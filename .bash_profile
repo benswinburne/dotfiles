@@ -245,4 +245,4 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 export no_proxy=127.0.0.1
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"

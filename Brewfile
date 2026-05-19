@@ -71,6 +71,7 @@ brew "bash"
 brew "bash-completion@2"
 
 # Dev Stuff
+brew "ghostty"
 cask "sublime-text"
 brew "act" # local github actions runner
 brew "coreutils"

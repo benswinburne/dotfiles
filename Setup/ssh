@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
 # Wait for Dropbox to sync .ssh directory
-until [ -d "$HOME/Dropbox/.ssh" ]; do
+until [ -d "$HOME/Library/CloudStorage/Dropbox/.ssh" ]; do
   echo "Waiting for Dropbox to sync .ssh..."
   sleep 5
 done
 
-echo "Setup SSH"
-
-# mkdir -p ~/Dropbox/.ssh
 if ! [ -L ~/.ssh ]; then
   rm -rf ~/.ssh
-  ln -s ~/Dropbox/.ssh ~/.ssh
+  ln -s ~/Library/CloudStorage/Dropbox/.ssh ~/.ssh
 fi
 
-echo "Setting permissions"
 sudo find ~/.ssh -type f -exec chmod 0600 {} \;

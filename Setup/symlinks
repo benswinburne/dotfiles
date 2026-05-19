@@ -18,15 +18,15 @@ ln -sf ~/.dotfiles/.httpie ~/.httpie
 ln -sf ~/.dotfiles/.astylerc ~/.astylerc
 
 # AWS — symlink from Dropbox so credentials aren't in the repo
-mkdir -p ~/Dropbox/.aws
+mkdir -p ~/Library/CloudStorage/Dropbox/.aws
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi
 
 # GPG
-mkdir -p ~/Dropbox/.gnupg
-if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Dropbox/.gnupg ~/.gnupg; fi
+mkdir -p ~/Library/CloudStorage/Dropbox/.gnupg
+if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Library/CloudStorage/Dropbox/.gnupg ~/.gnupg; fi
 
 # Tokens
-ln -sf ~/Dropbox/.envtokens ~/.envtokens
+ln -sf ~/Library/CloudStorage/Dropbox/.envtokens ~/.envtokens
 
 # Java — x86 Homebrew openjdk installed in homebrew step
 sudo ln -sfn /usr/local/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk

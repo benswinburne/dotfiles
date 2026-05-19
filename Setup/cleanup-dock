@@ -4,29 +4,30 @@ brew install dockutil
 
 # Clean up the default dock programs
 for app in \
+  'Launchpad' \
+  'Safari' \
+  'Messages' \
+  'Mail' \
+  'Maps' \
+  'FaceTime' \
+  'Calendar' \
+  'Contacts' \
+  'Reminders' \
+  'Notes' \
+  'Freeform' \
+  'TV' \
+  'Music' \
+  'News' \
+  'App Store' \
   'System Preferences' \
   'System Settings' \
-  'Music' \
   'iBooks' \
-  'App Store' \
   'Photos' \
-  'Maps' \
-  'Messages' \
-  'Reminders' \
-  'Contacts' \
-  'Calendar' \
   'Siri' \
-  'Safari' \
-  'Mail' \
-  'Launchpad' \
-  'Notes' \
-  'FaceTime' \
   'Downloads' \
   'Numbers' \
   'Keynote' \
   'Pages' \
-  'News' \
-  'TV' \
   'Podcasts'; do
   dockutil --remove "$app" --allhomes 2>/dev/null
 done

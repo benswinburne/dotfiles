@@ -17,6 +17,10 @@ ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
 ln -sf ~/.dotfiles/.httpie ~/.httpie
 ln -sf ~/.dotfiles/.astylerc ~/.astylerc
 
+# Ghostty
+mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
+ln -sf ~/.dotfiles/ghostty-config ~/Library/Application\ Support/com.mitchellh.ghostty/config
+
 # AWS — symlink from Dropbox so credentials aren't in the repo
 mkdir -p ~/Library/CloudStorage/Dropbox/.aws
 if ! [ -L ~/.aws ]; then rm -rf ~/.aws; ln -s ~/Dropbox/.aws ~/.aws; fi

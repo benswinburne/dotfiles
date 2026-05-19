@@ -23,6 +23,13 @@ step() {
 
   echo -e "\n▶  Running $name..."
 
+	# Ensure brew is in PATH regardless of whether bash_profile is symlinked yet
+	if [[ -f /opt/homebrew/bin/brew ]]; then
+		eval "$(/opt/homebrew/bin/brew shellenv)"
+	elif [[ -f /usr/local/bin/brew ]]; then
+		eval "$(/usr/local/bin/brew shellenv)"
+	fi
+
   # Each script runs as a subprocess in its own shell, always starting
   # from DOTFILES dir. pushd/popd in sub-scripts can't affect us.
   if (cd "$DOTFILES" && bash "$script"); then

@@ -7,7 +7,8 @@ export PATH=$HOME/.dotfiles/scripts:$PATH
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH=~/.composer/vendor/bin:$PATH
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# temporary while i force nvim0.11
+export PATH="$HOME/bin/nvim-macos-arm64/bin:$PATH"
 
 export HOMEBREW_NO_AUTO_UPDATE=0
 export HOMEBREW_NO_ENV_HINTS=1

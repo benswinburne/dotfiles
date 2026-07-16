@@ -5,3 +5,5 @@
 tags
 .tags
 .vim/.netrwhist
+
+**/.claude/settings.local.json

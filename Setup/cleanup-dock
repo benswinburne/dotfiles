@@ -21,6 +21,7 @@ for app in \
   'App Store' \
   'System Preferences' \
   'System Settings' \
+  'iPhone Mirroring' \
   'iBooks' \
   'Photos' \
   'Siri' \

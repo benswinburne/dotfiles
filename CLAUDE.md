@@ -1,0 +1,2 @@
+- never add to or commit to git
+- always use yarn instead of npm

@@ -20,7 +20,8 @@ fi
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license 2>/dev/null || true
 
 echo "Installing Homebrew Bundle"
-NONINTERACTIVE=1 brew bundle --no-lock
+# NONINTERACTIVE=1 brew bundle --no-lock
+NONINTERACTIVE=1 brew bundle
 brew bundle cleanup --force
 
 # macOS software updates

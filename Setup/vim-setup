@@ -2,6 +2,11 @@
 
 echo "NeoVim & NeoVim Plugins"
 
+curl -LO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-macos-arm64.tar.gz
+
+mkdir -p ~/bin
+tar xzf nvim-macos-arm64.tar.gz -C ~/bin/
+
 rm -rf ~/.config/nvim
 mkdir -p ~/.config
 ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim

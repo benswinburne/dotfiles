@@ -49,7 +49,13 @@ artisan() { php artisan "$@"; }
 mrs()     { php artisan migrate:fresh --seed; }
 phpunit() { vendor/bin/phpunit "$@"; }
 # phpunit_watch() { vendor/bin/phpunit-watcher watch "$@"; }
-phpunit_watch() { phpunit-watcher watch "$@"; }
+phpunit_watch() {
+  if command -v phpunit-watcher &>/dev/null; then
+    phpunit-watcher watch "$@"
+  else
+    vendor/bin/phpunit-watcher watch "$@"
+  fi
+}
 pest()    { vendor/bin/pest "$@"; }
 doc()     { docker-compose "$@"; }
 alias phpunit-watch='phpunit_watch'

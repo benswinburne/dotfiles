@@ -6,6 +6,7 @@ pecl list | grep -q xdebug    || echo '' | pecl install xdebug
 pecl list | grep -q memcached || echo '' | pecl install memcached
 
 composer global require --no-interaction \
+	require spatie/phpunit-watcher \
   phpstan/phpstan \
   phpunit/phpunit \
   dealerdirect/phpcodesniffer-composer-installer \

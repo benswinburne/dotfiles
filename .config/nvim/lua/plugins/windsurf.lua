@@ -1,15 +1,22 @@
+-- https://windsurf.com/enterprise/account/login?redirect_uri=vim-show-auth-token
+-- https://github.com/monkoose/neocodeium/issues/70#issuecomment-4667253418
+
 return {
 	"Exafunction/windsurf.nvim",
-	enabled = false,
+	enabled = true,
+	lazy = false,
+	priority = 1000,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
 		require("codeium").setup({
-			detect_proxy = false,
+			enable_cmp_source = true,
 			virtual_text = {
 				enabled = true,
+				idle_delay = 75,
+				map_keys = false,
 			},
 		})
 	end,

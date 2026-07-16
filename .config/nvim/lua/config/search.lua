@@ -49,7 +49,8 @@ vim.api.nvim_create_user_command("Rg", function(opts)
 end, { nargs = "*" })
 
 -- vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --glob-case-insensitive " .. exclude_flags
+-- vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --glob-case-insensitive " .. exclude_flags
+vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case --hidden --glob-case-insensitive " .. exclude_flags
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 
 -- bind \ (backward slash) to grep shortcut

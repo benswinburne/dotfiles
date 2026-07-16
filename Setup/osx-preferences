@@ -277,6 +277,15 @@ defaults write com.apple.dock tilesize -int 30
 # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
 defaults -currentHost write com.apple.Spotlight MenuItemHidden -int 1
 
+# Attempt to disable spotlight hotkey
+# /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist \
+#   -c "Delete :AppleSymbolicHotKeys:65" \
+#   -c "Add :AppleSymbolicHotKeys:65:enabled bool false" \
+#   -c "Add :AppleSymbolicHotKeys:65:value:parameters array" \
+#   -c "Add :AppleSymbolicHotKeys:65:value:parameters: integer 65535" \
+#   -c "Add :AppleSymbolicHotKeys:65:value:parameters: integer 49" \
+#   -c "Add :AppleSymbolicHotKeys:65:value:parameters: integer 1572864" \
+#   -c "Add :AppleSymbolicHotKeys:65:type string standard"
 
 # Load new settings before rebuilding the index
 killall mds > /dev/null 2>&1

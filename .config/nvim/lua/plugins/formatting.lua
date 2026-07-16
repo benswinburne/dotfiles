@@ -6,10 +6,10 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "biome", "prettier" },
-				typescript = { "biome", "prettier" },
-				javascriptreact = { "biome", "prettier" },
-				typescriptreact = { "biome", "prettier" },
+				javascript = { "biome-check", "prettier", stop_after_first = true },
+				typescript = { "biome-check", "prettier", stop_after_first = true },
+				javascriptreact = { "biome-check", "prettier", stop_after_first = true },
+				typescriptreact = { "biome-check", "prettier", stop_after_first = true },
 				css = { "prettier", "stylelint" },
 				less = { "prettier", "stylelint" },
 				scss = { "prettier", "stylelint" },

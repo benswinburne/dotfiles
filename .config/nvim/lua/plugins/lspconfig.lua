@@ -16,6 +16,17 @@ return {
 			capabilities = capabilities,
 		})
 
+		vim.lsp.config("lua_ls", {
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+			},
+		})
+
 		-- TypeScript / JavaScript (ts_ls)
 		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,

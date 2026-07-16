@@ -29,8 +29,8 @@ return {
 				"stylelint",
 
 				-- javascript/typescript
-				"biome",
-				"prettier",
+				-- "biome",
+				-- "prettier",
 				"eslint",
 				"eslint_d",
 				"typescript-language-server",

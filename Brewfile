@@ -54,6 +54,8 @@ cask "balenaetcher" # iso writer
 cask "beardedspice" # media key forwarder
 cask "jordanbaird-ice" # taskbar manager
 cask "topnotch" # black bar for the notch
+brew "mole" # disk cleanup
+cask "grandperspective" # disk space analyser
 
 # QuickLook plugins
 cask "qlcolorcode" # renders source code with syntax highlighting
@@ -95,6 +97,7 @@ brew "opentofu"
 brew "pwgen"
 brew "lazygit"
 brew "sem-cli"
+cask "linear"
 
 # Docker tools
 cask "docker-desktop"

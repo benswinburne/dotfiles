@@ -16,7 +16,10 @@ return {
 			virtual_text = {
 				enabled = true,
 				idle_delay = 75,
-				map_keys = false,
+				map_keys = true,
+				key_bindings = {
+					accept = "<C-h>",
+				},
 			},
 		})
 	end,

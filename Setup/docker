@@ -18,3 +18,5 @@ colima start
 
 brew services start colima
 
+# @todo https://torgeir.dev/2024/05/colima-dont-keep-docker-credentials-in-the-clear/
+

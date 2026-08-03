@@ -101,9 +101,10 @@ cask "linear"
 
 # Docker tools
 # cask "docker-desktop"
-brew "docker" #, restart_service: :changed
-brew "docker-compose" #, restart_service: :changed
+brew "docker"
+brew "docker-compose"
 brew "colima" #, restart_service: :changed
+brew "docker-credential-helper"
 brew "docker-credential-helper-ecr"
 brew "lazydocker" # docker cli
 brew "dive" # docker layer cli

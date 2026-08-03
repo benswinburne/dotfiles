@@ -13,7 +13,7 @@ packages=(
   fixjson
   forever
   gzip-size-cli
-  hs
+  # hs
   htmlhint
   http-status-identifier-cli
   # intelephense — managed by mason.nvim

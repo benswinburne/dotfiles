@@ -50,12 +50,16 @@ cask "obs" # streaming software
 cask "nordvpn" # vpn
 cask "kap" # screenshoter
 cask "balenaetcher" # iso writer
-# cask "beardedspice" # media key forwarder
-cask "macmediakeyforwarder" # fix media keys / prioritise spotify
 cask "jordanbaird-ice" # taskbar manager
 cask "topnotch" # black bar for the notch
 brew "mole" # disk cleanup
 cask "grandperspective" # disk space analyser
+
+# Mediakeys
+# Maybe when in homebrew https://github.com/ppixu/beamhook
+cask "macmediakeyforwarder" # fix media keys / prioritise spotify
+# cask "beardedspice" # deprecated/gone?
+# cask "beardie" # deprecated/gone?
 
 # QuickLook plugins
 cask "qlcolorcode" # renders source code with syntax highlighting

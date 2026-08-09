@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-open /Applications/Docker.app/
+# open /Applications/Docker.app/
 open /Applications/Flux.app/
 open /Applications/KeepingYouAwake.app/
 open /Applications/Dropbox.app/

@@ -6,6 +6,9 @@ echo "PHP Setup"
 pecl list | grep -q xdebug    || echo '' | pecl install xdebug || true
 pecl list | grep -q memcached || echo '' | pecl install memcached || true
 
+# Allow composer plugins
+composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
 composer global require --no-interaction \
 	spatie/phpunit-watcher \
   phpstan/phpstan \

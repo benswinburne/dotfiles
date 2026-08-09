@@ -51,7 +51,7 @@ cask "obs" # streaming software
 cask "nordvpn" # vpn
 cask "kap" # screenshoter
 cask "balenaetcher" # iso writer
-cask "beardedspice" # media key forwarder
+# cask "beardedspice" # media key forwarder
 cask "jordanbaird-ice" # taskbar manager
 cask "topnotch" # black bar for the notch
 brew "mole" # disk cleanup

@@ -14,11 +14,9 @@ ln -sfn $(brew --prefix)/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugi
 colima start || true
 
 # Wait for docker to be available
-for i in {1..30}; do
-  if docker ps >/dev/null 2>&1; then
-    break
-  fi
-  sleep 2
+for i in {1..60}; do
+  docker ps >/dev/null 2>&1 && break
+  sleep 1
 done
 
 # Bash completions (after colima start so docker command is available)

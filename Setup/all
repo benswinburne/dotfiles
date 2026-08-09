@@ -40,7 +40,7 @@ step() {
   if (cd "$DOTFILES" && bash "$script"); then
     echo "$name" >> "$CHECKPOINT_FILE"
     echo -e "${GREEN}✓  $name done${NC}"
-    [[ -t 0 ]] && read -rp "Press enter to continue to next step..."
+    [[ -t 0 ]] && read -rp "Press enter to continue to next step..." || true
   else
     echo -e "${RED}✗  $name FAILED${NC}"
     echo -e "   Fix the issue and re-run — progress is saved."

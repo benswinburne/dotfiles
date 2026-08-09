@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Trigger App Store sign-in
 open -a "App Store"

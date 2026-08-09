@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # check not run by root
 if [ "$(id -u)" == "0" ]; then

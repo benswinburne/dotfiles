@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 sudo mysqladmin shutdown
 sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 # vi:syntax=sh
 
 # Sensible Mac Defaults

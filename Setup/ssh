@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Wait for Dropbox to sync .ssh directory
 until [ -d "$HOME/Library/CloudStorage/Dropbox/.ssh" ]; do

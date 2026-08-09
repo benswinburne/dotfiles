@@ -12,3 +12,4 @@ open /Applications/Ice.app/
 open /Applications/Docker\ Desktop.app/
 open /Applications/Bearded\ Spice.app/
 open /Applications/Firefox.app/ # Required for certificate creation to work
+open /Applications/MacMediaKeyForwarder.app/

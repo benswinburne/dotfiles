@@ -121,6 +121,7 @@ brew "astyle" # formatter
 # PHP
 brew "php@8.3", restart_service: :changed
 brew "autoconf" # for pecl extension compilation
+brew "pkg-config" # for pecl extensions like memcached
 brew "composer"
 
 # Linters

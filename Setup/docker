@@ -2,10 +2,6 @@
 
 echo "Setup Docker"
 
-# Bash completions
-mkdir -p ~/.local/share/bash-completion/completions
-docker completion bash > ~/.local/share/bash-completion/completions/docker
-
 # ECR credentials from Dropbox
 mkdir -p ~/.docker
 ln -sf ~/Dropbox/.docker/config.json ~/.docker/config.json
@@ -15,6 +11,10 @@ ln -sfn $(brew --prefix)/opt/docker-compose/bin/docker-compose ~/.docker/cli-plu
 ln -sfn $(brew --prefix)/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
 
 colima start
+
+# Bash completions (after colima start so docker command is available)
+mkdir -p ~/.local/share/bash-completion/completions
+docker completion bash > ~/.local/share/bash-completion/completions/docker
 
 brew services start colima
 

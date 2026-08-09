@@ -12,6 +12,11 @@ GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+echo -e "${YELLOW}IMPORTANT: Before continuing, please update macOS to the latest version${NC}"
+echo "    Go to System Settings > General > Software Update"
+echo "    Install all available updates and restart if needed"
+[[ -t 0 ]] && read -rp "Press enter once macOS is up to date..."
+
 step() {
   local name="$1"
   local script="$SETUP/$2"

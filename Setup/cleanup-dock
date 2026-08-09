@@ -34,8 +34,8 @@ for app in \
   dockutil --remove "$app" --allhomes 2>/dev/null
 done
 
-dockutil --add /Applications/Google\ Chrome.app --position 1
-dockutil --add /Applications/Ghostty.app --position 2
-dockutil --add /Applications/Slack.app --position 4
+dockutil --add /Applications/Google\ Chrome.app --position 1 2>/dev/null
+dockutil --add /Applications/Ghostty.app --position 2 2>/dev/null
+dockutil --add /Applications/Slack.app --position 4 2>/dev/null
 
 brew uninstall dockutil

@@ -17,6 +17,8 @@ ln -sf ~/.dotfiles/.prettierignore ~/.prettierignore
 ln -sf ~/.dotfiles/.tidyrc ~/.tidyrc
 ln -sf ~/.dotfiles/.httpie ~/.httpie
 ln -sf ~/.dotfiles/.astylerc ~/.astylerc
+
+mkdir -p ~/.claude
 ln -sf ~/.dotfiles/.claude/settings.json ~/.claude/settings.json
 
 # Ghostty

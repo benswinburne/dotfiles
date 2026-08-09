@@ -33,5 +33,7 @@ if ! [ -L ~/.gnupg ]; then rm -rf ~/.gnupg; ln -s ~/Library/CloudStorage/Dropbox
 # Tokens
 ln -sf ~/Library/CloudStorage/Dropbox/.envtokens ~/.envtokens
 
-# Java — x86 Homebrew openjdk installed in homebrew step
-sudo ln -sfn /usr/local/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+# Java — ARM64 openjdk from Homebrew
+if [[ -d /opt/homebrew/opt/openjdk/libexec/openjdk.jdk ]]; then
+  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+fi

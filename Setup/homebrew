@@ -26,12 +26,3 @@ brew bundle cleanup --force
 
 # macOS software updates
 softwareupdate --all --install --force
-
-# x86 Homebrew for packages that don't have arm64 builds
-if [[ ! -f /usr/local/homebrew/bin/brew ]]; then
-  mkdir -p ~/Downloads/homebrew
-  curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/Downloads/homebrew
-  sudo mv ~/Downloads/homebrew /usr/local/homebrew
-fi
-
-arch -x86_64 /usr/local/homebrew/bin/brew install java
